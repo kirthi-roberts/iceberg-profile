@@ -30,7 +30,7 @@ body{font-family:var(--fb);background:var(--deep);color:var(--ice);overflow-x:hi
 .nav-sep{width:1px;height:22px;background:rgba(74,144,217,0.3);}
 .nav-name{font-family:var(--fd);font-size:1rem;color:rgba(184,216,240,0.85);font-style:italic;letter-spacing:0.02em;}
 .nav-sub{font-family:var(--fm);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#c9a84c;margin-left:0.1rem;font-weight:600;}
-.nav-cta{font-family:var(--fm);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,0.4);padding:0.45rem 1.15rem;border-radius:20px;background:none;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.nav-cta{font-family:var(--fm);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:#0c1a2e;border:2px solid #c9a84c;padding:0.5rem 1.3rem;border-radius:20px;background:#c9a84c;cursor:pointer;transition:all 0.2s;white-space:nowrap;font-weight:700;}
 .nav-cta:hover{background:rgba(201,168,76,0.1);border-color:var(--gold);}
 
 /* HERO */
@@ -54,10 +54,10 @@ body{font-family:var(--fb);background:var(--deep);color:var(--ice);overflow-x:hi
 .hero-eyebrow{font-family:var(--fb);font-size:1.1rem;letter-spacing:0.18em;margin-top:-2.5vh;text-transform:uppercase;color:#f0c94a;font-weight:700;margin-bottom:0.6rem;text-shadow:-1px -1px 0 rgba(0,0,0,0.95),1px -1px 0 rgba(0,0,0,0.95),-1px 1px 0 rgba(0,0,0,0.95),1px 1px 0 rgba(0,0,0,0.95),0 0 20px rgba(0,0,0,0.9),0 2px 16px rgba(0,0,0,0.9);}
 .hero-h1{font-family:var(--fd);font-size:clamp(1.6rem,3.9vw,3.4rem);font-weight:900;line-height:0.87;color:#fff;letter-spacing:-0.03em;text-shadow:0 4px 40px rgba(0,0,0,0.6);display:block;width:100%;margin-top:3.5vh;text-align:center;}
 .hero-h1 em{font-style:italic;color:rgba(210,235,255,0.92);}
-.hero-tagline{font-family:var(--fd);font-style:italic;font-weight:700;font-size:clamp(1.2rem,2.1vw,1.6rem);color:#c9a84c;margin-top:0.3rem;text-shadow:-1px -1px 0 rgba(0,0,0,0.8),1px -1px 0 rgba(0,0,0,0.8),-1px 1px 0 rgba(0,0,0,0.8),1px 1px 0 rgba(0,0,0,0.8),0 3px 18px rgba(0,0,0,0.95),0 0 35px rgba(0,0,0,0.7);letter-spacing:0.02em;display:block;width:100%;text-align:center;}
+.hero-tagline{font-family:var(--fd);font-style:italic;font-weight:700;font-size:clamp(1.35rem,2.4vw,1.85rem);color:#e8c55a;margin-top:0.3rem;text-shadow:-1px -1px 0 rgba(0,0,0,0.8),1px -1px 0 rgba(0,0,0,0.8),-1px 1px 0 rgba(0,0,0,0.8),1px 1px 0 rgba(0,0,0,0.8),0 3px 18px rgba(0,0,0,0.95),0 0 35px rgba(0,0,0,0.7);letter-spacing:0.02em;display:block;width:100%;text-align:center;}
 
 /* Content area - immediately after photo */
-.content{background:var(--deep);padding:3.5rem 1.5rem 0;}
+.content{background:var(--deep);padding:0 1.5rem 0;}
 .content-inner{max-width:820px;margin:0 auto;}
 
 /* Hook */
@@ -363,7 +363,7 @@ footer{background:rgba(6,14,28,0.95);border-top:1px solid rgba(74,144,217,0.12);
       <div class="nav-sub">Starts Where Your Resume Stops</div>
     </div>
   </div>
-  <button class="nav-cta" onclick="document.getElementById('tier-anchor').scrollIntoView({behavior:'smooth'})">Surface My Full Value →</button>
+  <button class="nav-cta" onclick="document.getElementById('tier-anchor').scrollIntoView({behavior:'smooth'})">Uncover My Hidden Business Value →</button>
 </nav>
 
 <!-- HERO PHOTO -->
@@ -385,8 +385,8 @@ footer{background:rgba(6,14,28,0.95);border-top:1px solid rgba(74,144,217,0.12);
       <h1 class="hero-h1">The <em>Iceberg</em><br>Profile</h1>
     </div>
     <!-- Tagline — below waterline -->
-    <div style="position:absolute;top:40%;left:0;right:0;z-index:6;text-align:center;pointer-events:none;">
-      <p class="hero-tagline">Know Your Worth. Command It.</p>
+    <div style="position:absolute;top:46%;left:0;right:0;z-index:6;text-align:center;pointer-events:none;">
+      <p class="hero-tagline">Surface Your Hidden Business Value.<br><span style="display:block;margin-top:0.3rem;">Command What You Deserve.</span></p>
     </div>
   </div>
 </div>
@@ -634,7 +634,7 @@ window.addEventListener('resize',function(){
   </div>
 
   <div class="cta-zone" style="padding-bottom:4rem;">
-    <button class="btn-primary" onclick="buyTier(sel)">Surface My Full Value →</button>
+    <button class="btn-primary" onclick="buyTier(sel)">Uncover My Hidden Business Value →</button>
     <!-- Access code for beta testers / coaching clients -->
     <div style="text-align:center;margin-top:0.7rem;">
       <span style="display:none" onclick="" style="font-family:var(--fm);font-size:0.48rem;letter-spacing:0.14em;color:rgba(184,216,240,0.18);cursor:pointer;text-transform:uppercase;border-bottom:1px solid rgba(184,216,240,0.1);padding-bottom:1px;">HAVE A VIP CODE?</span>
@@ -874,17 +874,17 @@ window.addEventListener('resize',function(){
       <div>
         <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem">Next Steps</div>
         <h3 style="font-size:1.2rem;margin-bottom:.55rem">Your report is the map. The coaching is the expedition.</h3>
-        <p style="margin-bottom:.85rem">You now have language for your hidden business value that you didn't have before you started building your 'Iceberg Profile'. That matters. But here's what the report cannot do: it cannot tell you how to walk into your next performance review and ask for a 20–40% salary increase without flinching or strategize on how to command even higher levels by fundamentally changing your day-to-day Business Operating System (BOS) and therefore higher value (both real and perceived) to your employer. It cannot tell you which of your three career options has the highest leverage right now given your specific company, your specific manager, and your specific market timing. It cannot give you the negotiation script that actually works for your situation, or help you navigate the politics of a promotion you've been doing the work for but haven't received. That's not language work. That's dynamic strategy — and strategy is always situational.</p>
-        <p style="font-size:.8rem;color:rgba(184,216,240,.45);line-height:1.72;margin-bottom:.85rem">Dr. Kirthi Roberts has spent 25 years sitting across from engineers, executives, and technical leaders who are earning 20–50% less than the market will actually pay them — and who have no idea how to change that. The ones who engage in 3, 4 or 6 months of strategic career transformation don't just get better jobs. They transform their mindset, their Business Operating System (BOS) and therefore their careers. The gap between your current trajectory and your actual ceiling is not a skills gap. It is a strategy, positioning, and nerve gap — and that is exactly what career transformation coaching closes.</p>
+        <p style="margin-bottom:.85rem;color:rgba(184,216,240,0.82)">You now have language for your hidden business value that you didn't have before you started building your 'Iceberg Profile'. That matters. But here's what the report cannot do: it cannot tell you how to walk into your next performance review and ask for a 20–40% salary increase without flinching or strategize on how to command even higher levels by fundamentally changing your day-to-day Business Operating System (BOS) and therefore higher value (both real and perceived) to your employer. It cannot tell you which of your three career options has the highest leverage right now given your specific company, your specific manager, and your specific market timing. It cannot give you the negotiation script that actually works for your situation, or help you navigate the politics of a promotion you've been doing the work for but haven't received. That's not language work. That's dynamic strategy — and strategy is always situational.</p>
+        <p style="font-size:.8rem;color:rgba(184,216,240,.82);line-height:1.72;margin-bottom:.85rem">Dr. Kirthi Roberts has spent 25 years sitting across from engineers, executives, and technical leaders who are earning 20–50% less than the market will actually pay them — and who have no idea how to change that. The ones who engage in 3, 4 or 6 months of strategic career transformation don't just get better jobs. They transform their mindset, their Business Operating System (BOS) and therefore their careers. The gap between your current trajectory and your actual ceiling is not a skills gap. It is a strategy, positioning, and nerve gap — and that is exactly what career transformation coaching closes.</p>
         <p style="font-family:var(--fm);font-style:normal;font-size:.88rem;color:rgba(184,216,240,0.88);line-height:1.85">The Iceberg Profile surfaces your unmonetized hidden business value — and begins balancing the ledger on years of being underpaid for it. The coaching goes further: it shows you how to operate like a high-value business others want a piece of — rebuilding your Business Operating System so your perceived and real market value keep climbing. In an AI-driven world, understanding and running 'Me Inc.' at full power isn't optional. It's how you stay irreplaceable.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:.7rem;align-items:center;flex-shrink:0">
         <div class="no-print" style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:0.5rem;align-items:center;">
           <button onclick="window.print()" style="background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.4);color:#c9a84c;font-family:var(--fm);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.55rem 1.4rem;border-radius:20px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(201,168,76,0.22)'" onmouseout="this.style.background='rgba(201,168,76,0.12)'">⬇ Download Report as PDF</button>
-          <span style="font-family:var(--fm);font-size:0.5rem;letter-spacing:0.1em;color:rgba(184,216,240,0.28);text-align:center;max-width:220px;line-height:1.5">Use your browser's Save as PDF option · Ctrl+P / Cmd+P</span>
+          <span style="font-family:var(--fm);font-size:0.5rem;letter-spacing:0.1em;color:rgba(184,216,240,0.65);text-align:center;max-width:220px;line-height:1.5">Use your browser's Save as PDF option · Ctrl+P / Cmd+P</span>
         </div>
         <a href="https://kirthiroberts.com" class="coach-btn" target="_blank" style="white-space:nowrap">Explore Career Transformation Programs →</a>
-        <span style="font-family:var(--fm);font-size:.52rem;letter-spacing:.06em;color:rgba(184,216,240,.22);text-align:center">3, 4 &amp; 6-month programs<br>available</span>
+        <span style="font-family:var(--fm);font-size:.52rem;letter-spacing:.06em;color:rgba(184,216,240,.62);text-align:center">3, 4 &amp; 6-month programs<br>available</span>
       </div>
     </div>
   </div>
