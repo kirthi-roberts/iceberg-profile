@@ -825,12 +825,12 @@ window.addEventListener('resize',function(){
     <polygon points="32,28 50,46 14,46" fill="rgba(42,90,154,0.48)"/>
   </svg>
   <h2 class="gen-title">Surfacing your Profile…</h2>
-  <p class="gen-sub">Analysing your answers through 25 years of career coaching pattern recognition. About 30 seconds.</p>
+  <p class="gen-sub">Excavating your unmonetized business value and hidden patterns. About 30 seconds.</p>
   <div class="gen-steps">
-    <div class="gs" id="gs1"><div class="gdot"></div>Reading your impact narrative</div>
-    <div class="gs" id="gs2"><div class="gdot"></div>Identifying human firmware patterns</div>
-    <div class="gs" id="gs3"><div class="gdot"></div>Translating into monetizable business value language</div>
-    <div class="gs" id="gs4"><div class="gdot"></div>Mapping your Irreplaceable Core</div>
+    <div class="gs" id="gs1"><div class="gdot"></div>Reading your answers for patterns and signals</div>
+    <div class="gs" id="gs2"><div class="gdot"></div>Excavating unmonetized value below the surface</div>
+    <div class="gs" id="gs3"><div class="gdot"></div>Identifying your value creation patterns</div>
+    <div class="gs" id="gs4"><div class="gdot"></div>Translating into business language that lands</div>
     <div class="gs" id="gs5"><div class="gdot"></div>Composing your Iceberg Profile</div>
   </div>
 </div>
@@ -851,7 +851,8 @@ window.addEventListener('resize',function(){
     <div class="rsec" style="animation-delay:.18s"><div class="sec-lbl">Superpower Profile</div><div class="rcard" id="s-sp"><div class="loading"><div class="spin"></div>Identifying highest-value capabilities…</div></div></div>
     <div class="rsec" style="animation-delay:.23s"><div class="sec-lbl">LinkedIn Headline &amp; Executive Summary</div><div class="rcard" id="s-resume"><div class="loading"><div class="spin"></div>Generating positioning language…</div></div></div>
     <div class="rsec" style="animation-delay:.28s"><div class="sec-lbl">Key Competencies</div><div class="rcard" id="s-kw"><div class="loading"><div class="spin"></div>Extracting competency keywords…</div></div></div>
-    <div class="rsec" id="s-fw-wrap" style="animation-delay:.33s;display:none"><div class="sec-lbl">Hidden Strengths &amp; Instincts Analysis <span style="font-family:var(--fm);font-size:0.56rem;color:var(--gold);letter-spacing:0.06em">(Human X-Factor)</span></div><div class="rcard" id="s-fw"><div class="loading"><div class="spin"></div>Mapping human firmware attributes…</div></div></div>
+    <div class="rsec" id="s-fw-wrap" style="animation-delay:.33s;display:none"><div class="sec-lbl">Hidden Strengths &amp; Instincts Analysis <span style="font-family:var(--fm);font-size:0.56rem;color:var(--gold);letter-spacing:0.06em">(Human X-Factor)</span></div><div class="rcard" id="s-fw"><div class="loading"><div class="spin"></div>Mapping human firmware attributes…</div></div>
+  <div class="rsec" id="s-vcp-wrap" style="animation-delay:.4s;display:none"><div class="sec-lbl">Your Value Creation Patterns</div><div id="s-vcp"></div></div></div>
     <div class="rsec" id="s-ai-wrap" style="animation-delay:.38s;display:none"><div class="sec-lbl">AI Vulnerability Radar</div><div class="rcard" id="s-ai"><div class="loading"><div class="spin"></div>Assessing AI exposure…</div></div></div>
     <div class="rsec" id="s-rk-wrap" style="animation-delay:.43s;display:none">
 <div style="background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);border-radius:10px;padding:0.9rem 1.1rem;margin-bottom:1rem;font-size:0.78rem;line-height:1.75;color:rgba(201,168,76,0.75);">
@@ -873,6 +874,8 @@ window.addEventListener('resize',function(){
       <p class="upg-p">Most professionals never excavate this deep. What you've surfaced is real — and already more than most ever articulate. But your answers point to something larger still waiting below. The questions ahead reach the parts of your professional value that are genuinely unmonetized — the capabilities, patterns and instincts that have never been named, priced, or claimed.</p>
       <div class="training-note"><strong>Why more questions = better output:</strong> With 30 questions the tool identifies your patterns. With 60 it names your hidden business value with precision. With 100 it has enough about you to do something no resume writer can — paste in your existing resume and get it completely rewritten using your excavated value. Not polished. Rewritten from the ground up, in the language of your actual business value. That is the Pro difference.</p>
     </div>
+    <div id="locked-qs" style="margin-bottom:1.2rem;display:flex;flex-direction:column;gap:0.6rem;"></div>
+    <div id="upg-tiers" class="upg-tiers"></div>
     <div id="locked-features"></div>
     <div class="coach" style="border-color:rgba(201,168,76,0.25);background:linear-gradient(135deg,rgba(6,14,28,0.9),rgba(12,30,62,0.75))">
       <div>
@@ -1692,8 +1695,14 @@ function renderReport(d){
   if(doFW){
     document.getElementById('s-fw-wrap').style.display='block';
     document.getElementById('s-fw').innerHTML=
-      '<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+(d.firmware||'').split('\n').join('<br><br>')+'</p>'+
-      (d.dormant_code?'<div class="dormant"><span class="dormant-lbl">Your Value Creation Patterns</span>'+d.dormant_code+'</div>':'');
+      '<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+(d.firmware||'').split('\n').join('<br><br>')+'</p>';
+    if(d.dormant_code){
+      var vcp=document.getElementById('s-vcp-wrap');
+      if(vcp){
+        vcp.style.display='block';
+        document.getElementById('s-vcp').innerHTML='<div style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+d.dormant_code+'</div>';
+      }
+    }
   }
   if(doAI&&d.ai_radar){
     document.getElementById('s-ai-wrap').style.display='block';
