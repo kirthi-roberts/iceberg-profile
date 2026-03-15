@@ -1134,7 +1134,7 @@ function buyTier(tier){
   sel=tier||sel;
   const bypassEl=document.getElementById('bypass-input');
   const bypassVal=bypassEl?bypassEl.value.trim():'';
-  const validBypasses=['ICEBERG-VIP','COACH-ROBERTS','FUTURE-SCAPE'];
+  const validBypasses=['ICEBERG-VIP','COACH-ROBERTS','FUTURE-SCAPE','ICEBERG-BETA'];
   const hasBypass=bypassVal&&validBypasses.includes(bypassVal);
   if(hasBypass){startAssessmentDirect();return;}
   const urls={
@@ -1172,7 +1172,7 @@ function startAssessmentDirect(){
 
 function startAssessment(){
   const bypassVal=(document.getElementById('bypass-input')||{value:''}).value.trim();
-  const validBypasses=['ICEBERG-VIP','COACH-ROBERTS','FUTURE-SCAPE'];
+  const validBypasses=['ICEBERG-VIP','COACH-ROBERTS','FUTURE-SCAPE','ICEBERG-BETA'];
   const hasBypass=bypassVal&&validBypasses.includes(bypassVal);
   if(!hasBypass){
     const stripeUrl=STRIPE[sel];
