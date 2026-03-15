@@ -736,14 +736,7 @@ window.addEventListener('resize',function(){
   </div>
 
   <script>
-  function tFq(hdr) {
-    var b = hdr.parentElement.querySelector('.fqb');
-    var a = hdr.querySelector('.fqa');
-    var open = b.style.display === 'block';
-    b.style.display = open ? 'none' : 'block';
-    a.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
-  }
-  </script>
+    </script>
 
 </div><!-- /content-inner -->
 </div><!-- /content -->
@@ -947,6 +940,59 @@ window.addEventListener('resize',function(){
   <script>
   // Star interaction
   let selRating=0;
+    document.querySelectorAll('#star-row .star').forEach(function(s){
+    s.addEventListener('mouseover',function(){
+      paintStars(parseInt(this.getAttribute('data-v')));
+    });
+    s.addEventListener('mouseout',function(){
+      paintStars(selRating);
+    });
+    s.addEventListener('click',function(){
+      selRating=parseInt(this.getAttribute('data-v'));
+      paintStars(selRating);
+      document.getElementById('review-form').style.display='block';
+    });
+  });
+
+    </script>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo-row">
+        <img class="footer-logo" src="data:image/png;base64,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" alt="Fiduci" onerror="this.style.display='none'">
+        <span class="footer-logo-name">The Iceberg Profile</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://kirthiroberts.com" class="footer-link" target="_blank">kirthiroberts.com</a>
+        <a href="https://linkedin.com/in/kirthi-roberts-phd-p-eng-097026a" class="footer-link" target="_blank">LinkedIn</a>
+      </div>
+      <p class="footer-copy">The Iceberg Profile &nbsp;&middot;&nbsp; Dr. Kirthi Roberts, PhD, P.Eng.<br>&copy; 2026 Fiduci &nbsp;|&nbsp; Vancouver, BC, Canada</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+const window={location:{href:''},scrollTo:()=>{}};
+const localStorage={getItem:()=>null,setItem:()=>{},removeItem:()=>{}};
+const alert=()=>{};
+const confirm=()=>false;
+const requestAnimationFrame=(cb)=>{if(cb)cb();};
+const fetch=async()=>({ok:true,status:200,json:async()=>({content:[{text:'{}'}]})});
+const setTimeout=(fn,t)=>0;
+const clearTimeout=()=>{};
+const document={getElementById:()=>({style:{},value:'',textContent:'',innerHTML:'',scrollIntoView:()=>{},insertBefore:()=>{},prepend:()=>{},querySelector:()=>null,querySelectorAll:()=>[{getAttribute:()=>'1',style:{},addEventListener:()=>{}}],classList:{add:()=>{},remove:()=>{}},children:{length:0},remove:()=>{}}),querySelectorAll:()=>[{getAttribute:()=>'1',style:{},addEventListener:()=>{},textContent:'',remove:()=>{}}],createElement:()=>({className:'',id:'',innerHTML:'',style:{},onclick:null,title:'',setAttribute:()=>{},appendChild:()=>{},addEventListener:()=>{},scrollIntoView:()=>{},querySelectorAll:()=>[]}),addEventListener:()=>{},body:{appendChild:()=>{},prepend:()=>{}}};
+
+  function tFq(hdr) {
+    var b = hdr.parentElement.querySelector('.fqb');
+    var a = hdr.querySelector('.fqa');
+    var open = b.style.display === 'block';
+    b.style.display = open ? 'none' : 'block';
+    a.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+  }
+  
+
+  // Star interaction
+  let selRating=0;
   function paintStars(upTo){
     document.querySelectorAll('#star-row .star').forEach(function(x){
       const v=parseInt(x.getAttribute('data-v'));
@@ -995,24 +1041,8 @@ window.addEventListener('resize',function(){
       document.getElementById('review-thanks').style.display='block';
     });
   }
-  </script>
+  
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-logo-row">
-        <img class="footer-logo" src="data:image/png;base64,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" alt="Fiduci" onerror="this.style.display='none'">
-        <span class="footer-logo-name">The Iceberg Profile</span>
-      </div>
-      <div class="footer-links">
-        <a href="https://kirthiroberts.com" class="footer-link" target="_blank">kirthiroberts.com</a>
-        <a href="https://linkedin.com/in/kirthi-roberts-phd-p-eng-097026a" class="footer-link" target="_blank">LinkedIn</a>
-      </div>
-      <p class="footer-copy">The Iceberg Profile &nbsp;&middot;&nbsp; Dr. Kirthi Roberts, PhD, P.Eng.<br>&copy; 2026 Fiduci &nbsp;|&nbsp; Vancouver, BC, Canada</p>
-    </div>
-  </footer>
-</div>
-
-<script>
 const STRIPE={
   starter:'https://buy.stripe.com/eVqbJ31jb5rdfUe04sbEA0h',
   core:'https://buy.stripe.com/eVq14pbXP7zlazU3gEbEA0i',
@@ -1022,9 +1052,9 @@ const STRIPE={
   'core->full':'https://buy.stripe.com/00wfZj5zrdXJcI2dVibEA0m'
 };
 const UPG_DELTA={
-  'starter->core':{price:'Unlock for $50',label:'Iceberg Core · 60Q'},
-  'starter->full':{price:'Unlock for $100',label:'Iceberg Pro · 100Q'},
-  'core->full':{price:'Unlock for $50',label:'Iceberg Pro · 100Q'}
+  'starter->core':{price:'$32 more',label:'Iceberg Core · 60Q'},
+  'starter->full':{price:'$100 more',label:'Iceberg Pro · 100Q'},
+  'core->full':{price:'$68 more',label:'Iceberg Pro · 100Q'}
 };
 const AREAS=[
   {id:1,name:'Impact & Achievements',short:'Impact',desc:'What you have actually delivered — in outcomes, not tasks. Describe results, not responsibilities.'},
@@ -1124,7 +1154,7 @@ const ALL_Q=[
   {a:7,t:['f'],q:"What professional habit or pattern has cost you the most so far — and what would your career look like if you had addressed it 5 years earlier?",i:"A habit is something you do repeatedly without deciding to. Which one has created the most friction, missed opportunity, or damage — and what would be different if it were gone?"},
   {a:8,t:['s','c','f'],q:"What do you believe you are genuinely worth in the market today — total compensation? What is that number based on, and are you currently being paid at, above, or below that value?",i:"Give a number or range. Then give the basis for it. Market data? Peer comparisons? A feeling? The basis tells you how grounded your self-assessment actually is."},
   {a:8,t:['s','c','f'],q:"If a recruiter asked why they should pay you 20% more than your current salary — write your answer right now, as if you were in that conversation. Do not plan it. Just write it.",i:"Do not edit. Do not refine. Write what you would actually say in that moment. The rawness of the first answer is the data."},
-  {a:8,t:['s','c','f'],q:"What do you think most hiring managers misunderstand or underestimate about your profile when they first see it? What is the gap between how you are perceived and what you actually bring?",i:"This is your positioning gap. The distance between your actual business value and how the rapidly evolving economy and employment market perceive you is exactly what this tool is designed to close."},
+  {a:8,t:['s','c','f'],q:"What do you think most hiring managers misunderstand or underestimate about your profile when they first see it? What is the gap between how you are perceived and what you actually bring?",i:"This is your positioning gap. The distance between your actual value and your perceived value is exactly what this tool is designed to close."},
   {a:8,t:['c','f'],q:"How do you currently position yourself — your LinkedIn headline, your resume summary, how you introduce yourself? Does it reflect your actual value, or is it a job description in disguise?",i:"Most professionals describe their role, not their value. Is your current positioning doing the work it needs to do? Be honest."},
   {a:8,t:['c','f'],q:"What would a company lose if you left tomorrow? Be specific — what knowledge, relationships, capabilities, or momentum walks out the door with you?",i:"Do not be modest. This is exactly what you would say if your replacement was being hired and you were briefing the search firm on what the role actually requires."},
   {a:8,t:['c','f'],q:"What is the most compelling 60-second version of your professional story — the version that makes a senior hiring manager lean forward? Write it out right now.",i:"Not your job history. Your value story. What you have done, what makes you different, and what you are positioned to do next — in 60 seconds. Write it as you would say it."},
@@ -1174,7 +1204,7 @@ function buyTier(tier){
   sel=tier||sel;
   const bypassEl=document.getElementById('bypass-input');
   const bypassVal=bypassEl?bypassEl.value.trim():'';
-  const validBypasses=['ICEBERG-VIP','COACH-ROBERTS','FUTURE-SCAPE','ICEBERG-BETA'];
+  const validBypasses=['ICEBERG-VIP','COACH-ROBERTS','FUTURE-SCAPE'];
   const hasBypass=bypassVal&&validBypasses.includes(bypassVal);
   if(hasBypass){startAssessmentDirect();return;}
   const urls={
@@ -1187,80 +1217,58 @@ function buyTier(tier){
 
 function startAssessmentDirect(){
   curQs=buildQs(sel);curSection=0;answers={};reentryMode=false;
-  // Restore saved answers if same tier
   try{
-    const savedSel=localStorage.getItem('ib_sel');
+    var savedSel=localStorage.getItem('ib_sel');
     if(savedSel===sel){
-      const savedAns=localStorage.getItem('ib_answers_'+sel);
+      var savedAns=localStorage.getItem('ib_answers_'+sel);
       if(savedAns){
-        const parsed=JSON.parse(savedAns);
-        const filled=Object.values(parsed).filter(function(v){return v&&v.trim();}).length;
-        if(filled>0){
-          answers=parsed;
-          const lastArea=parseInt(localStorage.getItem('ib_section_'+sel))||0;
-          curSection=Math.min(lastArea,Math.max(0,getSectionCount()-1));
-          reentryMode=true;
-        }
+        var parsed=JSON.parse(savedAns);
+        var filled=Object.values(parsed).filter(function(v){return v&&v.trim();}).length;
+        if(filled>0){answers=parsed;var lastArea=parseInt(localStorage.getItem('ib_section_'+sel))||0;curSection=Math.min(lastArea,Math.max(0,getSectionCount()-1));reentryMode=true;}
       }
     }
   }catch(e){}
   document.getElementById('tier-pill').textContent={starter:'Starter · 30Q',core:'Core · 60Q',full:'Pro · 100Q'}[sel];
   document.getElementById('landing').style.display='none';
   document.getElementById('app').style.display='block';
-  renderSection();
-  window.scrollTo(0,0);
-  // Show restore banner if returning
-  if(reentryMode){
-    var filled=Object.values(answers).filter(function(v){return v&&v.trim();}).length;
-    setTimeout(function(){showRestoreBanner(filled);},400);
-  } else {
-    // Email capture for new users
-    setTimeout(function(){
-      try{
-        var savedEmail=localStorage.getItem('ib_email');
-        if(!savedEmail){showEmailCapture(function(){});}
-      }catch(e){}
-    },300);
-  }
-}
-
-
-
-function handleUpgradeClick(key){
-  const bypassEl=document.getElementById('bypass-input');
-  const bypassVal=bypassEl?bypassEl.value.trim():'';
-  const validBypasses=['ICEBERG-VIP','COACH-ROBERTS','FUTURE-SCAPE','ICEBERG-BETA'];
-  const hasBypass=bypassVal&&validBypasses.includes(bypassVal);
-  const tierMap={'starter->core':'core','starter->full':'full','core->full':'full'};
-  trackUpgrade(sel, tierMap[key]||key);
-  if(hasBypass && tierMap[key]){
-    upgradeAndContinue(tierMap[key]);
-  } else {
-    window.open(STRIPE[key],'_blank');
-  }
-}
-function upgradeAndContinue(newTier){
-  const savedAnswers=Object.assign({},answers);
-  sel=newTier;
-  curQs=buildQs(sel);
-  curSection=0;
-  answers=savedAnswers;
-  reentryMode=true;
-  document.getElementById('tier-pill').textContent={starter:'Starter · 30Q',core:'Core · 60Q',full:'Pro · 100Q'}[sel];
-  document.getElementById('landing').style.display='none';
-  document.getElementById('app').style.display='block';
   renderSection();window.scrollTo(0,0);
+  if(reentryMode){
+    var cnt=Object.values(answers).filter(function(v){return v&&v.trim();}).length;
+    setTimeout(function(){showRestoreBanner(cnt);},400);
+  } else {
+    setTimeout(function(){try{var e=localStorage.getItem('ib_email');if(!e)showEmailCapture(function(){});}catch(ex){}},300);
+  }
 }
+
 function startAssessment(){
   const bypassVal=(document.getElementById('bypass-input')||{value:''}).value.trim();
-  const validBypasses=['ICEBERG-VIP','COACH-ROBERTS','FUTURE-SCAPE','ICEBERG-BETA'];
+  const validBypasses=['ICEBERG-VIP','COACH-ROBERTS','FUTURE-SCAPE'];
   const hasBypass=bypassVal&&validBypasses.includes(bypassVal);
   if(!hasBypass){
     const stripeUrl=STRIPE[sel];
     if(stripeUrl){window.open(stripeUrl,'_blank');return;}
   }
   curQs=buildQs(sel);curSection=0;answers={};reentryMode=false;
-
+  // Restore saved progress
+  try{
+    const savedSel=localStorage.getItem('ib_sel');
+    if(savedSel===sel){
+      const savedAns=localStorage.getItem('ib_answers_'+sel);
+      if(savedAns){
+        const parsed=JSON.parse(savedAns);
+        const filled=Object.values(parsed).filter(v=>v&&v.trim()).length;
+        if(filled>0){
+          const resume=confirm('We found '+filled+' saved answers from a previous session. Continue where you left off?');
+          if(resume){
+            answers=parsed;
+            // restore to last section
+            const lastArea=parseInt(localStorage.getItem('ib_section_'+sel))||0;
+            curSection=Math.min(lastArea, getSectionCount()-1);
+          }
+        }
+      }
+    }
+  }catch(e){}
   document.getElementById('tier-pill').textContent={starter:'Starter · 30Q',core:'Core · 60Q',full:'Pro · 100Q'}[sel];
   document.getElementById('landing').style.display='none';
   document.getElementById('app').style.display='block';
@@ -1648,7 +1656,7 @@ async function generateReport(){
     modal.innerHTML=`<div style="background:rgb(8,18,38);border:1px solid rgba(201,168,76,0.35);border-radius:16px;max-width:460px;width:100%;padding:2rem 2rem 1.5rem;text-align:center;">
       <div style="font-size:2rem;margin-bottom:0.8rem;">✦</div>
       <div style="font-family:var(--fd);font-size:1.1rem;color:var(--crystal);margin-bottom:0.7rem;line-height:1.4;">Your answers are a strong start</div>
-      <p style="font-size:0.82rem;color:rgba(184,216,240,0.65);line-height:1.7;margin-bottom:1.4rem;">You've given real substance to <strong style="color:var(--gold)">${answeredCount}</strong> question${answeredCount===1?'':'s'} so far. Add just <strong style="color:var(--crystal)">${needed} more</strong> and the tool has enough to build a meaningful profile — the more depth you give it, the more precisely it reflects your actual professional and business value back to you.</p>
+      <p style="font-size:0.82rem;color:rgba(184,216,240,0.65);line-height:1.7;margin-bottom:1.4rem;">You've given real substance to <strong style="color:var(--gold)">${answeredCount}</strong> question${answeredCount===1?'':'s'} so far. Add just <strong style="color:var(--crystal)">${needed} more</strong> and the tool has enough to build a meaningful profile — the more depth you give it, the more precisely it reflects your actual value back to you.</p>
       <button onclick="this.closest('[style*=fixed]').remove()" style="background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);color:#c9a84c;font-family:var(--fm);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.75rem 2rem;border-radius:30px;cursor:pointer;">Go Back and Add More →</button>
     </div>`;
     document.body.appendChild(modal);
@@ -1675,4 +1683,276 @@ async function generateReport(){
     const area=AREAS.find(a=>a.id===q.a);
     return 'AREA '+q.a+' — '+area.short+'\nQ: '+q.q+'\nA: '+(answers[i]||'(skipped)');
   }).join('\n\n---\n\n');
-  const sys='You are the intelligence engine inside The Iceberg Profile — career intelligence tool by Dr. Kirthi Roberts PhD PEng, Fiduci Consulting, Vancouver BC.\n\nCORE PHILOSOPHY: Hidden Ceiling (technical excellence alone does not get you into leadership). Digital Floor (AI rising from below making pure execution table stakes). Human X-Factor / Irreplaceable Core = firmware AI cannot replicate: Inner Radar, Vision Forge, Judgment Core, Resilience Armor, Connection Pulse, Energy Spark, Legacy Anchor. Latent Synthesis = connecting dots across unrelated domains = most AI-resistant capability. New career moat = what you ARE not what you KNOW.\n\nCRITICAL GROUNDING RULES — READ BEFORE ANYTHING ELSE:\n1. You may ONLY use what the person actually wrote. Every single sentence in your output must be traceable to a specific answer they gave.\n2. If an answer is blank, marked (skipped), contains gibberish, random characters, or fewer than 5 meaningful words — treat it as if the question was never answered. Do NOT invent or infer content from it.\n3. If fewer than 30% of answers contain real substance, your output should be shorter and honest. In the identity field, warmly acknowledge this is a starting point and that more answers will unlock the full picture — say it once, positively, not as a criticism.\n4. NEVER fabricate specific achievements, metrics, projects, technologies, industries, or roles. If the person did not write it, it does not exist in your output.\n5. Impact statements must be based on things they actually described. If they described nothing concrete, generate fewer statements and say so — do not pad to hit the count.\n6. The quality and length of your output should be a direct, honest reflection of the quality and length of their input. A thin submission must produce a thin report.\n\nTIER: '+sel.toUpperCase()+' ('+curQs.length+' questions)\nIMPACTS: '+nI+' (generate fewer if answers do not support this count — never fabricate to reach it)\nEXEC BULLETS: '+nB+' (same rule — quality over count)\nKEYWORDS: '+nK+'\nFIRMWARE: '+doFW+'\nAI RADAR: '+doAI+'\nRESUME KIT: '+doRK+(resumeTxt?'\nRESUME: provided':'')+'\n\nReturn ONLY valid JSON — no markdown, no preamble:\n{\n  "identity": "2-5 sentences second person. ONLY what their answers actually reveal. If answers are sparse, say explicitly: Your answers reveal a strong foundation — adding more detail to remaining questions will unlock an even richer profile. Never fabricate.",\n  "impacts": ["Based ONLY on what they described. Fewer is better than fabricated. Achieved X by Y resulting in Z — only if they actually described X, Y, Z."],\n  "superpowers": ["2-6 labels 2-5 words. ONLY capabilities evidenced in their answers. Fewer if answers are sparse."],\n  "exec_bullets": ["CRITICAL: These are resume bullets — written in first-person IMPLIED (no subject pronoun). Start with a strong past-tense action verb: Delivered, Built, Led, Designed, Prevented, Increased. NEVER use second-person — never say your, you, your team. Each bullet stands alone on a resume. Based ONLY on what they described. Reduce count if answers do not support it. Never invent. Example format: Architected SoC verification platform adopted across 3 business units, reducing post-silicon bug rate by 40%."],\n  "linkedin_headline": "Under 220 characters. Based only on what they shared. If very little was shared, note that more answers would sharpen this.",\n  "linkedin_summary": "1-3 sentences. MUST be first person: start with I or My. Based only on what they wrote. Never use second-person your/you.",\n  "keywords": ["'+nK+' competency phrases — reduce count if answers are sparse. Only real capabilities they described."]'+(doFW?',\n  "firmware": "Analyse ALL answers for evidence of the 7 Human X-Factor pillars. For each pillar WITH clear evidence: name it, cite the SPECIFIC example from their answers that demonstrates it, and explain in 1-2 sentences why this particular manifestation is rare and valuable — especially in an AI-driven world where this capability cannot be replicated. Be specific, not generic. Bad example: \'Your Inner Radar is strong.\' Good example: \'Your Inner Radar fired when you rejected the industry-standard co-simulation IP at Seagate — going against consensus with incomplete proof — and were proven right. That instinct is worth more than any certification.\'\\n\\nFor pillars with NO evidence: skip them entirely — do not mention them.\\nFor pillars with PARTIAL evidence: note what showed up and what additional answers would reveal.\\n\\nThe 7 pillars: Inner Radar (judgment without complete data), Vision Forge (seeing what is coming before consensus), Judgment Core (navigating competing priorities and ambiguity), Resilience Armor (functioning when there is no map), Connection Pulse (building trust and influence at the human level), Energy Spark (sustained drive toward hard problems), Legacy Anchor (building things that outlast direct involvement).\\n\\nEnd with: which 1-2 pillars are their STRONGEST competitive moat in today\'s AI-disrupted market and why.",\n  "dormant_code": "This is the most important section for WOW factor. Study ALL answers carefully and identify 2-4 distinct VALUE CREATION PATTERNS — recurring behavioural signatures that show up consistently across multiple sections. These are NOT skills or achievements (those are elsewhere). These are the HOW behind the what: the operating tendencies, instincts and modus operandi that elite employers recognise immediately as irreplaceable.\\n\\nLook specifically for these high-value patterns if evidenced:\\n- Gravitating toward problems others have declared unsolvable or too risky\\n- Building things from scratch that outlast direct involvement (institutional legacy)\\n- Operating effectively in genuine ambiguity with no map or precedent\\n- Translating between domains that normally stay siloed\\n- Seeing systemic failure before it manifests (pattern recognition ahead of consensus)\\n- Developing people who then exceed expectations\\n- Making high-stakes decisions with incomplete data and being right\\n- Stepping into organisational gaps without being asked\\n- Holding technical depth AND organisational complexity simultaneously\\n- Tolerating being wrong in public in service of being right eventually\\n\\nFor each pattern found: name it boldly (3-5 words), then explain in 2 sentences what it looks like in their work and why it is rare and valuable in the current market. Write with energy and specificity — this should feel like someone finally put words to something they always knew about themselves but could never articulate. If fewer than 2 clear patterns emerge, name what is visible and note that more answers will reveal more patterns."':'')+(doAI?',\n  "ai_radar": "3 paragraphs based on what they actually described as their work. If work tasks were not described, note that a more complete picture will emerge when they describe their daily work in more detail, and share what you can from what was provided."':'')+(doRK?',\n  "resume_kit": {"objective": "One sentence based on what they shared.", "experience_notes": "Rewriting guidance based only on what they described. If resume was provided, reference it specifically.", "skills_section": ["Skills they actually mentioned — reduce count if fewer were described"]}':'')+'\n  "closing": "2-3 sentences. Honest. End on an encouraging, forward-looking note. If answers were sparse, say once — warmly — that adding more detail will unlock even more value. If answers were rich, connect their specific strengths to the post-AI landscape."\n}'\\n  let data=null;\\n  try{\\n    const res=await fetch('https://iceberg-api.kirthi-bd1.workers.dev',{\\n      method:'POST',headers:{'Content-Type':'application/json'},\\n      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:4000,system:sys,bypass_code:(document.getElementById('bypass-input')||{value:''}).value,tier:sel,\\n        messages:[{role:'user',content:sel+' tier ('+curQs.length+'Q):\n\n'+summary+(resumeTxt?'\n\nRESUME:\n'+resumeTxt:'')}]})\\n    });\\n    // Log HTTP status for debugging\\n    console.log('[Iceberg] API response status:', res.status);\\n    const json=await res.json();\\n    console.log('[Iceberg] API response:', JSON.stringify(json).slice(0,300));\\n    if(!res.ok){\\n      console.error('[Iceberg] API error:', json.error);\\n      throw new Error('API returned '+res.status+': '+(json.error||JSON.stringify(json)));\\n    }\\n    const raw=json.content?.[0]?.text||'';\\n    console.log('[Iceberg] Raw text length:', raw.length);\\n    if(!raw){throw new Error('Empty response from API — system prompt may not have been received');}\\n    const cleaned=(()=>{let s=raw;const a='`'+'`'+'`';return s.split(a+'json').join('').split(a).join('').trim();})();\\n    console.log('[Iceberg] Cleaned JSON preview:', cleaned.slice(0,200));\\n    data=JSON.parse(cleaned);\\n    console.log('[Iceberg] Parse successful. Keys:', Object.keys(data).join(', '));\\n  }catch(e){\\n    console.error('[Iceberg] GENERATION FAILED:', e.message);\\n    console.error('[Iceberg] Full error:', e);\\n    data=fallback();\\n    data._errorMsg=e.message;\\n  }\\n  document.getElementById(steps[steps.length-1]).className='gs done';\\n  await sleep(300);\\n  renderReport(data);\\n}\\n\\nfunction sleep(ms){return new Promise(r=>setTimeout(r,ms));}\\n\\nfunction renderReport(d){\\n  // Handle error state from fallback()\\n  if(d && d._error){\\n    // Hide generating screen, restore app WITH answers intact\\n    document.getElementById('generating').style.display='none';\\n    document.getElementById('app').style.display='block';\\n    // Show error banner at top of questionnaire — answers are still there\\n    const existingErr=document.getElementById('api-error-banner');\\n    if(existingErr)existingErr.remove();\\n    const banner=document.createElement('div');\\n    banner.id='api-error-banner';\\n    banner.style.cssText='position:fixed;top:0;left:0;right:0;z-index:9999;background:#1a0a0a;border-bottom:2px solid rgba(201,168,76,0.5);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;';\\n    banner.innerHTML=`\\n      <div style="display:flex;align-items:center;gap:0.8rem;">\\n        <span style="font-size:1.2rem;">⚠</span>\\n        <div>\\n          <div style="font-family:var(--fd);font-size:0.88rem;color:#e8c87a;margin-bottom:0.2rem;">Report generation failed — your answers are safe</div>\\n          <div style="font-size:0.72rem;color:rgba(184,216,240,0.6);">Check your internet connection, then try generating again. If the problem persists, contact info@fiduciconsulting.com</div>\\n        </div>\\n      </div>\\n      <button onclick="document.getElementById('api-error-banner').remove()" style="flex-shrink:0;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);color:#c9a84c;font-family:var(--fm);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.5rem 1rem;border-radius:20px;cursor:pointer;white-space:nowrap;">Dismiss ✕</button>\\n    `;\\n    document.body.prepend(banner);\\n    window.scrollTo({top:0,behavior:'smooth'});\\n    return;\\n  }\\n  document.getElementById('generating').style.display='none';\\n  document.getElementById('report').style.display='block';\\n  window.scrollTo(0,0);\\n  const doFW=sel==='core'||sel==='full';\\n  const doAI=sel==='full';\\n  const doRK=sel==='full';\\n  document.getElementById('s-id').innerHTML='<p style="font-size:.93rem;line-height:1.85;color:var(--crystal)">'+d.identity+'</p>';\\n  document.getElementById('s-impacts').innerHTML=(d.impacts||[]).map(s=>'<div class="impact-item">'+s+'</div>').join('');\\n  document.getElementById('s-sp').innerHTML='<div style="margin-bottom:.85rem">'+(d.superpowers||[]).map(s=>'<span class="sp-pill">'+s+'</span>').join('')+'</div><p style="font-size:.76rem;color:rgba(184,216,240,.4);font-style:italic">Your highest-value capabilities as evidenced by your answers — belong in your headline, your summary, and your interview answers.</p>';\\n  document.getElementById('s-resume').innerHTML=\\n    '<span class="rsub">LinkedIn Headline</span><div class="rblock" style="font-weight:600;font-size:.98rem">'+(d.linkedin_headline||'')+'</div>'+\\n    '<span class="rsub">LinkedIn Summary</span><div class="rblock">'+(d.linkedin_summary||'')+'</div>'+\\n    '<span class="rsub">Executive Summary — Resume Bullets</span>'+\\n    '<p style="font-size:.76rem;color:rgba(184,216,240,.38);font-style:italic;margin-bottom:.75rem">Ready to use as your Executive Summary on your resume. Mix of quantified achievements, business impact, and Human X-Factor in action.</p>'+\\n    (d.exec_bullets||[]).map(b=>'<div class="bullet-row"><div class="bdot"></div><div>'+b+'</div></div>').join('');\\n  document.getElementById('s-kw').innerHTML=\\n    '<p style="font-size:.76rem;color:rgba(184,216,240,.4);font-style:italic;margin-bottom:.85rem">Add these directly to your Key Competencies section on your resume. Chosen for ATS optimization and accurate representation of your technical, business, and human-factor strengths.</p>'+\\n    (d.keywords||[]).map(k=>'<span class="kw-pill">'+k+'</span>').join('');\\n  if(doFW){\\n    document.getElementById('s-fw-wrap').style.display='block';\\n    document.getElementById('s-fw').innerHTML=\\n      '<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+(d.firmware||'').split('\n').join('<br><br>')+'</p>'+\\n      (d.dormant_code?'<div class="dormant"><span class="dormant-lbl">Your Value Creation Patterns</span>'+d.dormant_code+'</div>':'');\\n  }\\n  if(doAI&&d.ai_radar){\\n    document.getElementById('s-ai-wrap').style.display='block';\\n    document.getElementById('s-ai').innerHTML='<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+d.ai_radar.split('\n').join('<br><br>')+'</p>';\\n  }\\n  if(doRK&&d.resume_kit){\\n    document.getElementById('s-rk-wrap').style.display='block';\\n    // Show template selector and render default template\\n    window._reportData=d;\\n    const tmplSel=document.getElementById('tmpl-selector');\\n    if(tmplSel){tmplSel.style.display='block';setTimeout(()=>showTemplate('executive'),100);}\\n    const rk=d.resume_kit;\\n    document.getElementById('s-rk').innerHTML=\\n      '<p style="font-size:.76rem;color:rgba(184,216,240,.38);font-style:italic;margin-bottom:1.1rem">Your Resume Content Kit — raw material for a complete resume rewrite. Format it in your preferred style and you have a resume no one else has.</p>'+\\n      '<span class="rsub">Career Objective</span><div class="rblock">'+(rk.objective||'')+'</div>'+\\n      '<span class="rsub">Experience Section — Rewriting Notes</span><div class="rblock" style="line-height:1.78">'+(rk.experience_notes||'').split('\n').join('<br>')+'</div>'+\\n      '<span class="rsub">Skills Section</span>'+(rk.skills_section||[]).map(s=>'<span class="kw-pill">'+s+'</span>').join('');\\n  }\\n  if(d.closing){\\n    const el=document.createElement('div');el.className='rsec';el.style.animationDelay='.48s';\\n    el.innerHTML='<div class="sec-lbl">What Comes Next</div><div class="rcard" style="background:linear-gradient(135deg,rgba(12,30,62,.85),rgba(22,54,96,.6));border-color:rgba(74,144,217,.2)"><p style="font-family:var(--fd);font-size:1rem;font-style:italic;line-height:1.9;color:var(--crystal)">'+d.closing+'</p></div>';\\n    document.getElementById('upg-box').before(el);\\n  }\\n  if(sel!=='full'){\\n    document.getElementById('locked-qs').innerHTML=LOCKED_PREVIEW.map(lq=>{\\n      const area=AREAS.find(a=>a.id===lq.a);\\n      return '<div class="lq-row"><span>🔒</span><span><strong style="font-size:.58rem;color:rgba(184,216,240,.26);font-family:var(--fm);display:block;margin-bottom:1px">Area '+lq.a+' — '+area.short+'</strong>'+lq.q+'</span></div>';\\n    }).join('');\\n    const upgrades=sel==='starter'\\n      ?[{key:'starter->core',n:'Iceberg Core',qs:'60Q',d:'Firmware + Dormant Code + more impact'},\\n        {key:'starter->full',n:'Iceberg Pro',qs:'100Q',d:'AI Radar + Resume Rewrite + Paste Your Resume'}]\\n      :[{key:'core->full',n:'Iceberg Pro',qs:'100Q',d:'AI Radar + Resume Content Kit + 10-bullet summary'}];\\n    document.getElementById('upg-tiers').innerHTML=upgrades.map(u=>{\\n      const p=UPG_DELTA[u.key];\\n      return '<div class="upg-card" data-upgkey="'+u.key+'" onclick="handleUpgradeClick(this.dataset.upgkey)"><div class="upg-n">'+u.n+'</div><div class="upg-qs">'+u.qs+'</div><div class="upg-price">'+p.price+'</div><div class="upg-more">to unlock</div><div class="upg-d">'+u.d+'</div></div>';\\n    }).join('');\\n    const lf=sel==='starter'\\n      ?[{t:'Hidden Strengths &amp; Instincts Analysis',d:'Which of your 7 Human X-Factor pillars are active vs dormant — and your single most AI-resistant professional asset. Iceberg Core and above.'},\\n        {t:'AI Vulnerability Radar',d:'Honest assessment of your AI exposure with a 2-year strategic recommendation. Iceberg Pro only.'},\\n        {t:'Resume Content Kit',d:'Paste your existing resume + get a complete AI rewrite using your excavated value — objective, bullets, skills. Iceberg Pro only.'}]\\n      :[{t:'AI Vulnerability Radar',d:'Full AI exposure assessment with strategic recommendations. Iceberg Pro only.'},\\n        {t:'Resume Content Kit',d:'Complete resume rewrite based on your 100-question excavation. Iceberg Pro only.'}];\\n    document.getElementById('locked-features').innerHTML=lf.map(f=>'<div class="locked-ft"><span style="opacity:.35;font-size:1rem;flex-shrink:0;margin-top:2px">🔒</span><div class="lf-body"><div class="lf-t">'+f.t+'</div><div class="lf-d">'+f.d+'</div></div></div>').join('');\\n    document.getElementById('upg-box').style.display='block';\\n  }\\n}\\n\\nfunction fallback(){\\n  // Return a clear error state — never fake content\\n  return {\\n    _error: true,\\n    identity: 'We were unable to generate your report. This can happen when answers are very short, when there is a connection issue, or when the content cannot be processed. Please go back, review your answers, and try again. If the problem persists, contact support at info@fiduciconsulting.com.',\\n    impacts: [],\\n    superpowers: [],\\n    exec_bullets: [],\\n    linkedin_headline: '',\\n    linkedin_summary: '',\\n    keywords: [],\\n    closing: 'Please go back and try generating your report again. Make sure your answers have enough detail — at least a sentence or two per question — for the tool to work with.'\\n  };\\n}\\n\\n// ── Auto-save restore banner ─────────────────────────────────────────\\nfunction showRestoreBanner(count){\\n  const existing=document.getElementById('restore-banner');\\n  if(existing) existing.remove();\\n  const banner=document.createElement('div');\\n  banner.id='restore-banner';\\n  banner.style.cssText='position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:999;background:rgba(12,30,62,0.97);border:1px solid rgba(201,168,76,0.5);border-radius:12px;padding:1rem 1.4rem;display:flex;align-items:center;gap:1rem;box-shadow:0 8px 32px rgba(0,0,0,0.5);max-width:90vw;animation:slideDown 0.4s ease;';\\n  banner.innerHTML='<span style="font-size:1.2rem">&#10003;</span><div style="font-family:var(--fm);font-size:0.82rem;color:rgba(184,216,240,0.9)"><strong style="color:#c9a84c">'+count+' answers restored.</strong> Your progress was saved automatically. Continue right where you left off.</div><button onclick="document.getElementById(\'restore-banner\').remove()" style="background:none;border:none;color:rgba(184,216,240,0.4);font-size:1.1rem;cursor:pointer;padding:0 0.2rem;flex-shrink:0;">X</button>';\\n  document.body.appendChild(banner);\\n  setTimeout(function(){if(document.getElementById('restore-banner'))document.getElementById('restore-banner').remove();},6000);\\n}\\n\\n// ── Email capture ─────────────────────────────────────────────────────\\nfunction showEmailCapture(onComplete){\\n  const overlay=document.createElement('div');\\n  overlay.id='email-capture-overlay';\\n  overlay.style.cssText='position:fixed;inset:0;z-index:1000;background:rgba(6,14,28,0.88);display:flex;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(4px);';\\n  overlay.innerHTML=`\\n    <div style="background:linear-gradient(135deg,rgba(12,30,62,0.98),rgba(18,42,80,0.98));border:1px solid rgba(201,168,76,0.3);border-radius:16px;padding:2.2rem;max-width:420px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.6);">\\n      <div style="font-size:2rem;margin-bottom:0.8rem;">🔒</div>\\n      <h3 style="font-family:var(--fd);font-size:1.4rem;color:var(--crystal);margin-bottom:0.5rem;font-weight:700;">Save Your Progress Automatically</h3>\\n      <p style="font-family:var(--fm);font-size:0.82rem;color:rgba(184,216,240,0.65);line-height:1.7;margin-bottom:1.4rem;">Enter your email and your answers are saved in real time — even if your browser crashes, you lose power, or you close the tab. Return anytime and pick up exactly where you left off.</p>\\n      <input id="ec-email" type="email" placeholder="your@email.com" style="width:100%;padding:0.85rem 1rem;border:1.5px solid rgba(74,144,217,0.3);border-radius:8px;background:rgba(6,14,28,0.6);color:var(--crystal);font-family:var(--fm);font-size:0.88rem;margin-bottom:0.7rem;box-sizing:border-box;">\\n      <button onclick="submitEmailCapture()" style="width:100%;padding:0.9rem;background:#c9a84c;color:#0c1a2e;border:none;border-radius:8px;font-family:var(--fm);font-size:0.88rem;font-weight:700;cursor:pointer;margin-bottom:0.8rem;">Save My Progress & Start →</button>\\n      <button onclick="skipEmailCapture()" style="background:none;border:none;color:rgba(184,216,240,0.35);font-family:var(--fm);font-size:0.75rem;cursor:pointer;text-decoration:underline;">Skip for now — start without saving</button>\\n      <p style="font-family:var(--fm);font-size:0.68rem;color:rgba(184,216,240,0.25);margin-top:0.8rem;">🔒 No spam, ever. Unsubscribe anytime.</p>\\n    </div>`;\\n  document.body.appendChild(overlay);\\n  window._emailCaptureCallback=onComplete;\\n  setTimeout(function(){const el=document.getElementById('ec-email');if(el)el.focus();},100);\\n}\\n\\nfunction submitEmailCapture(){\\n  const email=document.getElementById('ec-email').value.trim();\\n  if(!email||!email.includes('@')){\\n    document.getElementById('ec-email').style.borderColor='#e63946';\\n    return;\\n  }\\n  // Save email locally\\n  localStorage.setItem('ib_email',email);\\n  // Send to ConvertKit\\n  fetch('https://api.convertkit.com/v3/forms/9114465/subscribe',{\\n    method:'POST',\\n    headers:{'Content-Type':'application/json'},\\n    body:JSON.stringify({api_key:'40YM5udhv664QVYe4ADbbA',email:email,tags:['iceberg-profile-user']})\\n  }).catch(function(){});\\n  // Close and continue\\n  const overlay=document.getElementById('email-capture-overlay');\\n  if(overlay) overlay.remove();\\n  if(window._emailCaptureCallback) window._emailCaptureCallback();\\n}\\n\\nfunction skipEmailCapture(){\\n  const overlay=document.getElementById('email-capture-overlay');\\n  if(overlay) overlay.remove();\\n  if(window._emailCaptureCallback) window._emailCaptureCallback();\\n}\\n\\n\\n// ── Analytics & ConvertKit behaviour tracking ─────────────────────────\\nfunction trackIcebergEvent(eventType, extraData){\\n  try{\\n    const email=localStorage.getItem('ib_email');\\n    if(!email) return; // Only track if we have email\\n    const payload={\\n      api_key:'40YM5udhv664QVYe4ADbbA',\\n      email:email,\\n      fields:Object.assign({\\n        last_event: eventType,\\n        last_tier: sel||'unknown',\\n        last_event_date: new Date().toISOString().split('T')[0]\\n      }, extraData||{})\\n    };\\n    fetch('https://api.convertkit.com/v3/subscribers',{\\n      method:'GET',\\n      headers:{'Content-Type':'application/json'}\\n    }).catch(function(){});\\n    // Update subscriber custom fields via subscribe endpoint\\n    fetch('https://api.convertkit.com/v3/forms/9114465/subscribe',{\\n      method:'POST',\\n      headers:{'Content-Type':'application/json'},\\n      body:JSON.stringify(payload)\\n    }).catch(function(){});\\n  }catch(e){}\\n}\\n\\nfunction trackGenerate(answeredCount){\\n  const existing=parseInt(localStorage.getItem('ib_generate_count')||'0');\\n  const newCount=existing+1;\\n  localStorage.setItem('ib_generate_count', newCount);\\n  trackIcebergEvent('generated',{\\n    tier_generated: sel,\\n    answers_at_generate: answeredCount,\\n    generate_count: newCount\\n  });\\n  // Also fire Plausible custom event\\n  if(window.plausible){\\n    window.plausible('Generate',{props:{tier:sel, answers:answeredCount}});\\n  }\\n}\\n\\nfunction trackUpgrade(fromTier, toTier){\\n  trackIcebergEvent('upgrade_clicked',{\\n    upgrade_from: fromTier,\\n    upgrade_to: toTier\\n  });\\n  if(window.plausible){\\n    window.plausible('Upgrade Click',{props:{from:fromTier, to:toTier}});\\n  }\\n}\\n\\nfunction trackStart(tier){\\n  trackIcebergEvent('started_questionnaire',{\\n    tier_started: tier\\n  });\\n  if(window.plausible){\\n    window.plausible('Start Questionnaire',{props:{tier:tier}});\\n  }\\n}\\n\\n</script>\\n</body>\\n</html>
+  const sys='You are the intelligence engine inside The Iceberg Profile — career intelligence tool by Dr. Kirthi Roberts PhD PEng, Fiduci Consulting, Vancouver BC.\n\nCORE PHILOSOPHY: Hidden Ceiling (technical excellence alone does not get you into leadership). Digital Floor (AI rising from below making pure execution table stakes). Human X-Factor / Irreplaceable Core = firmware AI cannot replicate: Inner Radar, Vision Forge, Judgment Core, Resilience Armor, Connection Pulse, Energy Spark, Legacy Anchor. Latent Synthesis = connecting dots across unrelated domains = most AI-resistant capability. New career moat = what you ARE not what you KNOW.\n\nCRITICAL GROUNDING RULES — READ BEFORE ANYTHING ELSE:\n1. You may ONLY use what the person actually wrote. Every single sentence in your output must be traceable to a specific answer they gave.\n2. If an answer is blank, marked (skipped), contains gibberish, random characters, or fewer than 5 meaningful words — treat it as if the question was never answered. Do NOT invent or infer content from it.\n3. If fewer than 30% of answers contain real substance, your output must be visibly shorter, explicitly tentative, and must include a prominent note in the identity field telling the person their report is limited by the depth of their answers.\n4. NEVER fabricate specific achievements, metrics, projects, technologies, industries, or roles. If the person did not write it, it does not exist in your output.\n5. Impact statements must be based on things they actually described. If they described nothing concrete, generate fewer statements and say so — do not pad to hit the count.\n6. The quality and length of your output should be a direct, honest reflection of the quality and length of their input. A thin submission must produce a thin report.\n\nTIER: '+sel.toUpperCase()+' ('+curQs.length+' questions)\nIMPACTS: '+nI+' (generate fewer if answers do not support this count — never fabricate to reach it)\nEXEC BULLETS: '+nB+' (same rule — quality over count)\nKEYWORDS: '+nK+'\nFIRMWARE: '+doFW+'\nAI RADAR: '+doAI+'\nRESUME KIT: '+doRK+(resumeTxt?'\nRESUME: provided':'')+'\n\nReturn ONLY valid JSON — no markdown, no preamble:\n{\n  "identity": "2-5 sentences second person. ONLY what their answers actually reveal. If answers are sparse, say explicitly: Your answers gave us a starting point but not enough depth to build a complete profile — go back, add more detail, and regenerate. Never fabricate.",\n  "impacts": ["Based ONLY on what they described. Fewer is better than fabricated. Achieved X by Y resulting in Z — only if they actually described X, Y, Z."],\n  "superpowers": ["2-6 labels 2-5 words. ONLY capabilities evidenced in their answers. Fewer if answers are sparse."],\n  "exec_bullets": ["CRITICAL: These are resume bullets — written in first-person IMPLIED (no subject pronoun). Start with a strong past-tense action verb: Delivered, Built, Led, Designed, Prevented, Increased. NEVER use second-person — never say your, you, your team. Each bullet stands alone on a resume. Based ONLY on what they described. Reduce count if answers do not support it. Never invent. Example format: Architected SoC verification platform adopted across 3 business units, reducing post-silicon bug rate by 40%."],\n  "linkedin_headline": "Under 220 characters. Based only on what they shared. If very little was shared, note that more answers would sharpen this.",\n  "linkedin_summary": "1-3 sentences. MUST be first person: start with I or My. Based only on what they wrote. Never use second-person your/you.",\n  "keywords": ["'+nK+' competency phrases — reduce count if answers are sparse. Only real capabilities they described."]'+(doFW?',\n  "firmware": "Analyse ALL answers for evidence of the 7 Human X-Factor pillars. For each pillar WITH clear evidence: name it, cite the SPECIFIC example from their answers, explain in 1-2 sentences why rare and valuable. Be specific not generic. Skip pillars with NO evidence entirely. For partial evidence note what showed up. The 7 pillars: Inner Radar (judgment without complete data), Vision Forge (seeing what is coming before consensus), Judgment Core (navigating competing priorities), Resilience Armor (functioning when there is no map), Connection Pulse (building trust at the human level), Energy Spark (sustained drive toward hard problems), Legacy Anchor (building things that outlast direct involvement). End with which 1-2 pillars are their STRONGEST competitive moat in today\'s AI-disrupted market and why.",\n  "dormant_code": "This is the most important section for WOW factor. Study ALL answers and identify 2-4 distinct VALUE CREATION PATTERNS — recurring behavioural signatures showing up across multiple sections. These are NOT skills or achievements. These are the HOW behind the what: operating tendencies, instincts and modus operandi that elite employers recognise as irreplaceable. Look for: gravitating toward problems others declared unsolvable, building things from scratch that outlast direct involvement, operating in genuine ambiguity with no map, translating between domains that stay siloed, seeing systemic failure before it manifests, developing people who exceed expectations, making high-stakes decisions with incomplete data and being right, stepping into organisational gaps without being asked, holding technical depth AND organisational complexity simultaneously, tolerating being wrong in public in service of being right eventually. For each pattern found: name it boldly in 3-5 words, then explain in 2 sentences what it looks like in their work and why it is rare and valuable now. Write with energy and specificity — this should feel like someone finally articulated something they always knew but could never say. If fewer than 2 clear patterns emerge name what is visible and note more answers will reveal more patterns."':'')+(doAI?',\n  "ai_radar": "3 paragraphs based on what they actually described as their work. If work tasks were not described, say the assessment cannot be completed without more detail on their actual role."':'')+(doRK?',\n  "resume_kit": {"objective": "One sentence based on what they shared.", "experience_notes": "Rewriting guidance based only on what they described. If resume was provided, reference it specifically.", "skills_section": ["Skills they actually mentioned — reduce count if fewer were described"]}':'')+'\n  "closing": "2-3 sentences. Honest. If output is thin, acknowledge it and encourage them to go back and add more detail to get the full value of the tool. If output is rich, connect their specific value to the post-AI landscape."\n}'
+  let data=null;
+  try{
+    const res=await fetch('/functions/generate',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:4000,system:sys,bypass_code:(document.getElementById('bypass-input')||{value:''}).value,tier:sel,
+        messages:[{role:'user',content:sel+' tier ('+curQs.length+'Q):\n\n'+summary+(resumeTxt?'\n\nRESUME:\n'+resumeTxt:'')}]})
+    });
+    // Log HTTP status for debugging
+    console.log('[Iceberg] API response status:', res.status);
+    const json=await res.json();
+    console.log('[Iceberg] API response:', JSON.stringify(json).slice(0,300));
+    if(!res.ok){
+      console.error('[Iceberg] API error:', json.error);
+      throw new Error('API returned '+res.status+': '+(json.error||JSON.stringify(json)));
+    }
+    const raw=json.content?.[0]?.text||'';
+    console.log('[Iceberg] Raw text length:', raw.length);
+    if(!raw){throw new Error('Empty response from API — system prompt may not have been received');}
+    const cleaned=(()=>{let s=raw;const a='`'+'`'+'`';return s.split(a+'json').join('').split(a).join('').trim();})();
+    console.log('[Iceberg] Cleaned JSON preview:', cleaned.slice(0,200));
+    data=JSON.parse(cleaned);
+    console.log('[Iceberg] Parse successful. Keys:', Object.keys(data).join(', '));
+  }catch(e){
+    console.error('[Iceberg] GENERATION FAILED:', e.message);
+    console.error('[Iceberg] Full error:', e);
+    data=fallback();
+    data._errorMsg=e.message;
+  }
+  document.getElementById(steps[steps.length-1]).className='gs done';
+  await sleep(300);
+  renderReport(data);
+}
+
+function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
+
+function renderReport(d){
+  // Handle error state from fallback()
+  if(d && d._error){
+    // Hide generating screen, restore app WITH answers intact
+    document.getElementById('generating').style.display='none';
+    document.getElementById('app').style.display='block';
+    // Show error banner at top of questionnaire — answers are still there
+    const existingErr=document.getElementById('api-error-banner');
+    if(existingErr)existingErr.remove();
+    const banner=document.createElement('div');
+    banner.id='api-error-banner';
+    banner.style.cssText='position:fixed;top:0;left:0;right:0;z-index:9999;background:#1a0a0a;border-bottom:2px solid rgba(201,168,76,0.5);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;';
+    banner.innerHTML=`
+      <div style="display:flex;align-items:center;gap:0.8rem;">
+        <span style="font-size:1.2rem;">⚠</span>
+        <div>
+          <div style="font-family:var(--fd);font-size:0.88rem;color:#e8c87a;margin-bottom:0.2rem;">Report generation failed — your answers are safe</div>
+          <div style="font-size:0.72rem;color:rgba(184,216,240,0.6);">Check your internet connection, then try generating again. If the problem persists, contact info@kirthiroberts.com</div>
+        </div>
+      </div>
+      <button onclick="document.getElementById('api-error-banner').remove()" style="flex-shrink:0;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);color:#c9a84c;font-family:var(--fm);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.5rem 1rem;border-radius:20px;cursor:pointer;white-space:nowrap;">Dismiss ✕</button>
+    `;
+    document.body.prepend(banner);
+    window.scrollTo({top:0,behavior:'smooth'});
+    return;
+  }
+  document.getElementById('generating').style.display='none';
+  document.getElementById('report').style.display='block';
+  window.scrollTo(0,0);
+  const doFW=sel==='core'||sel==='full';
+  const doAI=sel==='full';
+  const doRK=sel==='full';
+  document.getElementById('s-id').innerHTML='<p style="font-size:.93rem;line-height:1.85;color:var(--crystal)">'+d.identity+'</p>';
+  document.getElementById('s-impacts').innerHTML=(d.impacts||[]).map(s=>'<div class="impact-item">'+s+'</div>').join('');
+  document.getElementById('s-sp').innerHTML='<div style="margin-bottom:.85rem">'+(d.superpowers||[]).map(s=>'<span class="sp-pill">'+s+'</span>').join('')+'</div><p style="font-size:.76rem;color:rgba(184,216,240,.4);font-style:italic">Your highest-value capabilities as evidenced by your answers — belong in your headline, your summary, and your interview answers.</p>';
+  document.getElementById('s-resume').innerHTML=
+    '<span class="rsub">LinkedIn Headline</span><div class="rblock" style="font-weight:600;font-size:.98rem">'+(d.linkedin_headline||'')+'</div>'+
+    '<span class="rsub">LinkedIn Summary</span><div class="rblock">'+(d.linkedin_summary||'')+'</div>'+
+    '<span class="rsub">Executive Summary — Resume Bullets</span>'+
+    '<p style="font-size:.76rem;color:rgba(184,216,240,.38);font-style:italic;margin-bottom:.75rem">Ready to use as your Executive Summary on your resume. Mix of quantified achievements, business impact, and Human X-Factor in action.</p>'+
+    (d.exec_bullets||[]).map(b=>'<div class="bullet-row"><div class="bdot"></div><div>'+b+'</div></div>').join('');
+  document.getElementById('s-kw').innerHTML=
+    '<p style="font-size:.76rem;color:rgba(184,216,240,.4);font-style:italic;margin-bottom:.85rem">Add these directly to your Key Competencies section on your resume. Chosen for ATS optimization and accurate representation of your technical, business, and human-factor strengths.</p>'+
+    (d.keywords||[]).map(k=>'<span class="kw-pill">'+k+'</span>').join('');
+  if(doFW){
+    document.getElementById('s-fw-wrap').style.display='block';
+    document.getElementById('s-fw').innerHTML=
+      '<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+(d.firmware||'').split('\n').join('<br><br>')+'</p>'+
+      (d.dormant_code?'<div class="dormant"><span class="dormant-lbl">Dormant Code Detected</span>'+d.dormant_code+'</div>':'');
+  }
+  if(doAI&&d.ai_radar){
+    document.getElementById('s-ai-wrap').style.display='block';
+    document.getElementById('s-ai').innerHTML='<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+d.ai_radar.split('\n').join('<br><br>')+'</p>';
+  }
+  if(doRK&&d.resume_kit){
+    document.getElementById('s-rk-wrap').style.display='block';
+    // Show template selector and render default template
+    window._reportData=d;
+    const tmplSel=document.getElementById('tmpl-selector');
+    if(tmplSel){tmplSel.style.display='block';setTimeout(()=>showTemplate('executive'),100);}
+    const rk=d.resume_kit;
+    document.getElementById('s-rk').innerHTML=
+      '<p style="font-size:.76rem;color:rgba(184,216,240,.38);font-style:italic;margin-bottom:1.1rem">Your Resume Content Kit — raw material for a complete resume rewrite. Format it in your preferred style and you have a resume no one else has.</p>'+
+      '<span class="rsub">Career Objective</span><div class="rblock">'+(rk.objective||'')+'</div>'+
+      '<span class="rsub">Experience Section — Rewriting Notes</span><div class="rblock" style="line-height:1.78">'+(rk.experience_notes||'').split('\n').join('<br>')+'</div>'+
+      '<span class="rsub">Skills Section</span>'+(rk.skills_section||[]).map(s=>'<span class="kw-pill">'+s+'</span>').join('');
+  }
+  if(d.closing){
+    const el=document.createElement('div');el.className='rsec';el.style.animationDelay='.48s';
+    el.innerHTML='<div class="sec-lbl">What Comes Next</div><div class="rcard" style="background:linear-gradient(135deg,rgba(12,30,62,.85),rgba(22,54,96,.6));border-color:rgba(74,144,217,.2)"><p style="font-family:var(--fd);font-size:1rem;font-style:italic;line-height:1.9;color:var(--crystal)">'+d.closing+'</p></div>';
+    document.getElementById('upg-box').before(el);
+  }
+  if(sel!=='full'){
+    document.getElementById('locked-qs').innerHTML=LOCKED_PREVIEW.map(lq=>{
+      const area=AREAS.find(a=>a.id===lq.a);
+      return '<div class="lq-row"><span>🔒</span><span><strong style="font-size:.58rem;color:rgba(184,216,240,.26);font-family:var(--fm);display:block;margin-bottom:1px">Area '+lq.a+' — '+area.short+'</strong>'+lq.q+'</span></div>';
+    }).join('');
+    const upgrades=sel==='starter'
+      ?[{key:'starter->core',n:'Iceberg Core',qs:'60Q',d:'Firmware + Dormant Code + more impact'},
+        {key:'starter->full',n:'Iceberg Pro',qs:'100Q',d:'Everything + AI Radar + Resume Content Kit'}]
+      :[{key:'core->full',n:'Iceberg Pro',qs:'100Q',d:'AI Radar + Resume Content Kit + 10-bullet summary'}];
+    document.getElementById('upg-tiers').innerHTML=upgrades.map(u=>{
+      const p=UPG_DELTA[u.key];
+      return '<div class="upg-card" data-upgkey="'+u.key+'" onclick="handleUpgradeClick(this.dataset.upgkey)"><div class="upg-n">'+u.n+'</div><div class="upg-qs">'+u.qs+'</div><div class="upg-price">'+p.price+'</div><div class="upg-more">to unlock</div><div class="upg-d">'+u.d+'</div></div>';
+    }).join('');
+    const lf=sel==='starter'
+      ?[{t:'Hidden Strengths &amp; Instincts Analysis',d:'Which of your 7 Human X-Factor pillars are active vs dormant — and your single most AI-resistant professional asset. Iceberg Core and above.'},
+        {t:'AI Vulnerability Radar',d:'Honest assessment of your AI exposure with a 2-year strategic recommendation. Iceberg Pro only.'},
+        {t:'Resume Content Kit',d:'Complete resume rewrite material — objective, experience notes, skills section. Iceberg Pro only.'}]
+      :[{t:'AI Vulnerability Radar',d:'Full AI exposure assessment with strategic recommendations. Iceberg Pro only.'},
+        {t:'Resume Content Kit',d:'Complete resume rewrite based on your 100-question excavation. Iceberg Pro only.'}];
+    document.getElementById('locked-features').innerHTML=lf.map(f=>'<div class="locked-ft"><span style="opacity:.35;font-size:1rem;flex-shrink:0;margin-top:2px">🔒</span><div class="lf-body"><div class="lf-t">'+f.t+'</div><div class="lf-d">'+f.d+'</div></div></div>').join('');
+    document.getElementById('upg-box').style.display='block';
+  }
+}
+
+function fallback(){
+  // Return a clear error state — never fake content
+  return {
+    _error: true,
+    identity: 'We were unable to generate your report. This can happen when answers are very short, when there is a connection issue, or when the content cannot be processed. Please go back, review your answers, and try again. If the problem persists, contact support at info@kirthiroberts.com.',
+    impacts: [],
+    superpowers: [],
+    exec_bullets: [],
+    linkedin_headline: '',
+    linkedin_summary: '',
+    keywords: [],
+    closing: 'Please go back and try generating your report again. Make sure your answers have enough detail — at least a sentence or two per question — for the tool to work with.'
+  };
+}
+
+
+function upgradeAndContinue(newTier){
+  var savedAnswers=Object.assign({},answers);
+  sel=newTier;
+  curQs=buildQs(sel);
+  curSection=0;
+  answers=savedAnswers;
+  reentryMode=true;
+  document.getElementById('tier-pill').textContent={starter:'Starter · 30Q',core:'Core · 60Q',full:'Pro · 100Q'}[sel];
+  document.getElementById('landing').style.display='none';
+  document.getElementById('app').style.display='block';
+  renderSection();window.scrollTo(0,0);
+}
+
+function handleUpgradeClick(key){
+  var bypassEl=document.getElementById('bypass-input');
+  var bypassVal=bypassEl?bypassEl.value.trim():'';
+  var validBypasses=['ICEBERG-VIP','COACH-ROBERTS','FUTURE-SCAPE','ICEBERG-BETA'];
+  var hasBypass=bypassVal&&validBypasses.includes(bypassVal);
+  var tierMap={'starter->core':'core','starter->full':'full','core->full':'full'};
+  trackUpgrade(sel,tierMap[key]||key);
+  if(hasBypass&&tierMap[key]){upgradeAndContinue(tierMap[key]);}
+  else{window.open(STRIPE[key],'_blank');}
+}
+
+function dismissRestoreBanner(){
+  var b=document.getElementById('restore-banner');
+  if(b)b.remove();
+}
+
+function showRestoreBanner(count){
+  dismissRestoreBanner();
+  var banner=document.createElement('div');
+  banner.id='restore-banner';
+  banner.style.cssText='position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:999;background:rgba(12,30,62,0.97);border:1px solid rgba(201,168,76,0.5);border-radius:12px;padding:1rem 1.4rem;display:flex;align-items:center;gap:1rem;box-shadow:0 8px 32px rgba(0,0,0,0.5);max-width:90vw;';
+  var msg=document.createElement('div');
+  msg.style.cssText='font-family:var(--fm);font-size:0.82rem;color:rgba(184,216,240,0.9)';
+  msg.innerHTML='<strong style="color:#c9a84c">'+count+' answers restored.</strong> Your progress was saved. Continue right where you left off.';
+  var btn=document.createElement('button');
+  btn.textContent='X';
+  btn.onclick=dismissRestoreBanner;
+  btn.style.cssText='background:none;border:none;color:rgba(184,216,240,0.4);font-size:1.1rem;cursor:pointer;padding:0 0.2rem;flex-shrink:0;';
+  banner.appendChild(msg);
+  banner.appendChild(btn);
+  document.body.appendChild(banner);
+  setTimeout(dismissRestoreBanner,6000);
+}
+
+function dismissEmailCapture(){
+  var o=document.getElementById('email-capture-overlay');
+  if(o)o.remove();
+}
+
+function showEmailCapture(onComplete){
+  dismissEmailCapture();
+  var overlay=document.createElement('div');
+  overlay.id='email-capture-overlay';
+  overlay.style.cssText='position:fixed;inset:0;z-index:1000;background:rgba(6,14,28,0.88);display:flex;align-items:center;justify-content:center;padding:1.5rem;';
+  var box=document.createElement('div');
+  box.style.cssText='background:linear-gradient(135deg,rgba(12,30,62,0.98),rgba(18,42,80,0.98));border:1px solid rgba(201,168,76,0.3);border-radius:16px;padding:2.2rem;max-width:420px;width:100%;text-align:center;';
+  box.innerHTML='<h3 style="font-family:var(--fd);font-size:1.4rem;color:var(--crystal);margin-bottom:0.5rem;font-weight:700;">Save Your Progress Automatically</h3>'
+    +'<p style="font-family:var(--fm);font-size:0.82rem;color:rgba(184,216,240,0.65);line-height:1.7;margin-bottom:1.4rem;">Enter your email and your answers are saved in real time. Return anytime and continue where you left off.</p>'
+    +'<input id="ec-email" type="email" placeholder="your@email.com" style="width:100%;padding:0.85rem 1rem;border:1.5px solid rgba(74,144,217,0.3);border-radius:8px;background:rgba(6,14,28,0.6);color:var(--crystal);font-family:var(--fm);font-size:0.88rem;margin-bottom:0.7rem;box-sizing:border-box;">'
+    +'<button id="ec-submit" style="width:100%;padding:0.9rem;background:#c9a84c;color:#0c1a2e;border:none;border-radius:8px;font-family:var(--fm);font-size:0.88rem;font-weight:700;cursor:pointer;margin-bottom:0.8rem;">Save My Progress &amp; Start</button>'
+    +'<button id="ec-skip" style="background:none;border:none;color:rgba(184,216,240,0.35);font-family:var(--fm);font-size:0.75rem;cursor:pointer;text-decoration:underline;">Skip for now</button>'
+    +'<p style="font-family:var(--fm);font-size:0.68rem;color:rgba(184,216,240,0.25);margin-top:0.8rem;">No spam, ever. Unsubscribe anytime.</p>';
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+  window._emailCaptureCallback=onComplete;
+  document.getElementById('ec-submit').onclick=submitEmailCapture;
+  document.getElementById('ec-skip').onclick=skipEmailCapture;
+  setTimeout(function(){var el=document.getElementById('ec-email');if(el)el.focus();},100);
+}
+
+function submitEmailCapture(){
+  var email=document.getElementById('ec-email').value.trim();
+  if(!email||!email.includes('@')){
+    document.getElementById('ec-email').style.borderColor='#e63946';
+    return;
+  }
+  localStorage.setItem('ib_email',email);
+  fetch('https://api.convertkit.com/v3/forms/9114465/subscribe',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({api_key:'40YM5udhv664QVYe4ADbbA',email:email,tags:['iceberg-profile-user']})
+  }).catch(function(){});
+  dismissEmailCapture();
+  if(window._emailCaptureCallback)window._emailCaptureCallback();
+}
+
+function skipEmailCapture(){
+  dismissEmailCapture();
+  if(window._emailCaptureCallback)window._emailCaptureCallback();
+}
+
+function trackIcebergEvent(eventType,extraData){
+  try{
+    var email=localStorage.getItem('ib_email');
+    if(!email)return;
+    var payload={api_key:'40YM5udhv664QVYe4ADbbA',email:email,
+      fields:Object.assign({last_event:eventType,last_tier:sel||'unknown',
+        last_event_date:new Date().toISOString().split('T')[0]},extraData||{})};
+    fetch('https://api.convertkit.com/v3/forms/9114465/subscribe',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)}).catch(function(){});
+  }catch(e){}
+}
+
+function trackGenerate(answeredCount){
+  var n=parseInt(localStorage.getItem('ib_generate_count')||'0')+1;
+  localStorage.setItem('ib_generate_count',n);
+  trackIcebergEvent('generated',{tier_generated:sel,answers_at_generate:answeredCount,generate_count:n});
+  if(window.plausible)window.plausible('Generate',{props:{tier:sel,answers:answeredCount}});
+}
+
+function trackUpgrade(fromTier,toTier){
+  trackIcebergEvent('upgrade_clicked',{upgrade_from:fromTier,upgrade_to:toTier});
+  if(window.plausible)window.plausible('Upgrade Click',{props:{from:fromTier,to:toTier}});
+}
+
+function trackStart(tier){
+  trackIcebergEvent('started_questionnaire',{tier_started:tier});
+  if(window.plausible)window.plausible('Start Questionnaire',{props:{tier:tier}});
+}
+
+
+</script>\\n</body>\\n</html>
