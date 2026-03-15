@@ -1441,10 +1441,6 @@ function goSection(idx){
   curSection=idx;
   renderSection();
 }
-function nextSection(){
-  const count=getSectionCount();
-  if(curSection<count-1){curSection++;renderSection();}
-}
 function prevSection(){
   if(curSection>0){curSection--;renderSection();}
 }
