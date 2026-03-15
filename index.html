@@ -239,6 +239,7 @@ footer{background:rgba(6,14,28,0.95);border-top:1px solid rgba(74,144,217,0.12);
 .footer-logo-row{display:flex;align-items:center;justify-content:center;gap:0.8rem;margin-bottom:1.2rem;}
 .footer-logo{height:22px;opacity:0.85;}
 .footer-logo-name{font-family:var(--fd);font-style:italic;font-size:0.95rem;color:rgba(184,216,240,0.45);}
+@keyframes slideDown{from{opacity:0;transform:translateX(-50%) translateY(-20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
 .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem 1.5rem;margin-bottom:1rem;}
 .footer-link{font-family:var(--fm);font-size:0.56rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(184,216,240,0.3);text-decoration:none;transition:color 0.2s;}
 .footer-link:hover{color:var(--crystal);}
@@ -1181,10 +1182,39 @@ function buyTier(tier){
 
 function startAssessmentDirect(){
   curQs=buildQs(sel);curSection=0;answers={};reentryMode=false;
+  // Restore saved progress first
+  try{
+    const savedSel=localStorage.getItem('ib_sel');
+    if(savedSel===sel){
+      const savedAns=localStorage.getItem('ib_answers_'+sel);
+      if(savedAns){
+        const parsed=JSON.parse(savedAns);
+        const filled=Object.values(parsed).filter(function(v){return v&&v.trim();}).length;
+        if(filled>0){
+          answers=parsed;
+          const lastArea=parseInt(localStorage.getItem('ib_section_'+sel))||0;
+          curSection=Math.min(lastArea,getSectionCount()-1);
+          reentryMode=true;
+        }
+      }
+    }
+  }catch(e){}
   document.getElementById('tier-pill').textContent={starter:'Starter · 30Q',core:'Core · 60Q',full:'Pro · 100Q'}[sel];
   document.getElementById('landing').style.display='none';
   document.getElementById('app').style.display='block';
   renderSection();window.scrollTo(0,0);
+  // Show restore banner if returning user
+  if(reentryMode){
+    const filled=Object.values(answers).filter(function(v){return v&&v.trim();}).length;
+    setTimeout(function(){showRestoreBanner(filled);},300);
+    return;
+  }
+  // Show email capture for new users (skip if already have email)
+  const savedEmail=localStorage.getItem('ib_email');
+  if(!savedEmail){
+    // Small delay so the questionnaire is visible behind the overlay
+    setTimeout(function(){showEmailCapture(function(){});},200);
+  }
 }
 
 
@@ -1222,26 +1252,7 @@ function startAssessment(){
     if(stripeUrl){window.open(stripeUrl,'_blank');return;}
   }
   curQs=buildQs(sel);curSection=0;answers={};reentryMode=false;
-  // Restore saved progress
-  try{
-    const savedSel=localStorage.getItem('ib_sel');
-    if(savedSel===sel){
-      const savedAns=localStorage.getItem('ib_answers_'+sel);
-      if(savedAns){
-        const parsed=JSON.parse(savedAns);
-        const filled=Object.values(parsed).filter(v=>v&&v.trim()).length;
-        if(filled>0){
-          const resume=confirm('We found '+filled+' saved answers from a previous session. Continue where you left off?');
-          if(resume){
-            answers=parsed;
-            // restore to last section
-            const lastArea=parseInt(localStorage.getItem('ib_section_'+sel))||0;
-            curSection=Math.min(lastArea, getSectionCount()-1);
-          }
-        }
-      }
-    }
-  }catch(e){}
+
   document.getElementById('tier-pill').textContent={starter:'Starter · 30Q',core:'Core · 60Q',full:'Pro · 100Q'}[sel];
   document.getElementById('landing').style.display='none';
   document.getElementById('app').style.display='block';
@@ -1805,6 +1816,65 @@ function fallback(){
     closing: 'Please go back and try generating your report again. Make sure your answers have enough detail — at least a sentence or two per question — for the tool to work with.'
   };
 }
+
+// ── Auto-save restore banner ─────────────────────────────────────────
+function showRestoreBanner(count){
+  const existing=document.getElementById('restore-banner');
+  if(existing) existing.remove();
+  const banner=document.createElement('div');
+  banner.id='restore-banner';
+  banner.style.cssText='position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:999;background:rgba(12,30,62,0.97);border:1px solid rgba(201,168,76,0.5);border-radius:12px;padding:1rem 1.4rem;display:flex;align-items:center;gap:1rem;box-shadow:0 8px 32px rgba(0,0,0,0.5);max-width:90vw;animation:slideDown 0.4s ease;';
+  banner.innerHTML='<span style="font-size:1.2rem">✓</span><div style="font-family:var(--fm);font-size:0.82rem;color:rgba(184,216,240,0.9)"><strong style="color:#c9a84c">'+count+' answers restored.</strong> Your progress was saved automatically — you can continue right where you left off.</div><button onclick="document.getElementById('restore-banner').remove()" style="background:none;border:none;color:rgba(184,216,240,0.4);font-size:1.1rem;cursor:pointer;padding:0 0.2rem;flex-shrink:0;">✕</button>';
+  document.body.appendChild(banner);
+  setTimeout(function(){if(document.getElementById('restore-banner'))document.getElementById('restore-banner').remove();},6000);
+}
+
+// ── Email capture ─────────────────────────────────────────────────────
+function showEmailCapture(onComplete){
+  const overlay=document.createElement('div');
+  overlay.id='email-capture-overlay';
+  overlay.style.cssText='position:fixed;inset:0;z-index:1000;background:rgba(6,14,28,0.88);display:flex;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(4px);';
+  overlay.innerHTML=`
+    <div style="background:linear-gradient(135deg,rgba(12,30,62,0.98),rgba(18,42,80,0.98));border:1px solid rgba(201,168,76,0.3);border-radius:16px;padding:2.2rem;max-width:420px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.6);">
+      <div style="font-size:2rem;margin-bottom:0.8rem;">🔒</div>
+      <h3 style="font-family:var(--fd);font-size:1.4rem;color:var(--crystal);margin-bottom:0.5rem;font-weight:700;">Save Your Progress Automatically</h3>
+      <p style="font-family:var(--fm);font-size:0.82rem;color:rgba(184,216,240,0.65);line-height:1.7;margin-bottom:1.4rem;">Enter your email and your answers are saved in real time — even if your browser crashes, you lose power, or you close the tab. Return anytime and pick up exactly where you left off.</p>
+      <input id="ec-email" type="email" placeholder="your@email.com" style="width:100%;padding:0.85rem 1rem;border:1.5px solid rgba(74,144,217,0.3);border-radius:8px;background:rgba(6,14,28,0.6);color:var(--crystal);font-family:var(--fm);font-size:0.88rem;margin-bottom:0.7rem;box-sizing:border-box;">
+      <button onclick="submitEmailCapture()" style="width:100%;padding:0.9rem;background:#c9a84c;color:#0c1a2e;border:none;border-radius:8px;font-family:var(--fm);font-size:0.88rem;font-weight:700;cursor:pointer;margin-bottom:0.8rem;">Save My Progress & Start →</button>
+      <button onclick="skipEmailCapture()" style="background:none;border:none;color:rgba(184,216,240,0.35);font-family:var(--fm);font-size:0.75rem;cursor:pointer;text-decoration:underline;">Skip for now — start without saving</button>
+      <p style="font-family:var(--fm);font-size:0.68rem;color:rgba(184,216,240,0.25);margin-top:0.8rem;">🔒 No spam, ever. Unsubscribe anytime.</p>
+    </div>`;
+  document.body.appendChild(overlay);
+  window._emailCaptureCallback=onComplete;
+  setTimeout(function(){const el=document.getElementById('ec-email');if(el)el.focus();},100);
+}
+
+function submitEmailCapture(){
+  const email=document.getElementById('ec-email').value.trim();
+  if(!email||!email.includes('@')){
+    document.getElementById('ec-email').style.borderColor='#e63946';
+    return;
+  }
+  // Save email locally
+  localStorage.setItem('ib_email',email);
+  // Send to ConvertKit
+  fetch('https://api.convertkit.com/v3/forms/9114465/subscribe',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({api_key:'40YM5udhv664QVYe4ADbbA',email:email,tags:['iceberg-profile-user']})
+  }).catch(function(){});
+  // Close and continue
+  const overlay=document.getElementById('email-capture-overlay');
+  if(overlay) overlay.remove();
+  if(window._emailCaptureCallback) window._emailCaptureCallback();
+}
+
+function skipEmailCapture(){
+  const overlay=document.getElementById('email-capture-overlay');
+  if(overlay) overlay.remove();
+  if(window._emailCaptureCallback) window._emailCaptureCallback();
+}
+
 </script>
 </body>
 </html>
