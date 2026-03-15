@@ -220,7 +220,7 @@ textarea::placeholder{color:rgba(184,216,240,0.14);font-style:italic;}
 .upg-card{background:rgba(12,30,62,0.65);border:1px solid rgba(74,144,217,0.16);border-radius:9px;padding:1.1rem 0.9rem;text-align:center;cursor:pointer;transition:all 0.2s;}
 .upg-card:hover{border-color:var(--gold);background:rgba(22,54,96,0.75);}
 .upg-n{font-family:var(--fd);font-size:0.92rem;font-weight:700;color:var(--crystal);margin-bottom:0.12rem;}
-.upg-qs{font-family:var(--fm);font-size:0.5rem;letter-spacing:0.08em;color:rgba(184,216,240,0.28);text-transform:uppercase;margin-bottom:0.2rem;}
+.upg-qs{font-family:var(--fm);font-size:0.5rem;letter-spacing:0.08em;color:rgba(184,216,240,0.72);text-transform:uppercase;margin-bottom:0.2rem;}
 .upg-price{font-size:1.4rem;font-weight:700;color:#fff;}
 .upg-more{font-family:var(--fm);font-size:0.5rem;letter-spacing:0.06em;color:var(--gold);text-transform:uppercase;}
 .upg-d{font-size:0.68rem;color:rgba(184,216,240,0.35);line-height:1.42;margin-top:0.28rem;}
@@ -659,6 +659,15 @@ window.addEventListener('resize',function(){
 
       <div class="fq" style="background:rgba(12,30,62,0.55);border:1px solid rgba(74,144,217,0.14);border-radius:10px;overflow:hidden;">
         <div onclick="tFq(this)" style="display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.3rem;cursor:pointer;gap:1rem;">
+          <span style="font-size:0.87rem;font-weight:600;color:var(--crystal);line-height:1.4">If I upgrade to a higher tier, do I lose my answers?</span>
+          <span style="color:var(--gold);font-size:1rem;flex-shrink:0;transition:transform .25s" class="fqa">▾</span>
+        </div>
+        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.62);">No — your answers are always preserved. When you upgrade from Starter to Core or Pro, everything you have already written carries forward automatically. You simply continue answering the additional questions the higher tier unlocks. You never have to re-enter anything.</div>
+      </div>
+
+
+      <div class="fq" style="background:rgba(12,30,62,0.55);border:1px solid rgba(74,144,217,0.14);border-radius:10px;overflow:hidden;">
+        <div onclick="tFq(this)" style="display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.3rem;cursor:pointer;gap:1rem;">
           <span style="font-size:0.87rem;font-weight:600;color:var(--crystal);line-height:1.4">How is this different from a resume writer or LinkedIn optimizer?</span>
           <span style="color:var(--gold);font-size:1rem;flex-shrink:0;transition:transform .25s" class="fqa">▾</span>
         </div>
@@ -1007,9 +1016,9 @@ const STRIPE={
   'core->full':'https://buy.stripe.com/00wfZj5zrdXJcI2dVibEA0m'
 };
 const UPG_DELTA={
-  'starter->core':{price:'$50 more',label:'Iceberg Core · 60Q'},
-  'starter->full':{price:'$100 more',label:'Iceberg Pro · 100Q'},
-  'core->full':{price:'$50 more',label:'Iceberg Pro · 100Q'}
+  'starter->core':{price:'Unlock for $50',label:'Iceberg Core · 60Q'},
+  'starter->full':{price:'Unlock for $100',label:'Iceberg Pro · 100Q'},
+  'core->full':{price:'Unlock for $50',label:'Iceberg Pro · 100Q'}
 };
 const AREAS=[
   {id:1,name:'Impact & Achievements',short:'Impact',desc:'What you have actually delivered — in outcomes, not tasks. Describe results, not responsibilities.'},
@@ -1178,6 +1187,32 @@ function startAssessmentDirect(){
   renderSection();window.scrollTo(0,0);
 }
 
+
+
+function handleUpgradeClick(key){
+  const bypassEl=document.getElementById('bypass-input');
+  const bypassVal=bypassEl?bypassEl.value.trim():'';
+  const validBypasses=['ICEBERG-VIP','COACH-ROBERTS','FUTURE-SCAPE','ICEBERG-BETA'];
+  const hasBypass=bypassVal&&validBypasses.includes(bypassVal);
+  const tierMap={'starter->core':'core','starter->full':'full','core->full':'full'};
+  if(hasBypass && tierMap[key]){
+    upgradeAndContinue(tierMap[key]);
+  } else {
+    window.open(STRIPE[key],'_blank');
+  }
+}
+function upgradeAndContinue(newTier){
+  const savedAnswers=Object.assign({},answers);
+  sel=newTier;
+  curQs=buildQs(sel);
+  curSection=0;
+  answers=savedAnswers;
+  reentryMode=true;
+  document.getElementById('tier-pill').textContent={starter:'Starter · 30Q',core:'Core · 60Q',full:'Pro · 100Q'}[sel];
+  document.getElementById('landing').style.display='none';
+  document.getElementById('app').style.display='block';
+  renderSection();window.scrollTo(0,0);
+}
 function startAssessment(){
   const bypassVal=(document.getElementById('bypass-input')||{value:''}).value.trim();
   const validBypasses=['ICEBERG-VIP','COACH-ROBERTS','FUTURE-SCAPE','ICEBERG-BETA'];
@@ -1743,7 +1778,7 @@ function renderReport(d){
       :[{key:'core->full',n:'Iceberg Pro',qs:'100Q',d:'AI Radar + Resume Content Kit + 10-bullet summary'}];
     document.getElementById('upg-tiers').innerHTML=upgrades.map(u=>{
       const p=UPG_DELTA[u.key];
-      return '<div class="upg-card" onclick="window.open(STRIPE[\''+u.key+'\'],\'_blank\')"><div class="upg-n">'+u.n+'</div><div class="upg-qs">'+u.qs+'</div><div class="upg-price">'+p.price+'</div><div class="upg-more">to unlock</div><div class="upg-d">'+u.d+'</div></div>';
+      return '<div class="upg-card" onclick="handleUpgradeClick('"+u.key+"')"><div class="upg-n">'+u.n+'</div><div class="upg-qs">'+u.qs+'</div><div class="upg-price">'+p.price+'</div><div class="upg-more">to unlock</div><div class="upg-d">'+u.d+'</div></div>';
     }).join('');
     const lf=sel==='starter'
       ?[{t:'Hidden Strengths &amp; Instincts Analysis',d:'Which of your 7 Human X-Factor pillars are active vs dormant — and your single most AI-resistant professional asset. Iceberg Core and above.'},
