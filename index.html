@@ -349,6 +349,7 @@ footer{background:rgba(6,14,28,0.95);border-top:1px solid rgba(74,144,217,0.12);
   .completion-bar{padding:0.5rem 1rem 0.2rem;}
 }
 </style>
+  <script defer data-domain="icebergprofile.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
 
@@ -1200,6 +1201,7 @@ function startAssessmentDirect(){
     }
   }catch(e){}
   document.getElementById('tier-pill').textContent={starter:'Starter · 30Q',core:'Core · 60Q',full:'Pro · 100Q'}[sel];
+  trackStart(sel);
   document.getElementById('landing').style.display='none';
   document.getElementById('app').style.display='block';
   renderSection();window.scrollTo(0,0);
@@ -1225,6 +1227,7 @@ function handleUpgradeClick(key){
   const validBypasses=['ICEBERG-VIP','COACH-ROBERTS','FUTURE-SCAPE','ICEBERG-BETA'];
   const hasBypass=bypassVal&&validBypasses.includes(bypassVal);
   const tierMap={'starter->core':'core','starter->full':'full','core->full':'full'};
+  trackUpgrade(sel, tierMap[key]||key);
   if(hasBypass && tierMap[key]){
     upgradeAndContinue(tierMap[key]);
   } else {
@@ -1636,6 +1639,7 @@ async function generateReport(){
   const minRequired={starter:3,core:5,full:8};
   const minNeeded=minRequired[sel]||3;
   const answeredCount=Object.values(answers).filter(v=>v&&v.trim().length>20).length;
+  trackGenerate(answeredCount);
   if(answeredCount<minNeeded){
     const needed=minNeeded-answeredCount;
     const modal=document.createElement('div');
@@ -1873,6 +1877,68 @@ function skipEmailCapture(){
   const overlay=document.getElementById('email-capture-overlay');
   if(overlay) overlay.remove();
   if(window._emailCaptureCallback) window._emailCaptureCallback();
+}
+
+
+// ── Analytics & ConvertKit behaviour tracking ─────────────────────────
+function trackIcebergEvent(eventType, extraData){
+  try{
+    const email=localStorage.getItem('ib_email');
+    if(!email) return; // Only track if we have email
+    const payload={
+      api_key:'40YM5udhv664QVYe4ADbbA',
+      email:email,
+      fields:Object.assign({
+        last_event: eventType,
+        last_tier: sel||'unknown',
+        last_event_date: new Date().toISOString().split('T')[0]
+      }, extraData||{})
+    };
+    fetch('https://api.convertkit.com/v3/subscribers',{
+      method:'GET',
+      headers:{'Content-Type':'application/json'}
+    }).catch(function(){});
+    // Update subscriber custom fields via subscribe endpoint
+    fetch('https://api.convertkit.com/v3/forms/9114465/subscribe',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    }).catch(function(){});
+  }catch(e){}
+}
+
+function trackGenerate(answeredCount){
+  const existing=parseInt(localStorage.getItem('ib_generate_count')||'0');
+  const newCount=existing+1;
+  localStorage.setItem('ib_generate_count', newCount);
+  trackIcebergEvent('generated',{
+    tier_generated: sel,
+    answers_at_generate: answeredCount,
+    generate_count: newCount
+  });
+  // Also fire Plausible custom event
+  if(window.plausible){
+    window.plausible('Generate',{props:{tier:sel, answers:answeredCount}});
+  }
+}
+
+function trackUpgrade(fromTier, toTier){
+  trackIcebergEvent('upgrade_clicked',{
+    upgrade_from: fromTier,
+    upgrade_to: toTier
+  });
+  if(window.plausible){
+    window.plausible('Upgrade Click',{props:{from:fromTier, to:toTier}});
+  }
+}
+
+function trackStart(tier){
+  trackIcebergEvent('started_questionnaire',{
+    tier_started: tier
+  });
+  if(window.plausible){
+    window.plausible('Start Questionnaire',{props:{tier:tier}});
+  }
 }
 
 </script>
