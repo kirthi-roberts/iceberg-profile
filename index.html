@@ -1795,7 +1795,7 @@ function renderReport(d){
       :[{key:'core->full',n:'Iceberg Pro',qs:'100Q',d:'AI Radar + Resume Content Kit + 10-bullet summary'}];
     document.getElementById('upg-tiers').innerHTML=upgrades.map(u=>{
       const p=UPG_DELTA[u.key];
-      return '<div class="upg-card" onclick="handleUpgradeClick(\'' + u.key + '\')">' + '<div class="upg-n">' + u.n + '</div><div class="upg-qs">' + u.qs + '</div><div class="upg-price">' + p.price + '</div><div class="upg-more">to unlock</div><div class="upg-d">' + u.d + '</div></div>';
+      return '<div class="upg-card" data-upgkey="'+u.key+'" onclick="handleUpgradeClick(this.dataset.upgkey)"><div class="upg-n">'+u.n+'</div><div class="upg-qs">'+u.qs+'</div><div class="upg-price">'+p.price+'</div><div class="upg-more">to unlock</div><div class="upg-d">'+u.d+'</div></div>';
     }).join('');
     const lf=sel==='starter'
       ?[{t:'Hidden Strengths &amp; Instincts Analysis',d:'Which of your 7 Human X-Factor pillars are active vs dormant — and your single most AI-resistant professional asset. Iceberg Core and above.'},
