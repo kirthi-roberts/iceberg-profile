@@ -1188,7 +1188,7 @@ function buyTier(tier){
 
 function startAssessmentDirect(){
   curQs=buildQs(sel);curSection=0;answers={};reentryMode=false;
-  // Restore saved progress first
+  // Restore saved answers if same tier
   try{
     const savedSel=localStorage.getItem('ib_sel');
     if(savedSel===sel){
@@ -1199,28 +1199,29 @@ function startAssessmentDirect(){
         if(filled>0){
           answers=parsed;
           const lastArea=parseInt(localStorage.getItem('ib_section_'+sel))||0;
-          curSection=Math.min(lastArea,getSectionCount()-1);
+          curSection=Math.min(lastArea,Math.max(0,getSectionCount()-1));
           reentryMode=true;
         }
       }
     }
   }catch(e){}
   document.getElementById('tier-pill').textContent={starter:'Starter · 30Q',core:'Core · 60Q',full:'Pro · 100Q'}[sel];
-  trackStart(sel);
   document.getElementById('landing').style.display='none';
   document.getElementById('app').style.display='block';
-  renderSection();window.scrollTo(0,0);
-  // Show restore banner if returning user
+  renderSection();
+  window.scrollTo(0,0);
+  // Show restore banner if returning
   if(reentryMode){
-    const filled=Object.values(answers).filter(function(v){return v&&v.trim();}).length;
-    setTimeout(function(){showRestoreBanner(filled);},300);
-    return;
-  }
-  // Show email capture for new users (skip if already have email)
-  const savedEmail=localStorage.getItem('ib_email');
-  if(!savedEmail){
-    // Small delay so the questionnaire is visible behind the overlay
-    setTimeout(function(){showEmailCapture(function(){});},200);
+    var filled=Object.values(answers).filter(function(v){return v&&v.trim();}).length;
+    setTimeout(function(){showRestoreBanner(filled);},400);
+  } else {
+    // Email capture for new users
+    setTimeout(function(){
+      try{
+        var savedEmail=localStorage.getItem('ib_email');
+        if(!savedEmail){showEmailCapture(function(){});}
+      }catch(e){}
+    },300);
   }
 }
 
