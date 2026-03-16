@@ -1925,6 +1925,14 @@ function trackStart(tier){
   if(window.plausible)window.plausible('Start Questionnaire',{props:{tier:tier}});
 }
 
+function tFq(hdr){
+  var b=hdr.parentElement.querySelector('.fqb');
+  var a=hdr.querySelector('.fqa');
+  if(!b)return;
+  var open=b.style.display==='block';
+  b.style.display=open?'none':'block';
+  if(a)a.style.transform=open?'rotate(0deg)':'rotate(180deg)';
+}
 
 </script>
 </body>
