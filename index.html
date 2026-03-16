@@ -1652,11 +1652,34 @@ function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
 
 
 function mdBold(text){
-  // Convert **text** to <strong>text</strong> and add paragraph breaks between pattern sections
   if(!text) return '';
-  return text
-    .replace(/\*\*([^*]+)\*\*/g, '<strong style="color:var(--crystal)">$1</strong>')
-    .replace(/(<\/strong>[^<]+?)(<strong)/g, '$1<br><br>$2');
+  // Split on **Header** pattern — each becomes a styled heading + content block
+  // First normalise newlines
+  var t = text.replace(/\n\n+/g,'\n').trim();
+  // If text has **header** pattern, render as headed sections
+  if(t.indexOf('**') >= 0){
+    // Split into sections on each **...** occurrence
+    var parts = t.split(/(?=\*\*)/);
+    var html = '';
+    parts.forEach(function(part){
+      if(!part.trim()) return;
+      // Check if starts with **header**
+      var m = part.match(/^\*\*([^*]+)\*\*[:\s—-]*(.*)/s);
+      if(m){
+        var heading = m[1].trim();
+        var body = m[2].trim();
+        html += '<div style="margin-bottom:1.1rem;">'
+          + '<div style="font-family:var(--fm);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.35rem;">' + heading + '</div>'
+          + '<div style="font-size:0.88rem;line-height:1.78;color:rgba(184,216,240,0.85);">' + body + '</div>'
+          + '</div>';
+      } else {
+        html += '<div style="font-size:0.88rem;line-height:1.78;color:rgba(184,216,240,0.85);margin-bottom:0.8rem;">' + part.trim() + '</div>';
+      }
+    });
+    return html;
+  }
+  // No headers — just clean up spacing
+  return '<div style="font-size:0.88rem;line-height:1.78;color:rgba(184,216,240,0.85);">' + t.replace(/\n/g,'<br>') + '</div>';
 }
 
 function renderReport(d){
@@ -1706,18 +1729,18 @@ function renderReport(d){
   if(doFW){
     document.getElementById('s-fw-wrap').style.display='block';
     document.getElementById('s-fw').innerHTML=
-      '<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+mdBold((d.firmware||'').split('\n').join('<br><br>'))+'</p>';
+      mdBold(d.firmware||'');
     if(d.dormant_code){
       var vcp=document.getElementById('s-vcp-wrap');
       if(vcp){
         vcp.style.display='block';
-        document.getElementById('s-vcp').innerHTML='<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+mdBold(d.dormant_code)+'</p>';
+        document.getElementById('s-vcp').innerHTML=mdBold(d.dormant_code);
       }
     }
   }
   if(doAI&&d.ai_radar){
     document.getElementById('s-ai-wrap').style.display='block';
-    document.getElementById('s-ai').innerHTML='<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+mdBold(d.ai_radar.split('\n').join('<br><br>'))+'</p>';
+    document.getElementById('s-ai').innerHTML=mdBold(d.ai_radar);
   }
   if(doRK&&d.resume_kit){
     document.getElementById('s-rk-wrap').style.display='block';
