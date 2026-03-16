@@ -852,12 +852,12 @@ window.addEventListener('resize',function(){
     <div class="rsec" style="animation-delay:.23s"><div class="sec-lbl">LinkedIn Headline &amp; Executive Summary</div><div class="rcard" id="s-resume"><div class="loading"><div class="spin"></div>Generating positioning language…</div></div></div>
     <div class="rsec" style="animation-delay:.28s"><div class="sec-lbl">Key Competencies</div><div class="rcard" id="s-kw"><div class="loading"><div class="spin"></div>Extracting competency keywords…</div></div></div>
     <div class="rsec" id="s-fw-wrap" style="animation-delay:.33s;display:none"><div class="sec-lbl">Hidden Strengths &amp; Instincts Analysis <span style="font-family:var(--fm);font-size:0.56rem;color:var(--gold);letter-spacing:0.06em">(Human X-Factor)</span></div><div class="rcard" id="s-fw"><div class="loading"><div class="spin"></div>Mapping human firmware attributes…</div></div>
-  <div class="rsec" id="s-vcp-wrap" style="animation-delay:.4s;display:none"><div class="sec-lbl">Your Value Creation Patterns</div><div class="rcard" id="s-vcp"></div></div></div>
+  <div class="rsec" id="s-vcp-wrap" style="animation-delay:.4s;display:none;margin-top:1.8rem"><div class="sec-lbl">Your Value Creation Patterns</div><div class="rcard" id="s-vcp"></div></div></div>
     <div class="rsec" id="s-ai-wrap" style="animation-delay:.38s;display:none"><div class="sec-lbl">AI Vulnerability Radar</div><div class="rcard" id="s-ai"><div class="loading"><div class="spin"></div>Assessing AI exposure…</div></div></div>
     <div class="rsec" id="s-rk-wrap" style="animation-delay:.43s;display:none">
 <div style="background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);border-radius:10px;padding:0.9rem 1.1rem;margin-bottom:1rem;font-size:0.78rem;line-height:1.75;color:rgba(201,168,76,0.75);">
   <strong style="display:block;font-family:var(--fm);font-size:0.52rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem">About Resume Templates</strong>
-  The real value of this report is what is written above — the business impact statements, hidden strengths, your human firmware, and positioning language that didn't exist on paper before today. The resume templates below are a free bonus to help you get started quickly. Choose from our three designs, or take this content and drop it into any template you prefer — Enhancv, Resume.io, Canva, Word, or your own. The content is what matters. The chassis is yours to choose.
+  The real value of this report is what is written above — the business impact statements, hidden strengths, your human firmware, and positioning language that didn't exist on paper before today. The resume templates below are a free bonus to help you get started quickly. Choose from our three designs, or take this content and drop it into any other template of your choice. The content is what matters. The chassis is yours to choose.
 </div>
 <div id="tmpl-selector" style="display:none;margin:1.2rem 0 0.5rem;">
   <div style="font-family:var(--fm);font-size:0.52rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Choose Your Template Style</div>
@@ -877,7 +877,10 @@ window.addEventListener('resize',function(){
     <div id="locked-qs" style="margin-bottom:1.2rem;display:flex;flex-direction:column;gap:0.6rem;"></div>
     <div id="upg-tiers" class="upg-tiers"></div>
     <div id="locked-features"></div>
-    <div class="coach" style="border-color:rgba(201,168,76,0.25);background:linear-gradient(135deg,rgba(6,14,28,0.9),rgba(12,30,62,0.75))">
+    
+  </div>
+
+  <div class="coach" style="border-color:rgba(201,168,76,0.25);background:linear-gradient(135deg,rgba(6,14,28,0.9),rgba(12,30,62,0.75))">
       <div>
         <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem">Next Steps</div>
         <h3 style="font-size:1.2rem;margin-bottom:.55rem">Your report is the map. The coaching is the expedition.</h3>
@@ -894,7 +897,6 @@ window.addEventListener('resize',function(){
         <span style="font-family:var(--fm);font-size:.52rem;letter-spacing:.06em;color:rgba(184,216,240,.62);text-align:center">3, 4 &amp; 6-month programs<br>available</span>
       </div>
     </div>
-  </div>
 
   <!-- ── IMPROVE & REGENERATE ── -->
   <div class="no-print" style="max-width:640px;margin:2rem auto 0;padding:0 1rem;">
@@ -1648,6 +1650,15 @@ async function generateReport(){
 
 function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
 
+
+function mdBold(text){
+  // Convert **text** to <strong>text</strong> and add paragraph breaks between pattern sections
+  if(!text) return '';
+  return text
+    .replace(/\*\*([^*]+)\*\*/g, '<strong style="color:var(--crystal)">$1</strong>')
+    .replace(/(<\/strong>[^<]+?)(<strong)/g, '$1<br><br>$2');
+}
+
 function renderReport(d){
   // Handle error state from fallback()
   if(d && d._error){
@@ -1695,18 +1706,18 @@ function renderReport(d){
   if(doFW){
     document.getElementById('s-fw-wrap').style.display='block';
     document.getElementById('s-fw').innerHTML=
-      '<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+(d.firmware||'').split('\n').join('<br><br>')+'</p>';
+      '<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+mdBold((d.firmware||'').split('\n').join('<br><br>'))+'</p>';
     if(d.dormant_code){
       var vcp=document.getElementById('s-vcp-wrap');
       if(vcp){
         vcp.style.display='block';
-        document.getElementById('s-vcp').innerHTML='<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+d.dormant_code+'</p>';
+        document.getElementById('s-vcp').innerHTML='<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+mdBold(d.dormant_code)+'</p>';
       }
     }
   }
   if(doAI&&d.ai_radar){
     document.getElementById('s-ai-wrap').style.display='block';
-    document.getElementById('s-ai').innerHTML='<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+d.ai_radar.split('\n').join('<br><br>')+'</p>';
+    document.getElementById('s-ai').innerHTML='<p style="font-size:.9rem;line-height:1.82;color:var(--crystal)">'+mdBold(d.ai_radar.split('\n').join('<br><br>'))+'</p>';
   }
   if(doRK&&d.resume_kit){
     document.getElementById('s-rk-wrap').style.display='block';
@@ -1890,4 +1901,6 @@ function trackStart(tier){
 }
 
 
-</script>\\n</body>\\n</html>
+</script>
+</body>
+</html>
