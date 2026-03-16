@@ -450,37 +450,24 @@ async function submitFeedback(){
   };
 
   try {
-    // Store in Anthropic persistent storage
-    const key = 'feedback:' + Date.now() + ':' + Math.random().toString(36).slice(2,7);
-    await window.storage.set(key, JSON.stringify(data), true); // shared=true so all responses visible
-
-    document.getElementById('form-wrap').style.display='none';
-    document.getElementById('success-wrap').style.display='block';
-    window.scrollTo({top:0, behavior:'smooth'});
+    const response = await fetch('https://formspree.io/f/xzdjjzdr', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if(response.ok){
+      document.getElementById('form-wrap').style.display='none';
+      document.getElementById('success-wrap').style.display='block';
+      window.scrollTo({top:0, behavior:'smooth'});
+    } else {
+      btn.disabled=false;
+      btn.textContent='Submit My Feedback →';
+      alert('Something went wrong. Please try again or email kirthi@fiduciconsulting.com directly.');
+    }
   } catch(e) {
-    // Fallback: send via ConvertKit tag
-    try {
-      await fetch('https://api.convertkit.com/v3/forms/9114465/subscribe',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({
-          api_key:'40YM5udhv664QVYe4ADbbA',
-          email: email,
-          first_name: name,
-          tags:['beta-feedback'],
-          fields:{
-            tier: data.tier,
-            value_rating: data.value_rating,
-            nps: data.nps,
-            wow_moment: data.wow_moment.slice(0,255)
-          }
-        })
-      });
-    } catch(e2){}
-
-    document.getElementById('form-wrap').style.display='none';
-    document.getElementById('success-wrap').style.display='block';
-    window.scrollTo({top:0, behavior:'smooth'});
+    btn.disabled=false;
+    btn.textContent='Submit My Feedback →';
+    alert('Connection error. Please check your internet and try again.');
   }
 }
 </script>
