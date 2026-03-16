@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iceberg Profile — Beta Feedback</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep: #060e1c;
+    --navy: #0c1e3c;
+    --gold: #c9a84c;
+    --gold-soft: rgba(201,168,76,0.15);
+    --crystal: #e8f0fa;
+    --mist: rgba(184,216,240,0.65);
+    --border: rgba(201,168,76,0.2);
+    --card: rgba(12,30,62,0.6);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--deep);
+    color: var(--crystal);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    background-image: radial-gradient(ellipse at 20% 20%, rgba(201,168,76,0.04) 0%, transparent 60%),
+                      radial-gradient(ellipse at 80% 80%, rgba(74,144,217,0.05) 0%, transparent 60%);
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--crystal);
+    margin-bottom: 0.6rem;
+  }
+  .subtitle {
+    font-size: 0.9rem;
+    color: var(--mist);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 560px;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold) 0%, rgba(201,168,76,0.1) 100%);
+    margin-bottom: 2.5rem;
+    width: 60px;
+  }
+  .field { margin-bottom: 1.8rem; }
+  label {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .sublabel {
+    font-size: 0.78rem;
+    color: rgba(184,216,240,0.45);
+    margin-bottom: 0.55rem;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  input[type="text"], input[type="email"], textarea, select {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--crystal);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    padding: 0.85rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: rgba(201,168,76,0.5);
+  }
+  textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+  select option { background: #0c1e3c; }
+
+  /* Star rating */
+  .stars { display: flex; gap: 0.5rem; margin-top: 0.2rem; }
+  .star {
+    font-size: 1.8rem;
+    color: rgba(201,168,76,0.2);
+    cursor: pointer;
+    transition: color 0.15s, transform 0.1s;
+    user-select: none;
+  }
+  .star:hover, .star.on { color: var(--gold); }
+  .star:hover { transform: scale(1.15); }
+
+  /* Rating scale */
+  .scale { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.3rem; }
+  .scale-btn {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--mist);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .scale-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .scale-btn.sel { background: var(--gold-soft); border-color: var(--gold); color: var(--gold); }
+  .scale-labels { display: flex; justify-content: space-between; font-size: 0.62rem; color: rgba(184,216,240,0.3); margin-top: 0.3rem; font-style: italic; }
+
+  /* Price input group */
+  .price-group { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; }
+  .price-item label { margin-bottom: 0.3rem; font-size: 0.55rem; }
+
+  /* Submit */
+  .submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--gold);
+    color: var(--deep);
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top: 0.5rem;
+  }
+  .submit-btn:hover { opacity: 0.88; }
+  .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* Success */
+  .success {
+    display: none;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+  .success-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .success h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: var(--crystal);
+    margin-bottom: 0.6rem;
+  }
+  .success p { color: var(--mist); font-size: 0.88rem; line-height: 1.7; }
+
+  /* Section header */
+  .section-head {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold);
+    margin: 2.5rem 0 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Required star */
+  .req { color: var(--gold); margin-left: 2px; }
+
+  /* Error */
+  .err { font-size: 0.72rem; color: #e05c6a; margin-top: 0.3rem; display: none; }
+
+  @media(max-width:480px) {
+    .price-group { grid-template-columns: 1fr; }
+    .scale-btn { width: 2rem; height: 2rem; font-size: 0.7rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Beta Feedback · Fiduci</div>
+  <h1>The Iceberg Profile<br><em style="font-weight:400;color:var(--gold)">Your Feedback</em></h1>
+  <p class="subtitle">Thank you for taking the time to test The Iceberg Profile before launch. Your honest feedback — especially the critical parts — directly shapes what we improve. This takes about 5 minutes.</p>
+  <div class="divider"></div>
+
+  <div id="form-wrap">
+    <!-- SECTION 1 -->
+    <div class="section-head">About You</div>
+
+    <div class="field">
+      <label>Your Name <span class="req">*</span></label>
+      <input type="text" id="f-name" placeholder="First name is fine">
+    </div>
+
+    <div class="field">
+      <label>Your Email <span class="req">*</span></label>
+      <div class="sublabel">So Kirthi can follow up if needed. Never shared.</div>
+      <input type="email" id="f-email" placeholder="you@example.com">
+    </div>
+
+    <div class="field">
+      <label>Which Tier Did You Use?</label>
+      <select id="f-tier">
+        <option value="">Select one</option>
+        <option value="starter">Starter (30 questions)</option>
+        <option value="core">Core (60 questions)</option>
+        <option value="pro">Pro (100 questions)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Roughly What % of Questions Did You Answer?</label>
+      <select id="f-pct">
+        <option value="">Select range</option>
+        <option value="under25">Under 25%</option>
+        <option value="25-50">25–50%</option>
+        <option value="50-75">50–75%</option>
+        <option value="75-100">75–100%</option>
+        <option value="100">100% — all of them</option>
+      </select>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="section-head">The Experience</div>
+
+    <div class="field">
+      <label>Overall, How Valuable Was the Output?</label>
+      <div class="sublabel">1 = Not at all useful · 10 = Genuinely blew my mind</div>
+      <div class="scale" id="scale-value"></div>
+      <div class="scale-labels"><span>Not useful</span><span>Genuinely remarkable</span></div>
+      <input type="hidden" id="f-value">
+    </div>
+
+    <div class="field">
+      <label>How Accurately Did It Reflect You?</label>
+      <div class="sublabel">1 = Felt generic · 10 = Felt like it knew me</div>
+      <div class="scale" id="scale-accuracy"></div>
+      <div class="scale-labels"><span>Generic</span><span>Uncannily accurate</span></div>
+      <input type="hidden" id="f-accuracy">
+    </div>
+
+    <div class="field">
+      <label>How Easy Was the Tool to Use?</label>
+      <div class="sublabel">1 = Confusing · 10 = Effortless</div>
+      <div class="scale" id="scale-ease"></div>
+      <div class="scale-labels"><span>Confusing</span><span>Effortless</span></div>
+      <input type="hidden" id="f-ease">
+    </div>
+
+    <div class="field">
+      <label>Which Section of Your Report Was Most Valuable to You?</label>
+      <select id="f-best-section">
+        <option value="">Select one</option>
+        <option value="identity">Professional Identity</option>
+        <option value="impacts">Top Impact Statements</option>
+        <option value="superpowers">Superpower Profile</option>
+        <option value="linkedin">LinkedIn Headline & Summary</option>
+        <option value="bullets">Executive Summary Bullets</option>
+        <option value="competencies">Key Competencies</option>
+        <option value="hidden">Hidden Strengths & Instincts</option>
+        <option value="vcp">Your Value Creation Patterns</option>
+        <option value="radar">AI Vulnerability Radar</option>
+        <option value="resume">Resume Content Kit</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Was There a Specific Line, Insight or Section That Made You Stop and Think?</label>
+      <div class="sublabel">Even one sentence. This is the most useful feedback we can get.</div>
+      <textarea id="f-wow" placeholder="e.g. 'The Value Creation Patterns section named something I've always done but never had words for...'"></textarea>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="section-head">Pricing & Value</div>
+
+    <div class="field">
+      <label>What Would You Willingly Pay for Each Tier?</label>
+      <div class="sublabel">Be honest — this directly informs our pricing. Enter in USD.</div>
+      <div class="price-group">
+        <div class="price-item">
+          <label>Starter · 30Q</label>
+          <input type="text" id="f-price-starter" placeholder="e.g. $47">
+        </div>
+        <div class="price-item">
+          <label>Core · 60Q</label>
+          <input type="text" id="f-price-core" placeholder="e.g. $97">
+        </div>
+        <div class="price-item">
+          <label>Pro · 100Q</label>
+          <input type="text" id="f-price-pro" placeholder="e.g. $147">
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>How Likely Are You to Recommend This to a Colleague?</label>
+      <div class="sublabel">1 = Definitely not · 10 = Already writing the email</div>
+      <div class="scale" id="scale-nps"></div>
+      <div class="scale-labels"><span>Not likely</span><span>Already recommending</span></div>
+      <input type="hidden" id="f-nps">
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="section-head">Design & Improvements</div>
+
+    <div class="field">
+      <label>What Worked Well — Design, Flow, or Experience?</label>
+      <textarea id="f-worked" placeholder="What felt right, smooth, or impressive..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>What Could Be Improved — Design, Flow, or Experience?</label>
+      <textarea id="f-improve" placeholder="What confused you, felt slow, or could be better..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Did You Encounter Any Bugs or Technical Issues?</label>
+      <textarea id="f-bugs" placeholder="Anything broken, missing, or unexpected..."></textarea>
+    </div>
+
+    <!-- SECTION 5 -->
+    <div class="section-head">The Bigger Picture</div>
+
+    <div class="field">
+      <label>Does This Tool Solve a Real Problem You Have or Have Had?</label>
+      <select id="f-pain">
+        <option value="">Select one</option>
+        <option value="yes-major">Yes — a significant one I've struggled with</option>
+        <option value="yes-minor">Yes — a real but smaller problem</option>
+        <option value="not-sure">Not sure yet — need to sit with the output</option>
+        <option value="no">Not really — doesn't apply to my situation</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Who Else Should Use This Tool?</label>
+      <div class="sublabel">What kind of person would benefit most? Who would you send this to?</div>
+      <textarea id="f-audience" placeholder="e.g. Anyone in a mid-career transition, senior engineers who can't articulate their value..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Anything Else You'd Like to Share?</label>
+      <div class="sublabel">General impressions, questions, ideas, or anything we haven't asked.</div>
+      <textarea id="f-other" placeholder="Open floor — say whatever's on your mind..."></textarea>
+    </div>
+
+    <div style="margin-top:0.5rem;margin-bottom:1.5rem;padding:1rem;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:8px;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem;">One star rating</div>
+      <div style="font-size:0.82rem;color:var(--mist);margin-bottom:0.6rem;">If the tool earned it — your rating on icebergprofile.com helps us build social proof before launch.</div>
+      <div class="stars" id="final-stars"></div>
+      <input type="hidden" id="f-stars">
+    </div>
+
+    <button class="submit-btn" id="submit-btn" onclick="submitFeedback()">Submit My Feedback →</button>
+    <div style="text-align:center;margin-top:0.8rem;font-size:0.68rem;color:rgba(184,216,240,0.25);">Your responses go directly to Kirthi. Handled with care.</div>
+  </div>
+
+  <div class="success" id="success-wrap">
+    <div class="success-icon">🙏</div>
+    <h2>Thank you, genuinely.</h2>
+    <p>Your feedback has been received and will directly shape the final product before launch.<br><br>Kirthi will review every response personally.</p>
+  </div>
+</div>
+
+<script>
+// Build scale buttons
+function buildScale(containerId, hiddenId, count){
+  const c = document.getElementById(containerId);
+  for(let i=1;i<=count;i++){
+    const b = document.createElement('button');
+    b.type='button';
+    b.className='scale-btn';
+    b.textContent=i;
+    b.onclick=function(){
+      c.querySelectorAll('.scale-btn').forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel');
+      document.getElementById(hiddenId).value=i;
+    };
+    c.appendChild(b);
+  }
+}
+buildScale('scale-value','f-value',10);
+buildScale('scale-accuracy','f-accuracy',10);
+buildScale('scale-ease','f-ease',10);
+buildScale('scale-nps','f-nps',10);
+
+// Star rating
+const starContainer = document.getElementById('final-stars');
+let starVal = 0;
+for(let i=1;i<=5;i++){
+  const s = document.createElement('span');
+  s.className='star';
+  s.textContent='★';
+  s.dataset.v=i;
+  s.onmouseover=function(){ paintFinalStars(i); };
+  s.onmouseout=function(){ paintFinalStars(starVal); };
+  s.onclick=function(){
+    starVal=i;
+    document.getElementById('f-stars').value=i;
+    paintFinalStars(i);
+  };
+  starContainer.appendChild(s);
+}
+function paintFinalStars(n){
+  starContainer.querySelectorAll('.star').forEach(function(s){
+    s.classList.toggle('on', parseInt(s.dataset.v)<=n);
+  });
+}
+
+async function submitFeedback(){
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  if(!name){ alert('Please enter your name.'); return; }
+  if(!email || !email.includes('@')){ alert('Please enter a valid email.'); return; }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled=true;
+  btn.textContent='Sending...';
+
+  const data = {
+    name,
+    email,
+    tier: document.getElementById('f-tier').value,
+    completion_pct: document.getElementById('f-pct').value,
+    value_rating: document.getElementById('f-value').value,
+    accuracy_rating: document.getElementById('f-accuracy').value,
+    ease_rating: document.getElementById('f-ease').value,
+    nps: document.getElementById('f-nps').value,
+    best_section: document.getElementById('f-best-section').value,
+    wow_moment: document.getElementById('f-wow').value.trim(),
+    price_starter: document.getElementById('f-price-starter').value.trim(),
+    price_core: document.getElementById('f-price-core').value.trim(),
+    price_pro: document.getElementById('f-price-pro').value.trim(),
+    worked_well: document.getElementById('f-worked').value.trim(),
+    improvements: document.getElementById('f-improve').value.trim(),
+    bugs: document.getElementById('f-bugs').value.trim(),
+    solves_pain: document.getElementById('f-pain').value,
+    target_audience: document.getElementById('f-audience').value.trim(),
+    other: document.getElementById('f-other').value.trim(),
+    star_rating: document.getElementById('f-stars').value,
+    submitted_at: new Date().toISOString()
+  };
+
+  try {
+    // Store in Anthropic persistent storage
+    const key = 'feedback:' + Date.now() + ':' + Math.random().toString(36).slice(2,7);
+    await window.storage.set(key, JSON.stringify(data), true); // shared=true so all responses visible
+
+    document.getElementById('form-wrap').style.display='none';
+    document.getElementById('success-wrap').style.display='block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  } catch(e) {
+    // Fallback: send via ConvertKit tag
+    try {
+      await fetch('https://api.convertkit.com/v3/forms/9114465/subscribe',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          api_key:'40YM5udhv664QVYe4ADbbA',
+          email: email,
+          first_name: name,
+          tags:['beta-feedback'],
+          fields:{
+            tier: data.tier,
+            value_rating: data.value_rating,
+            nps: data.nps,
+            wow_moment: data.wow_moment.slice(0,255)
+          }
+        })
+      });
+    } catch(e2){}
+
+    document.getElementById('form-wrap').style.display='none';
+    document.getElementById('success-wrap').style.display='block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+}
+</script>
+</body>
+</html>
