@@ -1882,7 +1882,7 @@ function submitEmailCapture(){
     return;
   }
   localStorage.setItem('ib_email',email);
-  fetch('https://api.convertkit.com/v3/forms/9114465/subscribe',{
+  fetch('https://api.convertkit.com/v3/forms/9252902/subscribe',{
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({api_key:'40YM5udhv664QVYe4ADbbA',email:email,tags:['iceberg-profile-user']})
   }).catch(function(){});
@@ -1902,7 +1902,7 @@ function trackIcebergEvent(eventType,extraData){
     var payload={api_key:'40YM5udhv664QVYe4ADbbA',email:email,
       fields:Object.assign({last_event:eventType,last_tier:sel||'unknown',
         last_event_date:new Date().toISOString().split('T')[0]},extraData||{})};
-    fetch('https://api.convertkit.com/v3/forms/9114465/subscribe',{
+    fetch('https://api.convertkit.com/v3/forms/9252902/subscribe',{
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify(payload)}).catch(function(){});
   }catch(e){}
