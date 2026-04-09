@@ -653,6 +653,9 @@ window.addEventListener('resize',function(){
         </div>
     </div>
     <p class="trust-note">Built on 25 years · 500+ professionals coached · Secured by Stripe · Your answers are private</p>
+    <div style="text-align:center;margin-top:1.2rem;">
+      <span onclick="openPreview()" style="font-family:var(--fm);font-size:0.58rem;letter-spacing:0.06em;color:rgba(184,216,240,0.28);cursor:pointer;border-bottom:1px dashed rgba(184,216,240,0.15);padding-bottom:2px;transition:color 0.2s;" onmouseover="this.style.color='rgba(184,216,240,0.5)'" onmouseout="this.style.color='rgba(184,216,240,0.28)'">Not sure yet? Try 3 questions free →</span>
+    </div>
   </div>
 
 
@@ -2034,12 +2037,168 @@ function tFq(hdr){
   if(a)a.style.transform=open?'rotate(0deg)':'rotate(180deg)';
 }
 
+/* ── FREE PREVIEW / SIDE DOOR ────────────────────────────────── */
+var _previewAnswers={};
+
+function openPreview(){
+  var ov=document.createElement('div');
+  ov.id='preview-overlay';
+  ov.style.cssText='position:fixed;inset:0;z-index:1000;background:rgba(6,14,28,0.94);display:flex;align-items:center;justify-content:center;padding:1.5rem;overflow-y:auto;';
+  ov.innerHTML=buildIntakeStep();
+  document.body.appendChild(ov);
+}
+
+function closePreview(){
+  var ov=document.getElementById('preview-overlay');
+  if(ov)ov.remove();
+}
+
+function buildIntakeStep(){
+  return '<div style="background:linear-gradient(135deg,rgba(12,30,62,0.98),rgba(18,42,80,0.98));border:1px solid rgba(201,168,76,0.25);border-radius:16px;padding:2.2rem;max-width:440px;width:100%;position:relative;">'
+    +'<span onclick="closePreview()" style="position:absolute;top:1rem;right:1.2rem;color:rgba(184,216,240,0.3);cursor:pointer;font-size:1.2rem;">&times;</span>'
+    +'<div style="font-family:var(--fm);font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Free Preview</div>'
+    +'<h3 style="font-family:var(--fd);font-size:1.3rem;color:var(--crystal);margin-bottom:0.5rem;font-weight:700;">See what your Iceberg Profile can reveal</h3>'
+    +'<p style="font-family:var(--fm);font-size:0.78rem;color:rgba(184,216,240,0.5);line-height:1.7;margin-bottom:1.4rem;">Answer 3 questions. Get a free insight about your hidden career value. Takes 3 minutes.</p>'
+    +'<div style="margin-bottom:1rem;">'
+    +'<label style="font-family:var(--fm);font-size:0.6rem;letter-spacing:0.1em;color:rgba(184,216,240,0.4);text-transform:uppercase;display:block;margin-bottom:0.35rem;">Your current role</label>'
+    +'<input id="pv-role" type="text" placeholder="e.g. Senior Engineer, VP Engineering, Data Scientist" style="width:100%;background:rgba(6,14,28,0.65);border:1px solid rgba(74,144,217,0.15);border-radius:7px;padding:0.7rem 0.9rem;font-family:var(--fb);font-size:0.82rem;color:var(--ice);outline:none;box-sizing:border-box;">'
+    +'</div>'
+    +'<div style="margin-bottom:1rem;">'
+    +'<label style="font-family:var(--fm);font-size:0.6rem;letter-spacing:0.1em;color:rgba(184,216,240,0.4);text-transform:uppercase;display:block;margin-bottom:0.35rem;">Years of experience</label>'
+    +'<select id="pv-years" style="width:100%;background:rgba(6,14,28,0.65);border:1px solid rgba(74,144,217,0.15);border-radius:7px;padding:0.7rem 0.9rem;font-family:var(--fb);font-size:0.82rem;color:var(--ice);outline:none;box-sizing:border-box;">'
+    +'<option value="">Select...</option><option value="1-3">1–3 years</option><option value="4-7">4–7 years</option><option value="8-12">8–12 years</option><option value="13-20">13–20 years</option><option value="20+">20+ years</option>'
+    +'</select>'
+    +'</div>'
+    +'<div style="margin-bottom:1.4rem;">'
+    +'<label style="font-family:var(--fm);font-size:0.6rem;letter-spacing:0.1em;color:rgba(184,216,240,0.4);text-transform:uppercase;display:block;margin-bottom:0.35rem;">Biggest career concern right now</label>'
+    +'<select id="pv-concern" style="width:100%;background:rgba(6,14,28,0.65);border:1px solid rgba(74,144,217,0.15);border-radius:7px;padding:0.7rem 0.9rem;font-family:var(--fb);font-size:0.82rem;color:var(--ice);outline:none;box-sizing:border-box;">'
+    +'<option value="">Select...</option><option value="undervalued">I\'m not sure I\'m valued correctly</option><option value="ai-threat">I\'m worried about AI impact on my career</option><option value="stuck">I feel stuck despite strong performance</option><option value="move-up">I want to move up but don\'t know how</option><option value="transition">I\'m in or facing a career transition</option>'
+    +'</select>'
+    +'</div>'
+    +'<button onclick="goToPreviewQuestions()" style="width:100%;padding:0.85rem;background:#c9a84c;color:#0c1a2e;border:none;border-radius:8px;font-family:var(--fm);font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;">Show Me My 3 Questions →</button>'
+    +'</div>';
+}
+
+var PREVIEW_QS=[
+  {q:"What is the single biggest contribution you have made to any organization — and can you put a dollar, time, or risk value on that difference?",i:"Be specific. This surfaces the business impact that almost never appears on a resume."},
+  {q:"When have you made a critical decision based on gut instinct — going against the data or conventional wisdom — and been right?",i:"This reveals your Inner Radar — the deep pattern recognition built through years of lived experience that no AI can replicate."},
+  {q:"Right now, somewhere, an engineer or leader with less talent than you is getting the roles and trajectory you deserve. Why do you think that is?",i:"Be honest. This question surfaces the gap between what you are and what the market sees — your iceberg profile."}
+];
+
+function goToPreviewQuestions(){
+  var role=document.getElementById('pv-role').value.trim();
+  var years=document.getElementById('pv-years').value;
+  var concern=document.getElementById('pv-concern').value;
+  if(!role||!years||!concern){
+    var inputs=document.querySelectorAll('#preview-overlay input, #preview-overlay select');
+    inputs.forEach(function(el){if(!el.value.trim())el.style.borderColor='rgba(230,57,70,0.5)';});
+    return;
+  }
+  _previewAnswers._role=role;
+  _previewAnswers._years=years;
+  _previewAnswers._concern=concern;
+  showPreviewQuestion(0);
+}
+
+function showPreviewQuestion(idx){
+  var ov=document.getElementById('preview-overlay');
+  var pq=PREVIEW_QS[idx];
+  var stepLabel=(idx+1)+' of 3';
+  ov.innerHTML='<div style="background:linear-gradient(135deg,rgba(12,30,62,0.98),rgba(18,42,80,0.98));border:1px solid rgba(201,168,76,0.25);border-radius:16px;padding:2.2rem;max-width:520px;width:100%;position:relative;">'
+    +'<span onclick="closePreview()" style="position:absolute;top:1rem;right:1.2rem;color:rgba(184,216,240,0.3);cursor:pointer;font-size:1.2rem;">&times;</span>'
+    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;">'
+    +'<span style="font-family:var(--fm);font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);">Free Preview</span>'
+    +'<span style="font-family:var(--fm);font-size:0.54rem;letter-spacing:0.1em;color:rgba(184,216,240,0.3);text-transform:uppercase;">Question '+stepLabel+'</span>'
+    +'</div>'
+    +'<div style="height:3px;background:rgba(74,144,217,0.1);border-radius:3px;margin-bottom:1.4rem;"><div style="height:100%;width:'+((idx+1)/3*100)+'%;background:linear-gradient(90deg,var(--glow),var(--gold));border-radius:3px;transition:width 0.4s;"></div></div>'
+    +'<h3 style="font-family:var(--fd);font-size:1.15rem;color:var(--ice);margin-bottom:0.6rem;font-weight:700;line-height:1.35;">'+pq.q+'</h3>'
+    +'<p style="font-size:0.76rem;color:rgba(184,216,240,0.4);line-height:1.65;margin-bottom:1.2rem;border-left:2px solid rgba(74,144,217,0.2);padding-left:0.8rem;font-style:italic;">'+pq.i+'</p>'
+    +'<textarea id="pv-answer" placeholder="Type your answer here..." style="width:100%;min-height:140px;background:rgba(6,14,28,0.65);border:1px solid rgba(74,144,217,0.15);border-radius:7px;padding:0.85rem 1rem;font-family:var(--fb);font-size:0.82rem;color:var(--ice);line-height:1.7;resize:vertical;outline:none;box-sizing:border-box;"></textarea>'
+    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem;">'
+    +(idx>0?'<button onclick="showPreviewQuestion('+(idx-1)+')" style="background:none;border:1px solid rgba(74,144,217,0.14);color:rgba(184,216,240,0.38);font-family:var(--fb);font-size:0.78rem;padding:0.6rem 1.1rem;border-radius:8px;cursor:pointer;">← Back</button>':'<span></span>')
+    +'<button id="pv-next-btn" onclick="savePreviewAnswer('+idx+')" style="background:linear-gradient(135deg,var(--glow),#2a5a9a);color:#fff;font-family:var(--fb);font-weight:600;font-size:0.82rem;padding:0.7rem 1.5rem;border:none;border-radius:8px;cursor:pointer;">'+(idx<2?'Next →':'Reveal My Insight →')+'</button>'
+    +'</div>'
+    +'</div>';
+  if(_previewAnswers['q'+idx]){
+    document.getElementById('pv-answer').value=_previewAnswers['q'+idx];
+  }
+}
+
+function savePreviewAnswer(idx){
+  var val=document.getElementById('pv-answer').value.trim();
+  if(!val||val.length<15){
+    document.getElementById('pv-answer').style.borderColor='rgba(230,57,70,0.5)';
+    return;
+  }
+  _previewAnswers['q'+idx]=val;
+  if(idx<2){
+    showPreviewQuestion(idx+1);
+  } else {
+    showPreviewGenerating();
+    generatePreviewInsight();
+  }
+}
+
+function showPreviewGenerating(){
+  var ov=document.getElementById('preview-overlay');
+  ov.innerHTML='<div style="background:linear-gradient(135deg,rgba(12,30,62,0.98),rgba(18,42,80,0.98));border:1px solid rgba(201,168,76,0.25);border-radius:16px;padding:3rem 2.2rem;max-width:440px;width:100%;text-align:center;">'
+    +'<div style="font-size:2.5rem;margin-bottom:1rem;animation:bob 3s ease-in-out infinite;">🧊</div>'
+    +'<div style="font-family:var(--fd);font-size:1.2rem;font-style:italic;color:var(--crystal);margin-bottom:0.6rem;">Analysing your responses...</div>'
+    +'<p style="font-size:0.8rem;color:rgba(184,216,240,0.4);line-height:1.7;">Mapping your hidden value across 7 dimensions</p>'
+    +'<div style="margin-top:1.4rem;"><div class="spin" style="margin:0 auto;width:20px;height:20px;"></div></div>'
+    +'</div>';
+}
+
+async function generatePreviewInsight(){
+  var prompt='Role: '+_previewAnswers._role+'\nExperience: '+_previewAnswers._years+' years\nBiggest concern: '+_previewAnswers._concern
+    +'\n\nQ1: What is the single biggest contribution you have made to any organization?\nA1: '+_previewAnswers.q0
+    +'\n\nQ2: When have you made a critical decision based on gut instinct and been right?\nA2: '+_previewAnswers.q1
+    +'\n\nQ3: Why do you think less talented people are getting the roles you deserve?\nA3: '+_previewAnswers.q2;
+
+  var sys='You are the preview engine for The Iceberg Profile by Kirthi Roberts PhD PEng. Based on 3 answers from a professional, write a SHORT, specific, revelatory insight (exactly 3-4 sentences). Rules:\n'
+    +'1. First sentence: Name their specific role/domain and state that they are significantly undervaluing themselves — reference something specific from their answers that proves it.\n'
+    +'2. Second sentence: Identify the ONE most powerful hidden pattern you see across their 3 answers — the thing they do instinctively but have never articulated as market value. Name it boldly.\n'
+    +'3. Third sentence: State a specific estimate of how much business value is likely invisible beneath their resume (use a range like $500K-$2M based on their experience level and what they described).\n'
+    +'4. Fourth sentence: Tell them their full Iceberg Profile maps this across 7 dimensions with 30-100 questions — this preview only scratched the surface.\n'
+    +'Write in second person (you/your). Be specific to THEIR answers — never generic. This must create an emotional reaction: the reader should think "how did it know that?" Return ONLY the paragraph, no JSON, no markdown.';
+
+  try{
+    var res=await fetch('https://iceberg-api.kirthi-bd1.workers.dev',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:400,system:sys,bypass_code:'PREVIEW-FREE',tier:'preview',
+        messages:[{role:'user',content:prompt}]})
+    });
+    var json=await res.json();
+    var text=(json.content&&json.content[0]&&json.content[0].text)||'';
+    if(!text)throw new Error('Empty response');
+    showPreviewResult(text);
+  }catch(e){
+    showPreviewResult('Based on what you shared, there is a significant gap between the business impact you have delivered and your ability to articulate it. The pattern across your answers suggests you are sitting on substantial hidden value — the kind that compounds across your career but remains invisible to the market. Your full Iceberg Profile would map this across 7 dimensions to surface exactly where that value is hiding.');
+  }
+}
+
+function showPreviewResult(insight){
+  var ov=document.getElementById('preview-overlay');
+  ov.innerHTML='<div style="background:linear-gradient(135deg,rgba(12,30,62,0.98),rgba(18,42,80,0.98));border:1px solid rgba(201,168,76,0.35);border-radius:16px;padding:2.2rem;max-width:500px;width:100%;position:relative;">'
+    +'<span onclick="closePreview()" style="position:absolute;top:1rem;right:1.2rem;color:rgba(184,216,240,0.3);cursor:pointer;font-size:1.2rem;">&times;</span>'
+    +'<div style="font-family:var(--fm);font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">Your Preview Insight</div>'
+    +'<div style="background:rgba(6,14,28,0.6);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:1.3rem 1.4rem;margin-bottom:1.6rem;">'
+    +'<p style="font-family:var(--fd);font-style:italic;font-size:0.92rem;color:var(--crystal);line-height:1.82;">'+insight+'</p>'
+    +'</div>'
+    +'<div style="background:rgba(74,144,217,0.06);border:1px solid rgba(74,144,217,0.12);border-radius:8px;padding:1rem 1.2rem;margin-bottom:1.4rem;">'
+    +'<p style="font-size:0.78rem;color:rgba(184,216,240,0.55);line-height:1.7;">This preview analysed <strong style="color:var(--crystal);">3 questions</strong>. Your full Iceberg Profile analyses <strong style="color:var(--crystal);">30–100 questions</strong> across <strong style="color:var(--gold);">7 dimensions</strong> of hidden career value — and generates a comprehensive intelligence report you can use immediately.</p>'
+    +'</div>'
+    +'<button onclick="closePreview();buyTier(\'starter\')" style="width:100%;padding:0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:#0c1a2e;border:none;border-radius:8px;font-family:var(--fm);font-size:0.88rem;font-weight:700;cursor:pointer;margin-bottom:0.7rem;transition:all 0.2s;">Unlock My Full Iceberg Profile — $47 →</button>'
+    +'<div style="text-align:center;">'
+    +'<span onclick="closePreview();document.getElementById(\'tier-anchor\').scrollIntoView({behavior:\'smooth\'})" style="font-family:var(--fm);font-size:0.58rem;color:rgba(184,216,240,0.3);cursor:pointer;letter-spacing:0.06em;">View all tiers →</span>'
+    +'</div>'
+    +'<p style="font-family:var(--fm);font-size:0.52rem;color:rgba(184,216,240,0.2);text-align:center;margin-top:1rem;">100% satisfaction guarantee — full refund within 7 days if your profile doesn\'t surface at least one insight that changes how you see your career value.</p>'
+    +'</div>';
+}
+
 </script>
 <div style="text-align:center;padding:2rem 1.5rem 1rem;font-family:var(--fm);font-size:0.65rem;letter-spacing:0.06em;color:rgba(184,216,240,0.25);max-width:600px;margin:0 auto;">
-🔒 Your responses are stored locally in your browser and are not shared with third parties. Report generation uses encrypted API connections. Your data is protected by your personal PIN. For questions about data handling, contact <a href="mailto:kirthi@fiduciconsulting.com" style="color:rgba(201,168,76,0.5);text-decoration:underline;">kirthi@fiduciconsulting.com</a>.
+🔒 Your responses are stored locally in your browser and are not shared with third parties. Report generation uses encrypted API connections. Your data is protected by your personal PIN. For questions about data handling, contact <a href="/cdn-cgi/l/email-protection#5a3133282e32331a3c333e2f3933393534292f362e33343d74393537" style="color:rgba(201,168,76,0.5);text-decoration:underline;"><span class="__cf_email__" data-cfemail="f3989a81879b9ab3959a9786909a909c9d80869f879a9d94dd909c9e">[email&#160;protected]</span></a>.
 </div>
 <style>
-@keyframes fadeInUp{from{opacity:0;transform:translateX(-50%) translateY(20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
-</style>
-</body>
-</html>
+@keyframes
