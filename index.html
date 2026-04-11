@@ -30,7 +30,7 @@ body{font-family:var(--fb);background:var(--deep);color:var(--ice);overflow-x:hi
 .nav-sep{width:1px;height:22px;background:rgba(74,144,217,0.3);}
 .nav-name{font-family:var(--fd);font-size:1rem;color:rgba(184,216,240,0.85);font-style:italic;letter-spacing:0.02em;}
 .nav-sub{font-family:var(--fm);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#c9a84c;margin-left:0.1rem;font-weight:600;}
-.nav-cta{font-family:var(--fm);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:#0c1a2e;border:2px solid #c9a84c;padding:0.5rem 1.3rem;border-radius:20px;background:#c9a84c;cursor:pointer;transition:all 0.2s;white-space:nowrap;font-weight:700;}
+.nav-cta{font-family:var(--fm);font-size:0.76rem;letter-spacing:0.12em;text-transform:uppercase;color:#0c1a2e;border:2px solid #d4af37;padding:0.55rem 1.4rem;border-radius:20px;background:#d4af37;cursor:pointer;transition:all 0.2s;white-space:nowrap;font-weight:700;}
 .nav-cta:hover{background:rgba(201,168,76,0.1);border-color:var(--gold);}
 
 /* HERO */
@@ -106,9 +106,9 @@ body{font-family:var(--fb);background:var(--deep);color:var(--ice);overflow-x:hi
 
 /* CTA */
 .cta-zone{display:flex;flex-direction:column;align-items:center;gap:0.8rem;margin-bottom:0;}
-.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--deep);font-family:var(--fb);font-weight:700;font-size:1.05rem;padding:1.05rem 3rem;border:none;border-radius:8px;cursor:pointer;box-shadow:0 4px 24px rgba(201,168,76,0.4);transition:all 0.2s;letter-spacing:0.01em;}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,168,76,0.55);}
-.trust-note{font-family:var(--fm);font-size:0.55rem;letter-spacing:0.06em;color:rgba(184,216,240,0.22);text-align:center;}
+.btn-primary{background:linear-gradient(135deg,#d4af37,#f0d060);color:var(--deep);font-family:var(--fb);font-weight:700;font-size:1.1rem;padding:1.1rem 3rem;border:none;border-radius:8px;cursor:pointer;box-shadow:0 4px 24px rgba(212,175,55,0.5);transition:all 0.2s;letter-spacing:0.01em;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(212,175,55,0.65);}
+.trust-note{font-family:var(--fm);font-size:0.62rem;letter-spacing:0.06em;color:rgba(184,216,240,0.4);text-align:center;}
 
 /* APP */
 #landing{display:block;}
@@ -185,7 +185,7 @@ textarea::placeholder{color:rgba(184,216,240,0.14);font-style:italic;}
 .rpt-body{max-width:860px;margin:0 auto;padding:2.8rem 2rem;}
 .rsec{margin-bottom:2.6rem;animation:fu 0.55s ease both;}
 @keyframes fu{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
-.sec-lbl{font-family:var(--fm);font-size:0.72rem;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:0.85rem;display:flex;align-items:center;gap:0.65rem;}
+.sec-lbl{font-family:var(--fm);font-size:0.78rem;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:0.85rem;display:flex;align-items:center;gap:0.65rem;}
 .sec-lbl::after{content:'';flex:1;height:1px;background:rgba(74,144,217,0.1);}
 .rcard{background:rgba(12,30,62,0.48);border:1px solid rgba(74,144,217,0.14);border-radius:13px;padding:1.7rem;font-size:0.9rem;line-height:1.82;color:var(--crystal);}
 .impact-item{background:rgba(6,14,28,0.68);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;padding:0.8rem 1rem;margin-bottom:0.55rem;font-size:0.86rem;line-height:1.6;color:var(--crystal);}
@@ -232,8 +232,8 @@ textarea::placeholder{color:rgba(184,216,240,0.14);font-style:italic;}
 .pillar-card.active{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.06);}
 .pillar-card .p-header{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.45rem;}
 .pillar-card .p-icon{font-size:1rem;}
-.pillar-card .p-name{font-family:var(--fm);font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);}
-.pillar-card .p-status{margin-left:auto;font-family:var(--fm);font-size:0.46rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:10px;}
+.pillar-card .p-name{font-family:var(--fm);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);}
+.pillar-card .p-status{margin-left:auto;font-family:var(--fm);font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:10px;}
 .pillar-card .p-status.on{background:rgba(74,200,120,0.15);color:#4ec878;border:1px solid rgba(74,200,120,0.3);}
 .pillar-card .p-status.latent{background:rgba(201,168,76,0.12);color:var(--gold);border:1px solid rgba(201,168,76,0.25);}
 .pillar-card .p-body{font-size:0.77rem;line-height:1.65;color:rgba(184,216,240,0.72);}
@@ -245,12 +245,17 @@ textarea::placeholder{color:rgba(184,216,240,0.14);font-style:italic;}
 .radar-card.exposed{border:1px solid rgba(224,112,112,0.25);}
 .radar-card.resilient{border:1px solid rgba(74,200,120,0.25);}
 .radar-card.strategic{border:1px solid rgba(201,168,76,0.25);grid-column:1/-1;}
-.radar-card .r-label{font-family:var(--fm);font-size:0.5rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.4rem;}
+.radar-card .r-label{font-family:var(--fm);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.4rem;}
 .radar-card .r-label.red{color:#e07070;}
 .radar-card .r-label.green{color:#4ec878;}
 .radar-card .r-label.gold{color:var(--gold);}
 .radar-card .r-body{font-size:0.78rem;line-height:1.7;color:rgba(184,216,240,0.75);}
-.impact-num{font-family:var(--fm);font-size:0.5rem;color:var(--gold);opacity:0.7;margin-bottom:0.3rem;letter-spacing:0.15em;text-transform:uppercase;}
+.impact-num{font-family:var(--fm);font-size:0.68rem;color:var(--gold);opacity:0.9;margin-bottom:0.3rem;letter-spacing:0.15em;text-transform:uppercase;}
+
+/* SUPERPOWER CARDS */
+.sp-card{background:rgba(12,30,62,0.6);border:1px solid rgba(74,144,217,0.18);border-radius:10px;padding:1.1rem 1.2rem;margin-bottom:0.65rem;}
+.sp-card .sp-name{font-family:var(--fm);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;font-weight:600;}
+.sp-card .sp-desc{font-size:0.82rem;line-height:1.72;color:rgba(184,216,240,0.82);}
 
 /* COACH CTA */
 .coach{background:rgba(6,14,28,0.72);border:1px solid rgba(74,144,217,0.13);border-radius:13px;padding:2.2rem;display:grid;grid-template-columns:1fr auto;gap:1.6rem;align-items:center;margin-bottom:2.6rem;}
@@ -267,9 +272,9 @@ footer{background:rgba(6,14,28,0.95);border-top:1px solid rgba(74,144,217,0.12);
 .footer-logo-name{font-family:var(--fd);font-style:italic;font-size:0.95rem;color:rgba(184,216,240,0.45);}
 @keyframes slideDown{from{opacity:0;transform:translateX(-50%) translateY(-20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
 .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem 1.5rem;margin-bottom:1rem;}
-.footer-link{font-family:var(--fm);font-size:0.56rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(184,216,240,0.45);text-decoration:none;transition:color 0.2s;}
+.footer-link{font-family:var(--fm);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(184,216,240,0.55);text-decoration:none;transition:color 0.2s;}
 .footer-link:hover{color:var(--crystal);}
-.footer-copy{font-family:var(--fm);font-size:0.54rem;letter-spacing:0.06em;color:rgba(184,216,240,0.38);line-height:1.8;}
+.footer-copy{font-family:var(--fm);font-size:0.62rem;letter-spacing:0.06em;color:rgba(184,216,240,0.48);line-height:1.8;}
 
 @media(max-width:680px){
   .tiers{grid-template-columns:1fr;}
@@ -431,15 +436,59 @@ footer{background:rgba(6,14,28,0.95);border-top:1px solid rgba(74,144,217,0.12);
 <div class="content-inner">
 
   <div class="hook">
-    <h2>AI can write your entire resume in 30 seconds.<br>So can everyone else's.</h2>
+    <h2>Most of your professional value is invisible.<br>Let's change that.</h2>
     <p class="hook-body">
-      Your real value — the 90% that actually gets you promoted, headhunted, and paid what you're worth — is invisible. It lives in your intuition, your pattern recognition, your ability to navigate chaos and move people. None of it shows up on paper. And in 2026, that invisible value is your <strong>human moat</strong> — the only career asset AI cannot replicate, copy, or compete with.
+      AI can write your entire resume in 30 seconds. So can everyone else's. Your real value — the 90% that actually gets you promoted, headhunted, and paid what you're worth — lives beneath the surface.
     </p>
-    <div class="hook-callout">
-      "This is not another AI resume tool. Those reformat what you already have. The Iceberg Profile surfaces what you didn't even know you had — and turns it into powerful, human language that sounds like you, not like ChatGPT."
+    <p class="hook-body">
+      In your instinct and gut-level judgment when the data is incomplete. In the foresight that sees what's coming before consensus forms. In the discernment that navigates impossible trade-offs. In the resilience built through years of navigating uncertainty with no map. In your ability to influence, build trust, and move people through conviction rather than authority. In the drive that keeps you solving the hardest problems when everyone else has moved on. In the long-game thinking that builds things that outlast your direct involvement.
+    </p>
+    <p class="hook-body">
+      None of it shows up on paper. <strong>Until now.</strong>
+    </p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div style="max-width:680px;margin:0 auto 3rem;text-align:center;">
+    <div style="font-family:var(--fm);font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;">How It Works</div>
+    <div style="display:grid;gap:1.4rem;text-align:left;">
+      <div style="display:flex;gap:1rem;align-items:flex-start;">
+        <span style="font-family:var(--fd);font-size:1.6rem;color:var(--gold);font-weight:700;flex-shrink:0;line-height:1;">1</span>
+        <div>
+          <div style="font-weight:600;color:var(--crystal);margin-bottom:0.25rem;font-size:0.92rem;">Answer deep, guided questions</div>
+          <div style="font-size:0.84rem;color:rgba(184,216,240,0.65);line-height:1.7;">Not a survey — a structured deep-discovery process. 30 to 100 questions designed to surface what you've never been able to articulate about your own hidden career and business value. Most professionals say they've never been asked questions like these.</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:1rem;align-items:flex-start;">
+        <span style="font-family:var(--fd);font-size:1.6rem;color:var(--gold);font-weight:700;flex-shrink:0;line-height:1;">2</span>
+        <div>
+          <div style="font-weight:600;color:var(--crystal);margin-bottom:0.25rem;font-size:0.92rem;">Receive your career intelligence report</div>
+          <div style="font-size:0.84rem;color:rgba(184,216,240,0.65);line-height:1.7;">A career intelligence system — built on 10+ years of coaching 500+ professionals — analyses your responses across 7 dimensions of hidden career and business value and generates a report that reads like a senior career strategist spent a week studying you.</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:1rem;align-items:flex-start;">
+        <span style="font-family:var(--fd);font-size:1.6rem;color:var(--gold);font-weight:700;flex-shrink:0;line-height:1;">3</span>
+        <div>
+          <div style="font-weight:600;color:var(--crystal);margin-bottom:0.25rem;font-size:0.92rem;">Use it immediately — everywhere</div>
+          <div style="font-size:0.84rem;color:rgba(184,216,240,0.65);line-height:1.7;">Walk away with ready-to-use impact statements for your resume, a rewritten LinkedIn presence, interview-ready language for your unique value, salary negotiation positioning, and a strategic career roadmap. Whether you're preparing for interviews, pursuing a promotion, navigating a layoff, or repositioning for the AI era.</div>
+        </div>
+      </div>
     </div>
-    <p class="hook-body" style="margin-top:1.2rem;">
-      You answer 30–100 carefully designed questions. Our AI engine analyses your responses across <strong>7 dimensions of hidden career value — your Human Moat</strong> — and generates a career intelligence report that no resume writer, no LinkedIn optimizer, and no other AI tool can produce. Because they work with what's visible. <strong>We work with what's beneath.</strong>
+  </div>
+
+  <!-- THE ICEBERG DIFFERENCE -->
+  <div class="hook-callout" style="max-width:680px;margin:0 auto 2rem;">
+    "This is not another AI resume tool. Those reformat what you already have. The Iceberg Profile surfaces what you didn't even know you had — and turns it into powerful, human language that sounds like you, not like ChatGPT."
+  </div>
+
+  <!-- WHO IT'S FOR -->
+  <div style="max-width:680px;margin:0 auto 3.5rem;">
+    <div style="font-family:var(--fm);font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;text-align:center;">Who It's For</div>
+    <p class="hook-body" style="text-align:center;">
+      Whether you feel undervalued and can't articulate why. Whether you're navigating a layoff, a restructuring, or a company in decline. Whether you're stuck despite strong performance. Whether you want to pivot industries, pursue a promotion, negotiate a raise, or future-proof your career against AI disruption.
+    </p>
+    <p class="hook-body" style="text-align:center;">
+      If you're a senior individual contributor, a manager, a director, or a C-suite executive — and you've spent years building expertise that the market sees a fraction of — <strong>this is built for you.</strong>
     </p>
   </div>
 
@@ -671,8 +720,8 @@ window.addEventListener('resize',function(){
   </div>
 
   <div class="cta-zone" style="padding-bottom:4rem;">
-    <button class="btn-primary" onclick="buyTier(sel)">Uncover My Hidden Business Value →</button>
-    <p class="trust-note">Built on 25 years · 500+ professionals coached · Secured by Stripe · Your answers are private</p>
+    <button class="btn-primary" onclick="buyTier(sel)">Generate My Career Intelligence Report →</button>
+    <p class="trust-note">10+ years coaching · 500+ professionals · 25 years industry experience · Secured by Stripe · Your answers are private</p>
     <!-- Access code for beta testers / coaching clients -->
     <div style="text-align:center;margin-top:0.5rem;">
       <div id="bypass-row" style="display:flex;justify-content:center;">
@@ -698,10 +747,18 @@ window.addEventListener('resize',function(){
 
       <div class="fq" style="background:rgba(12,30,62,0.55);border:1px solid rgba(74,144,217,0.14);border-radius:10px;overflow:hidden;">
         <div onclick="tFq(this)" style="display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.3rem;cursor:pointer;gap:1rem;">
+          <span style="font-size:0.87rem;font-weight:600;color:var(--crystal);line-height:1.4">What kind of questions will I be asked?</span>
+          <span style="color:var(--gold);font-size:1rem;flex-shrink:0;transition:transform .25s" class="fqa">▾</span>
+        </div>
+        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.72);"><p style="margin:0 0 0.8rem 0;">The Iceberg Profile is not a personality quiz and not a skills checklist. It is a guided deep-reflection process designed by a career strategist with 10+ years of experience coaching 500+ senior professionals across 6 industries.</p><p style="margin:0 0 0.8rem 0;">The questions are organized across 10 areas — from your highest-impact career achievements to the human instincts and judgment patterns that took you a decade to develop but that you've never articulated as professional value.</p><p style="margin:0 0 0.8rem 0;">Some questions ask you to quantify the business impact of your work in ways you've likely never calculated. Others ask you to examine moments where your gut instinct overrode the data and you were right — and what that reveals about how you operate. Others surface the leadership patterns, influence capabilities, and strategic thinking that live entirely beneath your resume.</p><p style="margin:0 0 0.8rem 0;">Several questions in the advanced tiers go where no career tool has gone before: into the specific human capabilities that AI structurally cannot replicate, and how developed yours are.</p><p style="margin:0;">This process takes 2-3 hours of focused, honest reflection — and that investment is exactly what makes the output unlike anything else on the market. Most professionals who complete the process say some variation of: <em>"I've never been asked these questions before — and I've never thought about my career this way."</em></p></div>
+      </div>
+
+      <div class="fq" style="background:rgba(12,30,62,0.55);border:1px solid rgba(74,144,217,0.14);border-radius:10px;overflow:hidden;">
+        <div onclick="tFq(this)" style="display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.3rem;cursor:pointer;gap:1rem;">
           <span style="font-size:0.87rem;font-weight:600;color:var(--crystal);line-height:1.4">If I upgrade to a higher tier, do I lose my answers?</span>
           <span style="color:var(--gold);font-size:1rem;flex-shrink:0;transition:transform .25s" class="fqa">▾</span>
         </div>
-        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.62);">No — your answers are always preserved. When you upgrade from Starter to Core or Pro, everything you have already written carries forward automatically. You simply continue answering the additional questions the higher tier unlocks. You never have to re-enter anything.</div>
+        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.72);">No — your answers are always preserved. When you upgrade from Starter to Core or Pro, everything you have already written carries forward automatically. You simply continue answering the additional questions the higher tier unlocks. You never have to re-enter anything.</div>
       </div>
 
 
@@ -710,7 +767,7 @@ window.addEventListener('resize',function(){
           <span style="font-size:0.87rem;font-weight:600;color:var(--crystal);line-height:1.4">How is this different from a resume writer or LinkedIn optimizer?</span>
           <span style="color:var(--gold);font-size:1rem;flex-shrink:0;transition:transform .25s" class="fqa">▾</span>
         </div>
-        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.62);">Resume writers polish what you already have. LinkedIn optimizers repackage your existing profile. Both assume your value is already visible — it just needs better words. The Iceberg Profile starts from the opposite assumption: that the most important parts of your professional value have never made it onto any page. We surface it first through a structured discovery process, then give you the language to claim it. The output is not a polished version of your old resume. It is career intelligence you did not have before you started.</div>
+        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.72);">Resume writers polish what you already have. LinkedIn optimizers repackage your existing profile. Both assume your value is already visible — it just needs better words. The Iceberg Profile starts from the opposite assumption: that the most important parts of your professional value have never made it onto any page. We surface it first through a structured discovery process, then give you the language to claim it. The output is not a polished version of your old resume. It is career intelligence you did not have before you started.</div>
       </div>
 
       <div class="fq" style="background:rgba(12,30,62,0.55);border:1px solid rgba(74,144,217,0.14);border-radius:10px;overflow:hidden;">
@@ -718,7 +775,7 @@ window.addEventListener('resize',function(){
           <span style="font-size:0.87rem;font-weight:600;color:var(--crystal);line-height:1.4">Do I need to answer all 100 questions to get value?</span>
           <span style="color:var(--gold);font-size:1rem;flex-shrink:0;transition:transform .25s" class="fqa">▾</span>
         </div>
-        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.62);">No — the Starter (30 questions) delivers genuine value and will give most professionals language they have never had before. But here is the honest truth: the tool uses your answers as training data. 30 answers lets it identify patterns. 60 answers lets it name your hidden strengths and map your hidden business value. 100 answers gives it the depth to rewrite your full career story with the precision a senior hiring manager actually responds to — plus generate a complete Resume Content Kit. More of you in means more value out.</div>
+        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.72);">No — the Starter (30 questions) delivers genuine value and will give most professionals language they have never had before. But here is the honest truth: the tool uses your answers as training data. 30 answers lets it identify patterns. 60 answers lets it name your hidden strengths and map your hidden business value. 100 answers gives it the depth to rewrite your full career story with the precision a senior hiring manager actually responds to — plus generate a complete Resume Content Kit. More of you in means more value out.</div>
       </div>
 
       <div class="fq" style="background:rgba(12,30,62,0.55);border:1px solid rgba(74,144,217,0.14);border-radius:10px;overflow:hidden;">
@@ -726,7 +783,7 @@ window.addEventListener('resize',function(){
           <span style="font-size:0.87rem;font-weight:600;color:var(--crystal);line-height:1.4">I care about how my resume looks. Can I choose my format?</span>
           <span style="color:var(--gold);font-size:1rem;flex-shrink:0;transition:transform .25s" class="fqa">▾</span>
         </div>
-        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.62);">Iceberg Pro includes three professionally designed templates — Executive Dark, Modern Minimal, and Technical Pro — and you can drop your content into any other format you prefer. But here is the thing worth remembering: a great resume is 90% what it says and 10% how it looks. Hiring managers at senior levels read for substance first. The Iceberg Profile takes care of the 90% that most tools ignore entirely. The chassis is yours to choose — we give you an engine worth putting in it.</div>
+        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.72);">Iceberg Pro includes three professionally designed templates — Executive Dark, Modern Minimal, and Technical Pro — and you can drop your content into any other format you prefer. But here is the thing worth remembering: a great resume is 90% what it says and 10% how it looks. Hiring managers at senior levels read for substance first. The Iceberg Profile takes care of the 90% that most tools ignore entirely. The chassis is yours to choose — we give you an engine worth putting in it.</div>
       </div>
 
       <div class="fq" style="background:rgba(12,30,62,0.55);border:1px solid rgba(74,144,217,0.14);border-radius:10px;overflow:hidden;">
@@ -734,7 +791,7 @@ window.addEventListener('resize',function(){
           <span style="font-size:0.87rem;font-weight:600;color:var(--crystal);line-height:1.4">I already have a strong resume. Will this still help me?</span>
           <span style="color:var(--gold);font-size:1rem;flex-shrink:0;transition:transform .25s" class="fqa">▾</span>
         </div>
-        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.62);">Especially then. A strong resume means the surface level is covered — titles, responsibilities, maybe some metrics. What it almost certainly does not contain is your cross-domain synthesis capability, the judgment pattern you have built over a decade, the specific attributes that make you irreplaceable in a room, or the positioning language that separates you from 40 other qualified candidates. Those things are not on anyone's resume by default. They live beneath the surface. This tool extracts them.</div>
+        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.72);">Especially then. A strong resume means the surface level is covered — titles, responsibilities, maybe some metrics. What it almost certainly does not contain is your cross-domain synthesis capability, the judgment pattern you have built over a decade, the specific attributes that make you irreplaceable in a room, or the positioning language that separates you from 40 other qualified candidates. Those things are not on anyone's resume by default. They live beneath the surface. This tool extracts them.</div>
       </div>
 
       <div class="fq" style="background:rgba(12,30,62,0.55);border:1px solid rgba(74,144,217,0.14);border-radius:10px;overflow:hidden;">
@@ -742,7 +799,7 @@ window.addEventListener('resize',function(){
           <span style="font-size:0.87rem;font-weight:600;color:var(--crystal);line-height:1.4">What is your Human Moat and hidden business value — and why does it matter right now?</span>
           <span style="color:var(--gold);font-size:1rem;flex-shrink:0;transition:transform .25s" class="fqa">▾</span>
         </div>
-        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.62);">Your skills and certifications are software — learnable, teachable, and increasingly replicable by AI. Your Human Moat is different: the deep irreducible attributes built through lived experience. Your Instinct & Inner Radar — judgment when the data is incomplete. Your Vision & Original Imagination — seeing what is coming before the consensus does. Your Resilience & Grit — navigating when there is no map. These took 10–20 years to build. They are your actual moat in a post-AI economy. The Iceberg Core and Pro tiers surface and name them — because you cannot claim what you cannot articulate.</div>
+        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.72);">Your skills and certifications are software — learnable, teachable, and increasingly replicable by AI. Your Human Moat is different: the deep irreducible attributes built through lived experience. Your Instinct & Inner Radar — judgment when the data is incomplete. Your Vision & Original Imagination — seeing what is coming before the consensus does. Your Resilience & Grit — navigating when there is no map. These took 10–20 years to build. They are your actual moat in a post-AI economy. The Iceberg Core and Pro tiers surface and name them — because you cannot claim what you cannot articulate.</div>
       </div>
 
       <div class="fq" style="background:rgba(12,30,62,0.55);border:1px solid rgba(74,144,217,0.14);border-radius:10px;overflow:hidden;">
@@ -750,7 +807,7 @@ window.addEventListener('resize',function(){
           <span style="font-size:0.87rem;font-weight:600;color:var(--crystal);line-height:1.4">Is the Iceberg Profile enough, or do I need coaching too?</span>
           <span style="color:var(--gold);font-size:1rem;flex-shrink:0;transition:transform .25s" class="fqa">▾</span>
         </div>
-        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.62);"><p style="margin:0 0 0.8rem 0;">The Profile gives you the intelligence — who you really are in business terms, the value you've never articulated, the positioning language that separates you from 500 other qualified candidates. For many professionals, that alone is a breakthrough they have never had. But here is the hard truth: knowing your value and capturing it are two completely different games.</p><p style="margin:0 0 0.8rem 0;">The Iceberg Profile shows you what is on the chessboard. Dr. Roberts shows you the moves — which opportunity has the most leverage right now at your current employer (or new company you would join), how to open doors you never knew existed, how to artfully navigate the politics blocking your promotion, how to get unstuck, and how to position yourself so the right opportunities come to you instead of the other way around. This is not soft-skills coaching. This is career architecting — the same strategic, engineering-grade approach that has delivered 30–50% salary increases (and in many cases well beyond) for senior professionals and tech leaders at all stages of their career, at companies big and small across the USA &amp; Canada.</p><p style="margin:0;">Clients routinely tell Dr. Roberts they were somewhat skeptical going in, but within just weeks could not believe the mindset shift and transformation occurring in them from within. The real question is not whether coaching costs too much (it doesn't) — it is how much you are already leaving on the table every year you go without it. Start with the Iceberg Profile. If what you see makes you realize there is a much bigger game to play, that is exactly what the 3, 4 and 6-month programs are built for. <a href="https://kirthiroberts.com" target="_blank" style="color:var(--gold)">See the programs →</a></p></div>
+        <div class="fqb" style="display:none;padding:0 1.3rem 1.1rem;font-size:0.81rem;line-height:1.8;color:rgba(184,216,240,0.72);"><p style="margin:0 0 0.8rem 0;">The Profile gives you the intelligence — who you really are in business terms, the value you've never articulated, the positioning language that separates you from 500 other qualified candidates. For many professionals, that alone is a breakthrough they have never had. But here is the hard truth: knowing your value and capturing it are two completely different games.</p><p style="margin:0 0 0.8rem 0;">The Iceberg Profile shows you what is on the chessboard. Kirthi Roberts shows you the moves — which opportunity has the most leverage right now at your current employer (or new company you would join), how to open doors you never knew existed, how to artfully navigate the politics blocking your promotion, how to get unstuck, and how to position yourself so the right opportunities come to you instead of the other way around. This is not soft-skills coaching. This is career architecting — the same strategic, engineering-grade approach that has delivered 30–50% salary increases (and in many cases well beyond) for senior professionals and tech leaders at all stages of their career, at companies big and small across the USA &amp; Canada.</p><p style="margin:0;">Clients routinely tell Kirthi Roberts they were somewhat skeptical going in, but within just weeks could not believe the mindset shift and transformation occurring in them from within. The real question is not whether coaching costs too much (it doesn't) — it is how much you are already leaving on the table every year you go without it. Start with the Iceberg Profile. If what you see makes you realize there is a much bigger game to play, that is exactly what the 3, 4 and 6-month programs are built for. <a href="https://kirthiroberts.com" target="_blank" style="color:var(--gold)">See the programs →</a></p></div>
       </div>
       <div class="fq" style="background:rgba(12,30,62,0.55);border:1px solid rgba(74,144,217,0.14);border-radius:10px;overflow:hidden;">
         <div onclick="tFq(this)" style="display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.3rem;cursor:pointer;gap:1rem;">
@@ -917,7 +974,7 @@ window.addEventListener('resize',function(){
         <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem">Next Steps</div>
         <h3 style="font-size:1.2rem;margin-bottom:.55rem">Your report is the map. The coaching is the expedition.</h3>
         <p style="margin-bottom:.85rem;color:rgba(184,216,240,0.82)">You now have language for your hidden business value that you didn't have before you started building your 'Iceberg Profile'. That matters. But here's what the report cannot do: it cannot tell you how to walk into your next performance review and ask for a 20–40% salary increase without flinching or strategize on how to command even higher levels by fundamentally changing your day-to-day Business Operating System (BOS) and therefore higher value (both real and perceived) to your employer. It cannot tell you which of your three career options has the highest leverage right now given your specific company, your specific manager, and your specific market timing. It cannot give you the negotiation script that actually works for your situation, or help you navigate the politics of a promotion you've been doing the work for but haven't received. That's not language work. That's dynamic strategy — and strategy is always situational.</p>
-        <p style="font-size:.8rem;color:rgba(184,216,240,.82);line-height:1.72;margin-bottom:.85rem">Kirthi Roberts has spent 25 years sitting across from engineers, executives, and technical leaders who are earning 20–50% less than the market will actually pay them — and who have no idea how to change that. The ones who engage in 3, 4 or 6 months of strategic career transformation don't just get better jobs. They transform their mindset, their Business Operating System (BOS) and therefore their careers. The gap between your current trajectory and your actual ceiling is not a skills gap. It is a strategy, positioning, and nerve gap — and that is exactly what career transformation coaching closes.</p>
+        <p style="font-size:.8rem;color:rgba(184,216,240,.82);line-height:1.72;margin-bottom:.85rem">Kirthi Roberts has spent 10+ years coaching engineers, executives, and technical leaders who are earning 20–50% less than the market will actually pay them — backed by 25 years of industry experience across 6 industries. — and who have no idea how to change that. The ones who engage in 3, 4 or 6 months of strategic career transformation don't just get better jobs. They transform their mindset, their Business Operating System (BOS) and therefore their careers. The gap between your current trajectory and your actual ceiling is not a skills gap. It is a strategy, positioning, and nerve gap — and that is exactly what career transformation coaching closes.</p>
         <p style="font-family:var(--fm);font-style:normal;font-size:.88rem;color:rgba(184,216,240,0.88);line-height:1.85">The Iceberg Profile surfaces your unmonetized hidden business value — and begins balancing the ledger on years of being underpaid for it. The coaching goes further: it shows you how to operate like a high-value business others want a piece of — rebuilding your Business Operating System so your perceived and real market value keep climbing. In an AI-driven world, understanding and running 'Me Inc.' at full power isn't optional. It's how you stay irreplaceable.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:.7rem;align-items:center;flex-shrink:0">
@@ -945,7 +1002,7 @@ window.addEventListener('resize',function(){
   <div id="review-section" class="no-print" style="max-width:640px;margin:2.5rem auto 0;background:linear-gradient(135deg,rgba(12,30,62,0.7),rgba(6,14,28,0.9));border:1px solid rgba(201,168,76,0.2);border-radius:16px;padding:2rem;text-align:center;">
     <div style="font-family:var(--fm);font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem">Share Your Experience</div>
     <div style="font-family:var(--fd);font-size:1.05rem;font-weight:700;color:var(--crystal);margin-bottom:0.4rem">Your Iceberg Profile just uncovered your hidden gems. How does it feel?</div>
-    <div style="font-size:0.78rem;color:rgba(184,216,240,0.5);margin-bottom:1.2rem;line-height:1.6">Rate us (5 stars = instant karma) and you're in for a <strong style="color:var(--gold)">$100 credit toward a coaching session</strong> with Dr. Roberts. One winner every Monday.</div>
+    <div style="font-size:0.78rem;color:rgba(184,216,240,0.5);margin-bottom:1.2rem;line-height:1.6">Rate us (5 stars = instant karma) and you're in for a <strong style="color:var(--gold)">$100 credit toward a coaching session</strong> with Kirthi Roberts. One winner every Monday.</div>
 
     <!-- Star rating -->
     <div id="star-row" style="display:flex;justify-content:center;gap:0.4rem;margin-bottom:1.2rem;cursor:pointer;">
@@ -1668,7 +1725,7 @@ async function generateReport(){
     const area=AREAS.find(a=>a.id===q.a);
     return 'AREA '+q.a+' — '+area.short+'\nQ: '+q.q+'\nA: '+(answers[i]||'(skipped)');
   }).join('\n\n---\n\n');
-  const sys='You are the intelligence engine inside The Iceberg Profile — career intelligence tool by Kirthi Roberts PhD PEng, Fiduci Consulting, Vancouver BC.\n\nCORE PHILOSOPHY: Hidden Ceiling (technical excellence alone does not get you into leadership). Digital Floor (AI rising from below making pure execution table stakes). Human Moat / Irreplaceable Core = firmware AI cannot replicate: Instinct & Inner Radar, Vision & Original Imagination, Discernment & Judgment, Resilience & Grit, Influence & Leadership, Drive & Fire Within, Legacy & The Long Game. Latent Synthesis = connecting dots across unrelated domains = most AI-resistant capability. New career moat = what you ARE not what you KNOW.\n\nCRITICAL GROUNDING RULES — READ BEFORE ANYTHING ELSE:\n1. You may ONLY use what the person actually wrote. Every single sentence in your output must be traceable to a specific answer they gave.\n2. If an answer is blank, marked (skipped), contains gibberish, random characters, or fewer than 5 meaningful words — treat it as if the question was never answered. Do NOT invent or infer content from it.\n3. If fewer than 15% of answers contain real substance (i.e. fewer than 5 questions answered with meaningful content), only then note briefly and warmly that more answers will unlock a richer profile. Do NOT fire this warning for 30 substantive answers — that is rich input, not sparse input.\n4. NEVER fabricate specific achievements, metrics, projects, technologies, industries, or roles. If the person did not write it, it does not exist in your output.\n5. Impact statements must be based on things they actually described. If they described nothing concrete, generate fewer statements and say so — do not pad to hit the count.\n6. The quality and length of your output should be a direct, honest reflection of the quality and length of their input. A thin submission must produce a thin report.\n\nTIER: '+sel.toUpperCase()+' ('+curQs.length+' questions)\nIMPACTS: '+nI+' (generate fewer if answers do not support this count — never fabricate to reach it)\nEXEC BULLETS: '+nB+' (same rule — quality over count)\nKEYWORDS: '+nK+'\nFIRMWARE: '+doFW+'\nAI RADAR: '+doAI+'\nRESUME KIT: '+doRK+(resumeTxt?'\nRESUME: provided':'')+'\n\nReturn ONLY valid JSON — no markdown, no preamble:\n{\n  "identity": "3-5 sentences second person. Write with authority and specificity — this is the opening statement of a premium career intelligence report. Lead with what makes this person genuinely distinctive: their rare combination, their domain, their level of impact, the intersection they occupy. Name their industry, their specific expertise, their career stage. Make it feel like someone who has studied them deeply just articulated what they could never say about themselves. Only if fewer than 5 answers have real substance: add one warm sentence noting more answers will unlock an even richer profile. Never fabricate. Never be generic. Never describe a job title — describe a person.",\n  "impacts": ["Each impact must name a specific achievement from their answers with business consequence. Format: Strong action verb + what was built/delivered/prevented/achieved + scale or outcome. These must read like the best lines of a C-suite resume — concrete, specific, impressive. If they described it, make it land. Achieved X by doing Y resulting in Z. Never fabricate. Never be vague. If an achievement is described with any specificity, extract maximum business value from how it is worded."],\n  "superpowers": ["5-6 labels 2-5 words each. With 30+ substantive answers you will have enough to find 5-6 genuine superpowers. Look beyond the obvious technical skills to the higher-order capabilities: the cross-domain translation, the systems thinking, the ambiguity navigation, the pattern recognition. Name them boldly. These go on the resume headline."],\n  "exec_bullets": ["CRITICAL: These are resume bullets — written in first-person IMPLIED (no subject pronoun). Start with a strong past-tense action verb: Delivered, Built, Led, Designed, Prevented, Increased. NEVER use second-person — never say your, you, your team. Each bullet stands alone on a resume. Based ONLY on what they described. Reduce count if answers do not support it. Never invent. Example format: Architected SoC verification platform adopted across 3 business units, reducing post-silicon bug rate by 40%."],\n  "linkedin_headline": "Under 220 characters. This must stop a senior hiring manager mid-scroll. Formula: Seniority + Domain + Rare Differentiator + Value Proposition. Use the pipe character to separate. Lead with their actual level — if they have 17 years and have shipped ASICs to mass production they are VP/Director level, say so. Name their rare intersection explicitly. End with what they build or enable. Bad: Senior Semiconductor Engineer | ASIC Architecture. Good: VP Engineering | Semiconductor Architecture & AI Hardware | HW/FW Co-simulation Expert | Building chips that make AI work at production scale. Never be generic. Never describe what everyone in their field does. Describe what only they do.",\n  "linkedin_summary": "3-5 sentences. MUST start with I. This is their LinkedIn About section opener — it needs to make a senior hiring manager lean forward. Lead with their rare intersection or most compelling differentiator — not their job title. Second sentence: the specific impact they create that most people in their field cannot. Third sentence: what they are building toward or the problem they are uniquely positioned to solve. Must feel human, specific, and like no one else could have written it. Never start with I am a [job title]. Start with what they do that is rare.",\n  "keywords": ["'+nK+' competency phrases — reduce count if answers are sparse. Only real capabilities they described."]'+(doFW?',\n  "firmware": "Analyse ALL answers for evidence of the 7 Human Moat pillars. For each pillar WITH clear evidence: start with **Pillar Name** on its own (this becomes a bold heading), then cite the SPECIFIC example from their answers, explain in 1-2 sentences why rare and valuable. Be specific not generic. Skip pillars with NO evidence entirely. For partial evidence note what showed up. ALWAYS use the **Header** format for each pillar — this is critical for rendering. IMPORTANT: You MUST include ALL 7 pillars exactly once. For pillars with clear evidence provide the full analysis. For pillars with limited or no evidence write: Not enough context provided for a meaningful signal — consider providing more detail in your answers to strengthen this area. NEVER skip a pillar. NEVER repeat a pillar. Each of the 7 must appear exactly once in the output. The 7 pillars: Instinct & Inner Radar (judgment without complete data), Vision & Original Imagination (seeing what is coming before consensus), Discernment & Judgment (navigating competing priorities), Resilience & Grit (functioning when there is no map), Influence & Leadership (building trust, earning loyalty, and moving people through connection and conviction — not authority), Drive & Fire Within (sustained drive toward hard problems), Legacy & The Long Game (building things that outlast direct involvement). End with which 1-2 pillars are their STRONGEST competitive moat in today\'s AI-disrupted market and why.",\n  "dormant_code": "This is the most important section for WOW factor. Study ALL answers and identify 2-4 distinct VALUE CREATION PATTERNS — recurring behavioural signatures showing up across multiple sections. These are NOT skills or achievements. These are the HOW behind the what: operating tendencies, instincts and modus operandi that elite employers recognise as irreplaceable. Look for: gravitating toward problems others declared unsolvable, building things from scratch that outlast direct involvement, operating in genuine ambiguity with no map, translating between domains that stay siloed, seeing systemic failure before it manifests, developing people who exceed expectations, making high-stakes decisions with incomplete data and being right, stepping into organisational gaps without being asked, holding technical depth AND organisational complexity simultaneously, tolerating being wrong in public in service of being right eventually. For each pattern found: name it boldly in 3-5 words, then explain in 2 sentences what it looks like in their work and why it is rare and valuable now. Write with energy and specificity — this should feel like someone finally articulated something they always knew but could never say. If fewer than 2 clear patterns emerge name what is visible and note more answers will reveal more patterns."':'')+(doAI?',\n  "ai_radar": "3 sections using **Header** format for each. Section 1: **Current AI Exposure** — what parts of their work face automation pressure and timeline. Section 2: **AI-Resistant Core Value** — specific capabilities that cannot be replicated, grounded in their actual answers. Section 3: **Strategic Positioning** — concrete recommendations based on what they described. Always use **Header** format — critical for rendering."':'')+(doRK?',\n  "resume_kit": {"objective": "One sentence based on what they shared.", "experience_notes": "Rewriting guidance based only on what they described. If resume was provided, reference it specifically.", "skills_section": ["Skills they actually mentioned — reduce count if fewer were described"]}':'')+'\n  "closing": "2-3 sentences. Connect their specific, named strengths to the post-AI landscape in a way that feels inevitable and exciting — not generic. Name their actual differentiators. Make them feel like they are standing at exactly the right intersection at exactly the right moment in history. End on a line that makes them want to do something today. Only if answers were sparse: one warm sentence encouraging more depth."\n}'
+  const sys='You are the intelligence engine inside The Iceberg Profile — career intelligence tool by Kirthi Roberts PhD PEng, Fiduci Consulting, Vancouver BC.\n\nCORE PHILOSOPHY: Hidden Ceiling (technical excellence alone does not get you into leadership). Digital Floor (AI rising from below making pure execution table stakes). Human Moat / Irreplaceable Core = firmware AI cannot replicate: Instinct & Inner Radar, Vision & Original Imagination, Discernment & Judgment, Resilience & Grit, Influence & Leadership, Drive & Fire Within, Legacy & The Long Game. Latent Synthesis = connecting dots across unrelated domains = most AI-resistant capability. New career moat = what you ARE not what you KNOW.\n\nCRITICAL GROUNDING RULES — READ BEFORE ANYTHING ELSE:\n1. You may ONLY use what the person actually wrote. Every single sentence in your output must be traceable to a specific answer they gave.\n2. If an answer is blank, marked (skipped), contains gibberish, random characters, or fewer than 5 meaningful words — treat it as if the question was never answered. Do NOT invent or infer content from it.\n3. If fewer than 15% of answers contain real substance (i.e. fewer than 5 questions answered with meaningful content), only then note briefly and warmly that more answers will unlock a richer profile. Do NOT fire this warning for 30 substantive answers — that is rich input, not sparse input.\n4. NEVER fabricate specific achievements, metrics, projects, technologies, industries, or roles. If the person did not write it, it does not exist in your output.\n5. Impact statements must be based on things they actually described. If they described nothing concrete, generate fewer statements and say so — do not pad to hit the count.\n6. The quality and length of your output should be a direct, honest reflection of the quality and length of their input. A thin submission must produce a thin report.\n7. TONE: Write as a trusted advisor who empowers and illuminates. Be firm but gentle. The person should feel enlightened and gain agency — never feel bad, threatened, minimized, or ridiculed. Create eureka moments where possible. Scale advisory directness to answer depth — rich answers get specific insights, thin answers get gentler exploratory language.\n8. NEVER estimate salary figures, dollar amounts for career cost, or financial projections. Use qualitative impact language only.\n\nTIER: '+sel.toUpperCase()+' ('+curQs.length+' questions)\nIMPACTS: '+nI+' (generate fewer if answers do not support this count — never fabricate to reach it)\nEXEC BULLETS: '+nB+' (same rule — quality over count)\nKEYWORDS: '+nK+'\nFIRMWARE: '+doFW+'\nAI RADAR: '+doAI+'\nRESUME KIT: '+doRK+(resumeTxt?'\nRESUME: provided':'')+'\n\nReturn ONLY valid JSON — no markdown, no preamble:\n{\n  "identity": "3-5 sentences second person. Write with authority and specificity — this is the opening statement of a premium career intelligence report. Lead with what makes this person genuinely distinctive: their rare combination, their domain, their level of impact, the intersection they occupy. Name their industry, their specific expertise, their career stage. Make it feel like someone who has studied them deeply just articulated what they could never say about themselves. Only if fewer than 5 answers have real substance: add one warm sentence noting more answers will unlock an even richer profile. Never fabricate. Never be generic. Never describe a job title — describe a person.",\n  "impacts": ["Each impact must name a specific achievement from their answers with business consequence. Format: Strong action verb + what was built/delivered/prevented/achieved + scale or outcome. These must read like the best lines of a C-suite resume — concrete, specific, impressive. If they described it, make it land. Achieved X by doing Y resulting in Z. Never fabricate. Never be vague. If an achievement is described with any specificity, extract maximum business value from how it is worded."],\n  "superpowers": ["5-6 items in format Name: Description. Each item has a bold 2-5 word name followed by a colon and a 2-3 sentence description explaining what this superpower looks like in their specific work, why it is rare, and how it creates business value. Look beyond obvious technical skills to higher-order capabilities: cross-domain translation, systems thinking, ambiguity navigation, pattern recognition. Ground each description in specific examples from their answers. Example format: Cross-Domain Technical Translation: You consistently bridge the gap between hardware and firmware teams, translating complex technical constraints into shared language that enables both sides to make better decisions. This capability took 15 years to develop and is the reason cross-functional programs succeed under your leadership."],\n  "exec_bullets": ["CRITICAL: These are resume bullets — written in first-person IMPLIED (no subject pronoun). Start with a strong past-tense action verb: Delivered, Built, Led, Designed, Prevented, Increased. NEVER use second-person — never say your, you, your team. Each bullet stands alone on a resume. Based ONLY on what they described. Reduce count if answers do not support it. Never invent. Example format: Architected SoC verification platform adopted across 3 business units, reducing post-silicon bug rate by 40%."],\n  "linkedin_headline": "Under 220 characters. This must stop a senior hiring manager mid-scroll. Formula: Seniority + Domain + Rare Differentiator + Value Proposition. Use the pipe character to separate. Lead with their actual level — if they have 17 years and have shipped ASICs to mass production they are VP/Director level, say so. Name their rare intersection explicitly. End with what they build or enable. Bad: Senior Semiconductor Engineer | ASIC Architecture. Good: VP Engineering | Semiconductor Architecture & AI Hardware | HW/FW Co-simulation Expert | Building chips that make AI work at production scale. Never be generic. Never describe what everyone in their field does. Describe what only they do.",\n  "linkedin_summary": "3-5 sentences. MUST start with I. This is their LinkedIn About section opener — it needs to make a senior hiring manager lean forward. Lead with their rare intersection or most compelling differentiator — not their job title. Second sentence: the specific impact they create that most people in their field cannot. Third sentence: what they are building toward or the problem they are uniquely positioned to solve. Must feel human, specific, and like no one else could have written it. Never start with I am a [job title]. Start with what they do that is rare.",\n  "keywords": ["'+nK+' competency phrases — reduce count if answers are sparse. Only real capabilities they described."]'+(doFW?',\n  "firmware": "Analyse ALL answers for evidence of the 7 Human Moat pillars. For each pillar WITH clear evidence: start with **Pillar Name** on its own (this becomes a bold heading), then cite the SPECIFIC example from their answers, explain in 1-2 sentences why rare and valuable. Be specific not generic. Skip pillars with NO evidence entirely. For partial evidence note what showed up. ALWAYS use the **Header** format for each pillar — this is critical for rendering. IMPORTANT: You MUST include ALL 7 pillars exactly once. For pillars with clear evidence provide the full analysis. For pillars with limited or no evidence write: Not enough context provided for a meaningful signal — consider providing more detail in your answers to strengthen this area. NEVER skip a pillar. NEVER repeat a pillar. Each of the 7 must appear exactly once in the output. The 7 pillars: Instinct & Inner Radar (judgment without complete data), Vision & Original Imagination (seeing what is coming before consensus), Discernment & Judgment (navigating competing priorities), Resilience & Grit (functioning when there is no map), Influence & Leadership (building trust, earning loyalty, and moving people through connection and conviction — not authority), Drive & Fire Within (sustained drive toward hard problems), Legacy & The Long Game (building things that outlast direct involvement). End with which 1-2 pillars are their STRONGEST competitive moat in today\'s AI-disrupted market and why.",\n  "dormant_code": "SUPPRESSED STRENGTHS AND DORMANT VALUE ANALYSIS. This is the most important section — it must feel like a trusted advisor speaking directly to the person. Study ALL answers and identify 2-4 distinct patterns of suppressed strength or dormant value. These are capabilities the person POSSESSES but is systematically withholding from the market or failing to leverage. TONE RULES: Write as a firm but gentle advisor who empowers and illuminates — never confrontational, never presumptuous, never minimizing. The person should feel a eureka moment, not judgment. They should feel agency and insight, not shame. For each pattern use **Pattern Name** header format then: 1) A qualitative career impact statement (NEVER use dollar figures or salary estimates — instead say things like This pattern is likely the primary reason you have been overlooked for roles you were fully qualified for or This is the single most actionable lever in your career positioning right now or This habit of withholding is costing you visibility at exactly the level where decisions about your career advancement are being made). 2) 2-3 sentences describing what the pattern looks like in their specific work based on their answers. 3) A reframe — what this suppressed strength actually IS when properly activated and how it changes their positioning. GROUND EVERYTHING in what they actually wrote. If fewer than 2 patterns emerge note what is visible. This section should make them think: I have never had anyone articulate this about me before."':'')+(doAI?',\n  "ai_radar": "Start with a one-line qualitative OVERALL ASSESSMENT — a single sentence that tells the person where they stand in plain language. Example: Your core professional value sits above the automation line. Your risk is not replacement — it is invisibility. Then 3 sections using **Header** format for each. Section 1: **Current AI Exposure** — what parts of their work face automation pressure and timeline. Be specific about which tasks face 1-2 year vs 3-5 year automation pressure. Section 2: **AI-Resistant Core Value** — specific capabilities grounded in their answers that cannot be replicated by AI. Explain WHY each capability is structurally resistant. Section 3: **Strategic Positioning** — concrete, actionable recommendations. Write as a trusted advisor providing a strategic roadmap. Always use **Header** format — critical for rendering."':'')+(doRK?',\n  "resume_kit": {"objective": "One sentence based on what they shared.", "experience_notes": "Rewriting guidance based only on what they described. If resume was provided, reference it specifically.", "skills_section": ["Skills they actually mentioned — reduce count if fewer were described"]}':'')+'\n  "closing": "2-3 sentences. Connect their specific, named strengths to the post-AI landscape in a way that feels inevitable and exciting — not generic. Name their actual differentiators. Make them feel like they are standing at exactly the right intersection at exactly the right moment in history. End on a line that makes them want to do something today. Only if answers were sparse: one warm sentence encouraging more depth."\n}'
   let data=null;
   try{
     const res=await fetch('https://iceberg-api.kirthi-bd1.workers.dev',{
@@ -1704,6 +1761,36 @@ async function generateReport(){
 
 function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
 
+
+function renderSuperpowers(superpowers){
+  if(!superpowers||!superpowers.length)return '';
+  // Handle both formats: simple strings or objects with name+description
+  if(typeof superpowers[0]==='string'){
+    // Check if it's the new "Name: description" format
+    var hasDesc=superpowers.some(function(s){return s.indexOf(':')>0&&s.indexOf(':')< 40;});
+    if(hasDesc){
+      var html='';
+      superpowers.forEach(function(s){
+        var parts=s.split(':');
+        var name=parts[0].trim();
+        var desc=parts.slice(1).join(':').trim();
+        if(desc){
+          html+='<div class="sp-card"><div class="sp-name">'+name+'</div><div class="sp-desc">'+desc+'</div></div>';
+        } else {
+          html+='<span class="sp-pill">'+s+'</span>';
+        }
+      });
+      return html+'<p style="font-size:.76rem;color:rgba(184,216,240,.5);font-style:italic;margin-top:.8rem">Your highest-value capabilities — belong in your headline, your summary, and your interview answers.</p>';
+    }
+    return '<div style="margin-bottom:.85rem">'+superpowers.map(function(s){return '<span class="sp-pill">'+s+'</span>';}).join('')+'</div><p style="font-size:.76rem;color:rgba(184,216,240,.5);font-style:italic">Your highest-value capabilities — belong in your headline, your summary, and your interview answers.</p>';
+  }
+  // Object format: [{name:"...",description:"..."}]
+  var html='';
+  superpowers.forEach(function(sp){
+    html+='<div class="sp-card"><div class="sp-name">'+(sp.name||sp.label||'')+'</div><div class="sp-desc">'+(sp.description||sp.desc||'')+'</div></div>';
+  });
+  return html+'<p style="font-size:.76rem;color:rgba(184,216,240,.5);font-style:italic;margin-top:.8rem">Your highest-value capabilities — belong in your headline, your summary, and your interview answers.</p>';
+}
 
 var PILLAR_ICONS={'Instinct':'🎯','Inner Radar':'🎯','Vision':'🔭','Original Imagination':'🔭','Discernment':'⚖️','Judgment':'⚖️','Resilience':'🛡️','Grit':'🛡️','Influence':'🤝','Leadership':'🤝','Drive':'⚡','Fire':'⚡','Legacy':'🏛️','Long Game':'🏛️'};
 function getPillarIcon(name){for(var k in PILLAR_ICONS){if(name.indexOf(k)!==-1)return PILLAR_ICONS[k];}return '✦';}
@@ -1752,7 +1839,13 @@ function renderRadar(text){
   if(!text)return '';
   var segments=text.trim().split(/\*\*([^*]+)\*\*/);
   if(segments.length<=1)return mdBold(text);
-  var html='<div class="radar-grid">';
+  var html='';
+  // Display qualitative assessment (preamble text before first header)
+  var preamble=segments[0].trim();
+  if(preamble){
+    html+='<div class="card" style="margin-bottom:1.2rem;border-color:rgba(201,168,76,0.25);background:rgba(201,168,76,0.05);"><div style="font-family:var(--fd);font-style:italic;font-size:0.9rem;line-height:1.7;color:var(--gold-l);">'+preamble+'</div></div>';
+  }
+  html+='<div class="radar-grid">';
   var i=1;var idx=0;
   var classes=['exposed','resilient','strategic'];
   var labels=['⚠ ','✦ ','→ '];
@@ -1835,7 +1928,7 @@ function renderReport(d){
   const doRK=sel==='full';
   document.getElementById('s-id').innerHTML='<p style="font-size:.93rem;line-height:1.85;color:var(--crystal)">'+d.identity+'</p>';
   document.getElementById('s-impacts').innerHTML=(d.impacts||[]).map(function(s,i){return '<div class="impact-item"><div class="impact-num">Impact '+(i+1)+'</div>'+s+'</div>';}).join('');
-  document.getElementById('s-sp').innerHTML='<div style="margin-bottom:.85rem">'+(d.superpowers||[]).map(s=>'<span class="sp-pill">'+s+'</span>').join('')+'</div><p style="font-size:.76rem;color:rgba(184,216,240,.4);font-style:italic">Your highest-value capabilities as evidenced by your answers — belong in your headline, your summary, and your interview answers.</p>';
+  document.getElementById('s-sp').innerHTML=renderSuperpowers(d.superpowers||[]);
   document.getElementById('s-resume').innerHTML=
     '<span class="rsub">LinkedIn Headline</span><div class="rblock" style="font-weight:600;font-size:.98rem">'+(d.linkedin_headline||'')+'</div>'+
     '<span class="rsub">LinkedIn Summary</span><div class="rblock">'+(d.linkedin_summary||'')+'</div>'+
@@ -2235,7 +2328,7 @@ function showPreviewGenerating(){
   ov.innerHTML='<div style="background:linear-gradient(135deg,rgba(12,30,62,0.98),rgba(18,42,80,0.98));border:1px solid rgba(201,168,76,0.25);border-radius:16px;padding:3rem 2.2rem;max-width:440px;width:100%;text-align:center;">'
     +'<div style="font-size:2.5rem;margin-bottom:1rem;animation:bob 3s ease-in-out infinite;">🧊</div>'
     +'<div style="font-family:var(--fd);font-size:1.2rem;font-style:italic;color:var(--crystal);margin-bottom:0.6rem;">Analysing your responses...</div>'
-    +'<p style="font-size:0.8rem;color:rgba(184,216,240,0.4);line-height:1.7;">Mapping your hidden value across 7 dimensions</p>'
+    +'<p style="font-size:0.8rem;color:rgba(184,216,240,0.4);line-height:1.7;">Mapping your hidden business value across 7 dimensions</p>'
     +'<div style="margin-top:1.4rem;"><div class="spin" style="margin:0 auto;width:20px;height:20px;"></div></div>'
     +'</div>';
 }
@@ -2264,7 +2357,7 @@ async function generatePreviewInsight(){
     if(!text)throw new Error('Empty response');
     showPreviewResult(text);
   }catch(e){
-    showPreviewResult('Based on what you shared, there is a significant gap between the business impact you have delivered and your ability to articulate it. The pattern across your answers suggests you are sitting on substantial hidden value — the kind that compounds across your career but remains invisible to the market. Your full Iceberg Profile would map this across 7 dimensions to surface exactly where that value is hiding.');
+    showPreviewResult('Based on what you shared, there is a significant gap between the business impact you have delivered and your ability to articulate it. The pattern across your answers suggests you are sitting on substantial hidden business value — the kind that compounds across your career but remains invisible to the market. Your full Iceberg Profile would map this across 7 dimensions to surface exactly where that value is hiding.');
   }
 }
 
