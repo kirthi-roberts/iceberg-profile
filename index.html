@@ -1060,7 +1060,7 @@ const ALL_Q=[
   {a:2,t:['c','f'],q:"Think about your ability to build genuine trust — not just relationships, but real trust where someone would follow your lead in an uncertain situation.",i:"How do you build this, and where has it created outcomes that would have been impossible without it?"},
   {a:2,t:['c','f'],q:"What is your most powerful Human Moat attribute — the thing about how you think or operate that feels almost effortless but seems genuinely rare in your peers?",i:"Give a specific example of it in action. These are the attributes that took 10-20 years of lived experience to embody, not just learn."},
   {a:2,t:['f'],q:"What drives you at the deepest level — beyond salary, title, or status? Has that ever led you to make a decision that cost you something financially?",i:"Your Legacy & The Long Game is one of the most compelling things a hiring manager can encounter in a senior candidate."},
-  {a:2,t:['f'],q:"Which of your most powerful attributes have been suppressed by education, corporate culture, or managers who rewarded compliance over vision?",i:"This is your Dormant Code. For decades we were trained to turn off our most valuable human attributes in favour of credentials. What have you been trained to suppress?"},
+  {a:2,t:['f'],q:"Which of your most powerful attributes have been suppressed by education, corporate culture, or managers who rewarded compliance over vision?",i:"These are your Dormant Value Patterns. For decades we were trained to turn off our most valuable human attributes in favour of credentials. What have you been trained to suppress?"},
   {a:2,t:['f'],q:"If AI could do 80% of your current job tomorrow, what would the remaining 20% be?",i:"Be precise. And is that 20% where you are currently investing your development time? This is the most important career question of the next decade."},
   {a:2,t:['f'],q:"What do you know how to do that took 10+ years of lived experience to develop — not to learn, but to truly embody — that you have never fully articulated as professional value?",i:"Name it. This is often the most undervalued thing a professional carries — the compressed wisdom of decades, given away for free because they have never learned to name it."},
   {a:3,t:['s','c','f'],q:"If you had to name your top 3 professional superpowers — the things you do better than 95% of people you've worked with — what would they be?",i:"For each, give a specific example. Think beyond technical skills to the higher-order capabilities that make you effective regardless of domain or industry."},
@@ -1884,7 +1884,7 @@ function renderReport(d){
       return '<div class="lq-row"><span>🔒</span><span><strong style="font-size:.58rem;color:rgba(184,216,240,.26);font-family:var(--fm);display:block;margin-bottom:1px">Area '+lq.a+' — '+area.short+'</strong>'+lq.q+'</span></div>';
     }).join('');
     const upgrades=sel==='starter'
-      ?[{key:'starter->core',n:'Iceberg Core',qs:'60Q',d:'Firmware + Dormant Code + more impact'},
+      ?[{key:'starter->core',n:'Iceberg Core',qs:'60Q',d:'Human Moat + Dormant Value Patterns + more impact'},
         {key:'starter->full',n:'Iceberg Pro',qs:'100Q',d:'Everything + AI Radar + Resume Content Kit'}]
       :[{key:'core->full',n:'Iceberg Pro',qs:'100Q',d:'AI Exposure Audit + Paste Your Resume → Full Rewrite'}];
     document.getElementById('upg-tiers').innerHTML=upgrades.map(u=>{

@@ -7,7 +7,7 @@
 <meta name="description" content="See real examples of The Iceberg Profile in action. Explore sample Pro-tier reports for professionals at different career stages and industries.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--deep:#060e1c;--navy:#0c1e3e;--blue:#4a90d9;--gold:#c9a84c;--gold-light:#e8c97a;--crystal:#e8f4fd;--muted:rgba(184,216,240,0.55);--fd:'Playfair Display',serif;--fm:'DM Mono',monospace;--fs:'DM Sans',sans-serif;}
+:root{--deep:#060e1c;--navy:#0c1e3e;--blue:#4a90d9;--gold:#c9a84c;--gold-light:#e8c97a;--crystal:#e8f4fd;--muted:rgba(184,216,240,0.68);--fd:'Playfair Display',serif;--fm:'DM Mono',monospace;--fs:'DM Sans',sans-serif;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--deep);color:var(--crystal);font-family:var(--fs);min-height:100vh;}
 
@@ -20,10 +20,10 @@ body{background:var(--deep);color:var(--crystal);font-family:var(--fs);min-heigh
 .top-cta:hover{background:var(--gold-light);}
 
 .intro{text-align:center;padding:3rem 2rem 1.5rem;max-width:720px;margin:0 auto;}
-.intro-eyebrow{font-family:var(--fm);font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+.intro-eyebrow{font-family:var(--fm);font-size:0.78rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
 .intro h1{font-family:var(--fd);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:900;color:#fff;margin-bottom:0.8rem;line-height:1.15;}
 .intro p{font-size:0.88rem;color:var(--muted);line-height:1.75;margin-bottom:0.6rem;}
-.intro-note{font-family:var(--fm);font-size:0.62rem;color:rgba(184,216,240,0.35);font-style:italic;margin-top:1rem;}
+.intro-note{font-family:var(--fm);font-size:0.65rem;color:rgba(184,216,240,0.5);font-style:italic;margin-top:1rem;}
 
 .selector{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:900px;margin:0 auto 2rem;padding:0 2rem;}
 .sel-card{background:rgba(12,30,62,0.6);border:1px solid rgba(74,144,217,0.15);border-radius:12px;padding:1.4rem;cursor:pointer;transition:all 0.25s;text-align:center;}
@@ -31,19 +31,19 @@ body{background:var(--deep);color:var(--crystal);font-family:var(--fs);min-heigh
 .sel-card.active{border-color:var(--gold);background:rgba(201,168,76,0.08);box-shadow:0 0 20px rgba(201,168,76,0.15);}
 .sel-icon{font-size:1.8rem;margin-bottom:0.6rem;}
 .sel-name{font-family:var(--fd);font-size:1.05rem;font-weight:700;color:var(--crystal);margin-bottom:0.2rem;}
-.sel-role{font-family:var(--fm);font-size:0.56rem;letter-spacing:0.08em;color:var(--blue);margin-bottom:0.4rem;}
-.sel-meta{font-family:var(--fm);font-size:0.5rem;color:rgba(184,216,240,0.35);letter-spacing:0.06em;}
+.sel-role{font-family:var(--fm);font-size:0.6rem;letter-spacing:0.08em;color:rgba(74,144,217,0.9);margin-bottom:0.4rem;}
+.sel-meta{font-family:var(--fm);font-size:0.54rem;color:rgba(184,216,240,0.55);letter-spacing:0.06em;}
 
 .report-container{max-width:900px;margin:0 auto;padding:0 2rem 4rem;}
 .banner{background:linear-gradient(135deg,rgba(201,168,76,0.12),rgba(74,144,217,0.08));border-bottom:1px solid rgba(201,168,76,0.2);padding:0.7rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;border-radius:10px 10px 0 0;}
 .banner-badge{font-family:var(--fm);font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;background:var(--gold);color:var(--deep);border-radius:20px;padding:3px 12px;font-weight:500;}
 .banner-title{font-family:var(--fd);font-size:0.95rem;font-style:italic;color:var(--gold-light);}
-.banner-right{font-family:var(--fm);font-size:0.55rem;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;}
+.banner-right{font-family:var(--fm);font-size:0.58rem;letter-spacing:0.12em;color:rgba(184,216,240,0.65);text-transform:uppercase;}
 
 .hero{background:linear-gradient(180deg,rgba(12,30,62,0.95),rgba(6,14,28,0.98));border:1px solid rgba(74,144,217,0.12);border-top:none;padding:2.5rem;border-radius:0 0 12px 12px;margin-bottom:2rem;}
 .hero-eyebrow{font-family:var(--fm);font-size:0.54rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
 .hero-name{font-family:var(--fd);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;color:#fff;line-height:1;letter-spacing:-0.02em;}
-.hero-role{font-family:var(--fs);font-size:0.88rem;color:var(--blue);font-weight:500;margin-top:0.4rem;letter-spacing:0.04em;}
+.hero-role{font-family:var(--fs);font-size:0.9rem;color:rgba(74,144,217,0.95);font-weight:500;margin-top:0.4rem;letter-spacing:0.04em;}
 .hero-identity{font-family:var(--fd);font-style:italic;font-size:clamp(0.95rem,1.8vw,1.2rem);color:var(--gold-light);margin-top:1.2rem;line-height:1.6;max-width:760px;border-left:3px solid var(--gold);padding-left:1.2rem;}
 
 .section{margin-bottom:2.5rem;}
@@ -55,12 +55,12 @@ body{background:var(--deep);color:var(--crystal);font-family:var(--fs);min-heigh
 
 .card{background:rgba(12,30,62,0.6);border:1px solid rgba(74,144,217,0.14);border-radius:12px;padding:1.3rem 1.4rem;margin-bottom:0.7rem;}
 .card-gold{border-color:rgba(201,168,76,0.25);background:rgba(201,168,76,0.05);}
-.card-body{font-size:0.84rem;line-height:1.78;color:rgba(184,216,240,0.82);}
+.card-body{font-size:0.86rem;line-height:1.78;color:rgba(184,216,240,0.88);}
 .card-body strong{color:var(--crystal);}
 
 .impact-item{background:rgba(12,30,62,0.7);border:1px solid rgba(74,144,217,0.15);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:0.9rem 1.1rem;margin-bottom:0.6rem;}
 .impact-num{font-family:var(--fm);font-size:0.5rem;color:var(--gold);opacity:0.7;margin-bottom:0.3rem;letter-spacing:0.15em;text-transform:uppercase;}
-.impact-text{font-size:0.82rem;line-height:1.72;color:rgba(184,216,240,0.88);}
+.impact-text{font-size:0.84rem;line-height:1.72;color:rgba(184,216,240,0.92);}
 
 .pill-grid{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;}
 .sp-pill{display:inline-block;background:rgba(74,144,217,0.09);border:1px solid rgba(74,144,217,0.22);border-radius:20px;padding:0.35rem 0.9rem;font-family:var(--fm);font-size:0.62rem;letter-spacing:0.04em;color:var(--crystal);}
@@ -75,11 +75,11 @@ body{background:var(--deep);color:var(--crystal);font-family:var(--fs);min-heigh
 .pillar-status{margin-left:auto;font-family:var(--fm);font-size:0.46rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:10px;}
 .pillar-status.on{background:rgba(74,200,120,0.15);color:#4ec878;border:1px solid rgba(74,200,120,0.3);}
 .pillar-status.latent{background:rgba(201,168,76,0.12);color:var(--gold);border:1px solid rgba(201,168,76,0.25);}
-.pillar-body{font-size:0.76rem;line-height:1.65;color:var(--muted);}
+.pillar-body{font-size:0.78rem;line-height:1.65;color:rgba(184,216,240,0.72);}
 
 .pattern-card{background:linear-gradient(135deg,rgba(74,144,217,0.06),rgba(201,168,76,0.04));border:1px solid rgba(74,144,217,0.2);border-radius:12px;padding:1.2rem 1.3rem;margin-bottom:0.7rem;}
 .pattern-name{font-family:var(--fd);font-size:0.98rem;font-weight:700;color:var(--crystal);margin-bottom:0.4rem;}
-.pattern-body{font-size:0.8rem;line-height:1.75;color:rgba(184,216,240,0.75);}
+.pattern-body{font-size:0.82rem;line-height:1.75;color:rgba(184,216,240,0.82);}
 
 .radar-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
 .radar-item{background:rgba(12,30,62,0.6);border-radius:10px;padding:1rem 1.1rem;}
@@ -90,9 +90,9 @@ body{background:var(--deep);color:var(--crystal);font-family:var(--fs);min-heigh
 .radar-label.red{color:#e07070;}
 .radar-label.green{color:#4ec878;}
 .radar-label.gold{color:var(--gold);}
-.radar-body{font-size:0.78rem;line-height:1.7;color:rgba(184,216,240,0.75);}
+.radar-body{font-size:0.8rem;line-height:1.7;color:rgba(184,216,240,0.82);}
 
-.bullet-item{display:flex;align-items:flex-start;gap:0.5rem;padding:0.5rem 0;border-bottom:1px solid rgba(74,144,217,0.07);font-size:0.82rem;line-height:1.6;color:rgba(184,216,240,0.85);}
+.bullet-item{display:flex;align-items:flex-start;gap:0.5rem;padding:0.5rem 0;border-bottom:1px solid rgba(74,144,217,0.07);font-size:0.84rem;line-height:1.6;color:rgba(184,216,240,0.9);}
 .bullet-item:last-child{border-bottom:none;}
 .bdot{flex-shrink:0;width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:8px;}
 
@@ -113,7 +113,7 @@ body{background:var(--deep);color:var(--crystal);font-family:var(--fs);min-heigh
 
 .blurred{filter:blur(4px);user-select:none;pointer-events:none;position:relative;}
 .blur-overlay{position:relative;}
-.blur-overlay::after{content:'🔒 This section is personalized to your answers';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--fm);font-size:0.7rem;color:var(--gold);background:rgba(6,14,28,0.9);padding:0.6rem 1.2rem;border-radius:8px;border:1px solid rgba(201,168,76,0.3);white-space:nowrap;z-index:2;}
+.blur-overlay::after{content:'🔒 This section is personalized to your career history, unique patterns, and hidden business value';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--fm);font-size:0.65rem;color:var(--gold);background:rgba(6,14,28,0.9);padding:0.6rem 1.2rem;border-radius:8px;border:1px solid rgba(201,168,76,0.3);white-space:nowrap;z-index:2;}
 
 footer{text-align:center;padding:2rem;border-top:1px solid rgba(74,144,217,0.1);font-family:var(--fm);font-size:0.52rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(184,216,240,0.25);}
 
@@ -141,24 +141,24 @@ footer{text-align:center;padding:2rem;border-top:1px solid rgba(74,144,217,0.1);
   <div class="intro-eyebrow">See It Before You Buy It</div>
   <h1>What Your Iceberg Profile Reveals</h1>
   <p>Explore sample Pro-tier reports from professionals at different career stages. Each report was generated from real assessment answers — names and identifying details have been changed for confidentiality.</p>
-  <p class="intro-note">These are representative outputs. Your report will be uniquely personalized to your specific career, achievements, and hidden value.</p>
+  <p class="intro-note">These are representative outputs. Your report will be uniquely personalized to your career history, unique patterns, contributions, and hidden business value.</p>
 </div>
 
 <div class="selector">
   <div class="sel-card active" onclick="showProfile(0)">
-    <div class="sel-icon">🚀</div>
+    <div class="sel-icon">🔬</div>
     <div class="sel-name">Ethan Caldwell</div>
     <div class="sel-role">Aerospace Systems Engineer</div>
     <div class="sel-meta">8 years · UBC / UC Berkeley</div>
   </div>
   <div class="sel-card" onclick="showProfile(1)">
-    <div class="sel-icon">⚡</div>
+    <div class="sel-icon">⚙️</div>
     <div class="sel-name">Julian Harper</div>
     <div class="sel-role">Sr. Manager, SoC Design</div>
     <div class="sel-meta">15 years · Semiconductor</div>
   </div>
   <div class="sel-card" onclick="showProfile(2)">
-    <div class="sel-icon">👑</div>
+    <div class="sel-icon">🏗️</div>
     <div class="sel-name">Amelia Kensington</div>
     <div class="sel-role">Sr. Director, Software Engineering</div>
     <div class="sel-meta">22 years · Amazon Web Services</div>
@@ -181,10 +181,10 @@ var profiles=[
   years:"8 Years Experience",
   identity:"You are a systems-level thinker operating at the intersection of aerospace hardware, embedded software, and mission-critical reliability — the engineer who sees the full vehicle when everyone else sees their subsystem. In 8 years you have moved from component-level analysis to owning integration decisions on programs where a single interface error means a $200M satellite doesn't work. You combine rigorous analytical depth with the rare instinct for cross-system failure modes that most engineers don't develop until year 15. Your career has been defined by stepping into integration gaps that nobody owned and making them yours.",
   impacts:[
-    "Led thermal-structural integration for the payload bay of a next-generation ISR satellite, resolving 14 cross-subsystem interface conflicts that had stalled the program for 3 months",
-    "Built an automated GN&C simulation pipeline in Python/MATLAB that reduced mission analysis cycle time from 2 weeks to 18 hours — adopted across 3 program teams",
-    "Identified a resonance failure mode in a launch vehicle adapter design through independent modal analysis, preventing a potential $12M test failure 6 weeks before qualification",
-    "Designed and validated a novel thermal management approach for high-power RF payloads, achieving 40% mass reduction versus baseline while meeting all thermal margins",
+    "Led thermal-structural integration for the payload bay of a next-generation ISR satellite, resolving 14 cross-subsystem interface conflicts that had stalled the program for 3 months — requiring coordination across propulsion, structures, and avionics teams with conflicting requirements and no shared technical language",
+    "Built an automated GN&C simulation pipeline in Python/MATLAB that reduced mission analysis cycle time from 2 weeks to 18 hours, fundamentally changing how the team iterated on mission design — adopted across 3 program teams",
+    "Identified a resonance failure mode in a launch vehicle adapter design through independent modal analysis, preventing a potential $12M test failure 6 weeks before qualification — a catch that senior engineers with twice his experience had missed in three prior review cycles",
+    "Designed and validated a novel thermal management approach for high-power RF payloads, achieving 40% mass reduction versus baseline while meeting all thermal margins — a trade-off that required challenging heritage design assumptions the team had relied on for a decade",
     "Created the systems engineering onboarding curriculum for new hires — reduced ramp-up time from 6 months to 3 months and still in use across the division",
     "Served as technical lead for an independent review board on a partner program's propulsion anomaly — root cause identification in 72 hours saved a 4-month schedule slip",
     "Authored 3 internal technical papers on coupled structural-thermal analysis methods that became reference standards for the systems engineering group",
@@ -195,8 +195,8 @@ var profiles=[
   summary:"I solve the integration problems that fall between subsystem boundaries — the failure modes nobody owns until they become everyone's crisis. Over 8 years in aerospace, I've built the analysis tools, the cross-team translation capability, and the systems intuition to see where complex programs will break before they do. I'm building toward leading the next generation of mission-critical systems architecture where AI-augmented analysis meets the judgment that only comes from having debugged real hardware in real programs.",
   bullets:[
     "Led thermal-structural integration for ISR satellite payload bay, resolving 14 cross-subsystem interface conflicts and recovering 3-month program delay",
-    "Built GN&C simulation automation reducing mission analysis cycle from 2 weeks to 18 hours, adopted across 3 program teams",
-    "Identified resonance failure mode through independent analysis, preventing potential $12M qualification test failure",
+    "Built GN&C simulation automation reducing mission analysis cycle from 2 weeks to 18 hours, adopted across 3 program teams and now considered essential infrastructure for mission design iteration",
+    "Identified resonance failure mode through independent modal analysis that three prior senior-led reviews had missed, preventing potential $12M qualification test failure",
     "Designed novel thermal management achieving 40% mass reduction while maintaining all qualification margins",
     "Created systems engineering onboarding curriculum reducing new hire ramp-up from 6 months to 3 months",
     "Served as technical lead on independent review board, identifying propulsion anomaly root cause in 72 hours",
@@ -233,8 +233,8 @@ var profiles=[
   years:"15 Years Experience",
   identity:"You are a rare systems architect who bridges the hardware-firmware divide at production scale — the engineer who translates SoC architecture into shippable products through 15 years of semiconductor depth. You've built co-simulation methodologies that became division standards, led teams through complex tape-out decisions where a single wrong call meant 18-month resets, and delivered sensor controllers to millions of devices. You operate at the intersection where deep RTL design meets organizational leadership, where technical judgment meets business consequence. Your career has been defined by solving problems others declared unsolvable and building the infrastructure that enables teams to ship advanced silicon on schedule.",
   impacts:[
-    "Delivered capacitive touch controller SoC from concept to mass production with underdefined specs, shipping in millions of consumer devices through three tape-outs in 18 months",
-    "Prevented catastrophic 18-month tape-out reset by rejecting industry-standard IP block based on architectural instinct, saving development timeline and program budget",
+    "Delivered capacitive touch controller SoC from concept to mass production with underdefined specs, shipping in millions of consumer devices through three tape-outs in 18 months — a timeline most teams would consider impossible with fully defined specifications, let alone underdefined ones",
+    "Prevented catastrophic 18-month tape-out reset by rejecting industry-standard IP block based on architectural instinct, saving development timeline and program budget — a decision that required overruling consensus and defending a contrarian position under intense schedule pressure",
     "Built HW/FW co-simulation methodology from scratch that became standard across entire storage SoC business unit, eliminating an entire class of integration bugs",
     "Retained 10 of 12 team members during Singapore restructuring while peer teams lost 40-50% of personnel, preserving critical institutional knowledge",
     "Championed machine learning deployment on sensor SoC roadmap, securing budget approval and delivering working prototype through cross-domain technical translation",
@@ -248,8 +248,8 @@ var profiles=[
   bullets:[
     "Architected capacitive touch controller SoC achieving mass production in millions of consumer devices despite underdefined specs and 18-month aggressive timeline",
     "Built HW/FW co-simulation platform from scratch that became standard methodology across entire storage SoC business unit",
-    "Prevented 18-month tape-out reset by rejecting industry-standard IP based on architectural instinct, validated through stress-testing",
-    "Retained 83% of team during organizational restructuring while maintaining program continuity and technical output quality",
+    "Prevented 18-month tape-out reset by rejecting industry-standard IP based on architectural instinct against team consensus, subsequently validated through independent stress-testing",
+    "Retained 83% of team during organizational restructuring while peer teams lost 40-50% of personnel, maintaining full program continuity and technical output quality throughout",
     "Championed ML deployment on sensor SoC roadmap, securing leadership buy-in and budget through technical-business translation",
     "Developed three direct reports who advanced to senior leadership roles through strategic visibility and stretch assignments",
     "Established technical review culture enabling early problem surfacing, preventing multiple expensive downstream integration failures",
@@ -287,9 +287,9 @@ var profiles=[
   years:"22 Years Experience",
   identity:"You are a builder of engineering organizations that deliver platform infrastructure at planetary scale — the leader who turns ambiguous executive mandates into teams, architectures, and shipped products that handle millions of requests per second. Over 22 years you have built and rebuilt engineering organizations through three waves of platform transformation: from monolith to microservices, from on-premise to cloud-native, and now from deterministic systems to AI-augmented infrastructure. You are one of the rare senior leaders who can hold both the technical depth to challenge an L7 engineer's architecture decision and the organizational vision to restructure a 200-person org without losing the culture that makes it productive.",
   impacts:[
-    "Built and scaled the ML inference platform team from 4 engineers to 85, delivering the infrastructure layer that now serves 40% of AWS's real-time ML prediction traffic",
+    "Built and scaled the ML inference platform team from 4 engineers to 85, delivering the infrastructure layer that now serves 40% of AWS's real-time ML prediction traffic — one of the largest scaling challenges in cloud ML infrastructure",
     "Led the migration of a legacy recommendation engine from batch to real-time processing, reducing inference latency from 800ms to 12ms and increasing revenue attribution by $340M annually",
-    "Restructured a 200-person engineering organization across 3 geographic sites during AWS's AI pivot, reducing redundant teams by 30% while improving deployment velocity by 2.4x",
+    "Restructured a 200-person engineering organization across 3 geographic sites during AWS's AI pivot, reducing redundant teams by 30% while improving deployment velocity by 2.4x — a restructuring that required preserving cultural trust across teams who feared the change would destroy what made them effective",
     "Designed and implemented the engineering promotion framework used across AWS's AI/ML division, increasing underrepresented group promotion rates by 45% in 18 months",
     "Negotiated and closed a strategic technology partnership with an AI chip startup, securing exclusive access to next-generation inference hardware 14 months before competitors",
     "Created the 'Architecture Decision Record' practice now used across 12 AWS service teams, reducing cross-team architectural conflicts by 60%",
@@ -300,14 +300,14 @@ var profiles=[
   headline:"VP Engineering | Cloud Infrastructure & AI/ML Platforms | Building the inference layer that makes AI work at planetary scale | 22 years turning ambiguity into shipped infrastructure",
   summary:"I build the engineering organizations and platform architectures that make AI work at production scale — not in demos, but at millions of requests per second with five-nines reliability. Over 22 years, I've led three waves of platform transformation and learned that the hardest engineering problem isn't technical — it's building teams that can hold both velocity and quality while the ground shifts beneath them. I'm focused on the inference infrastructure challenge: the gap between what AI models can do in research and what they can do reliably, affordably, and at scale in production.",
   bullets:[
-    "Built ML inference platform team from 4 to 85 engineers, now serving 40% of AWS real-time ML prediction traffic",
+    "Built ML inference platform team from 4 to 85 engineers while maintaining talent density throughout scaling, now serving 40% of AWS real-time ML prediction traffic",
     "Led migration from batch to real-time inference, reducing latency from 800ms to 12ms and driving $340M annual revenue increase",
     "Restructured 200-person org across 3 sites during strategic pivot, reducing redundancy 30% while improving deployment velocity 2.4x",
     "Designed AI/ML division promotion framework increasing underrepresented group advancement by 45% in 18 months",
     "Secured exclusive next-generation AI inference hardware partnership 14 months ahead of competitors",
     "Created Architecture Decision Record practice adopted by 12 service teams, reducing cross-team conflicts by 60%",
     "Developed 8 engineers from IC to Director level, 3 now leading their own AWS organizations",
-    "Personally identified cascading failure pattern during peak traffic that automated monitoring missed, preventing critical outage",
+    "Personally identified cascading failure pattern during peak traffic that automated monitoring and on-call engineers had missed, preventing a service outage that would have impacted millions of transactions",
     "Established technical debt governance framework reducing production incidents by 35% across the platform organization",
     "Led annual planning for $180M infrastructure budget, consistently delivering 15-20% under budget while exceeding delivery targets"
   ],
@@ -348,7 +348,7 @@ function showProfile(idx){
   h+='<div class="hero"><div class="hero-eyebrow">Professional Identity</div>';
   h+='<div class="hero-name">'+p.name+'</div>';
   h+='<div class="hero-role">'+p.role+'</div>';
-  h+='<div style="font-family:var(--fm);font-size:0.5rem;color:var(--muted);margin-top:0.3rem;letter-spacing:0.06em;">'+p.education+'</div>';
+  h+='<div style="font-family:var(--fm);font-size:0.58rem;color:rgba(184,216,240,0.7);margin-top:0.3rem;letter-spacing:0.06em;">'+p.education+'</div>';
   h+='<div class="hero-identity">'+p.identity+'</div></div>';
   // Impacts
   h+='<div class="section"><div class="sec-header"><span class="sec-num">01</span><span class="sec-title">Top Impact Statements</span><span class="sec-tag">Resume-Ready</span><span class="sec-line"></span></div>';
@@ -383,7 +383,7 @@ function showProfile(idx){
   });
   h+='</div></div>';
   // Patterns
-  h+='<div class="section"><div class="sec-header"><span class="sec-num">07</span><span class="sec-title">Value Creation Patterns</span><span class="sec-tag">Dormant Code</span><span class="sec-line"></span></div>';
+  h+='<div class="section"><div class="sec-header"><span class="sec-num">07</span><span class="sec-title">Value Creation Patterns</span><span class="sec-tag">Dormant Value Patterns</span><span class="sec-line"></span></div>';
   p.patterns.forEach(function(pt){
     h+='<div class="pattern-card"><div class="pattern-name">'+pt.name+'</div><div class="pattern-body">'+pt.body+'</div></div>';
   });
@@ -398,7 +398,7 @@ function showProfile(idx){
   h+='<div class="section"><div class="sec-header"><span class="sec-num">09</span><span class="sec-title">Resume Content Kit</span><span class="sec-tag">Pro Only</span><span class="sec-line"></span></div>';
   h+='<div class="blur-overlay"><div class="card blurred"><div style="font-family:var(--fm);font-size:0.5rem;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem;">Career Objective</div><div class="card-body">A personalized career objective statement based on your specific answers, achievements, and trajectory...</div><div style="font-family:var(--fm);font-size:0.5rem;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin:1rem 0 0.5rem;">Experience Section — Rewritten Bullets</div><div class="card-body">Your actual work history rewritten with business impact language, quantified outcomes, and strategic positioning...</div><div style="font-family:var(--fm);font-size:0.5rem;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin:1rem 0 0.5rem;">Skills Section</div><div class="card-body">ATS-optimized competency list drawn directly from your described capabilities...</div></div></div></div>';
   // Closing
-  h+='<div class="section"><div class="sec-header"><span class="sec-num">10</span><span class="sec-title">What Comes Next</span><span class="sec-line"></span></div><div class="card card-gold"><div class="card-body" style="font-family:var(--fd);font-style:italic;font-size:0.92rem;line-height:1.8;">'+p.closing+'</div></div></div>';
+  h+='<div class="section"><div class="sec-header"><span class="sec-num">10</span><span class="sec-title">What Comes Next</span><span class="sec-line"></span></div><div class="card card-gold"><div class="card-body" style="font-family:var(--fs);font-size:0.9rem;line-height:1.85;color:rgba(184,216,240,0.92);">'+p.closing+'</div></div></div>';
   // Bottom CTA
   h+='<div class="mid-cta"><h3>Ready to discover your own Iceberg Profile?</h3><p>Three tiers available — from a focused 30-question Starter assessment to the comprehensive 100-question Pro analysis you just previewed. Starter and Core tiers provide focused subsets of this report. The Pro tier includes the full Human Moat analysis, AI Vulnerability Radar, Value Creation Patterns, and a complete Resume Content Kit with your experience rewritten.</p><a href="https://icebergprofile.com">Get Started at icebergprofile.com →</a><div class="guarantee">100% satisfaction guarantee · Secured by Stripe · Your answers are private</div></div>';
   // Tier comparison note
