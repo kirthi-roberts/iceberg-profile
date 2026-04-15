@@ -2377,6 +2377,18 @@ function showPreviewResult(insight){
     +'<p style="font-family:var(--fm);font-size:0.52rem;color:rgba(184,216,240,0.2);text-align:center;margin-top:1rem;">100% satisfaction guarantee — full refund within 7 days if your profile doesn\'t surface at least one insight that changes how you see your career value.</p>'
     +'</div>';
 }
+// POST-PAYMENT REDIRECT: detect ?paid= parameter and auto-start assessment
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var paidTier=params.get('paid');
+  if(paidTier&&['starter','core','full'].indexOf(paidTier)!==-1){
+    // Clean the URL so refreshing doesn't re-trigger
+    window.history.replaceState({},'',window.location.pathname);
+    // Set tier and start
+    sel=paidTier;
+    setTimeout(function(){startAssessmentDirect();},500);
+  }
+})();
 
 </script>
 <div style="text-align:center;padding:2rem 1.5rem 1rem;font-family:var(--fm);font-size:0.65rem;letter-spacing:0.06em;color:rgba(184,216,240,0.25);max-width:600px;margin:0 auto;">
