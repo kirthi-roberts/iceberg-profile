@@ -927,7 +927,7 @@ window.addEventListener('resize',function(){
   <div class="rpt-hdr">
     <div class="rpt-ey">Your Iceberg Profile · Fiduci · Kirthi Roberts, PhD, P.Eng.</div>
     <div class="no-print" style="text-align:right;margin-top:0.5rem;">
-      <span onclick="document.getElementById('review-section').scrollIntoView({behavior:'smooth'})" style="font-family:var(--fm);font-size:0.72rem;letter-spacing:0.10em;text-transform:uppercase;color:rgba(201,168,76,0.75);cursor:pointer;border-bottom:1px solid rgba(201,168,76,0.4);padding-bottom:1px;">★ Rate this report</span>
+      <span onclick="document.getElementById('review-section').scrollIntoView({behavior:'smooth'})" style="display:inline-block;font-family:var(--fm);font-size:0.72rem;letter-spacing:0.10em;text-transform:uppercase;color:var(--deep);background:var(--gold);cursor:pointer;padding:0.45rem 0.9rem;border-radius:20px;font-weight:700;box-shadow:0 2px 6px rgba(201,168,76,0.25);">★ Rate this report</span>
     </div>
     <h1 class="rpt-h1">Your Iceberg Profile</h1>
     <p class="rpt-sub">Starts Where Your Resume Stops.</p>
@@ -1026,23 +1026,112 @@ window.addEventListener('resize',function(){
   </div>
 
   <script>
-  // Star interaction
-  let selRating=0;
+  // ============================================================
+  // REVIEW WIDGET — star interaction + form submission
+  // ------------------------------------------------------------
+  // To wire reviews to a backend, set REVIEW_ENDPOINT below to a
+  // Formspree / Tally / Basin / Cloudflare Worker URL that accepts
+  // JSON via POST. Until set, reviews still capture to localStorage
+  // (so nothing is lost) and a mailto fallback offers to email
+  // them to Kirthi directly.
+  // ============================================================
+  const REVIEW_ENDPOINT = ''; // TODO: paste Formspree URL here, e.g. 'https://formspree.io/f/xxxxxx'
+  const REVIEW_FALLBACK_EMAIL = 'kirthi.roberts@gmail.com';
+
+  let selRating = 0;
+
+  function paintStars(n){
     document.querySelectorAll('#star-row .star').forEach(function(s){
-    s.addEventListener('mouseover',function(){
+      const v = parseInt(s.getAttribute('data-v'));
+      s.style.color = v <= n ? 'rgba(201,168,76,1)' : 'rgba(201,168,76,0.25)';
+    });
+  }
+
+  // Bind click + hover handlers to every star
+  document.querySelectorAll('#star-row .star').forEach(function(s){
+    s.style.cursor = 'pointer';
+    s.addEventListener('mouseover', function(){
       paintStars(parseInt(this.getAttribute('data-v')));
     });
-    s.addEventListener('mouseout',function(){
+    s.addEventListener('mouseout', function(){
       paintStars(selRating);
     });
-    s.addEventListener('click',function(){
-      selRating=parseInt(this.getAttribute('data-v'));
+    s.addEventListener('click', function(){
+      selRating = parseInt(this.getAttribute('data-v'));
       paintStars(selRating);
-      document.getElementById('review-form').style.display='block';
+      const form = document.getElementById('review-form');
+      form.style.display = 'block';
+      // Bring the form into view (helps on long reports)
+      setTimeout(function(){ form.scrollIntoView({behavior:'smooth', block:'center'}); }, 80);
     });
   });
 
-    </script>
+  function submitReview(){
+    if (selRating === 0) {
+      alert('Please tap a star rating first.');
+      return;
+    }
+    const payload = {
+      rating: selRating,
+      text: (document.getElementById('review-text').value || '').trim(),
+      name: (document.getElementById('review-name').value || '').trim(),
+      email: (document.getElementById('review-email').value || '').trim(),
+      tier: (document.getElementById('tier-pill') || {}).textContent || '',
+      timestamp: new Date().toISOString(),
+      page: location.href,
+      userAgent: navigator.userAgent
+    };
+
+    // 1) Persist to localStorage so nothing is lost even if the network call fails
+    try {
+      const prior = JSON.parse(localStorage.getItem('ib_reviews') || '[]');
+      prior.push(payload);
+      localStorage.setItem('ib_reviews', JSON.stringify(prior));
+    } catch(e) { /* non-fatal */ }
+
+    const showThanks = function(){
+      document.getElementById('star-row').style.display = 'none';
+      document.getElementById('review-form').style.display = 'none';
+      document.getElementById('review-thanks').style.display = 'block';
+    };
+
+    // 2) Send to backend if configured; otherwise mailto fallback
+    if (REVIEW_ENDPOINT) {
+      fetch(REVIEW_ENDPOINT, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json','Accept':'application/json'},
+        body: JSON.stringify(payload)
+      }).then(showThanks).catch(function(){
+        mailtoFallback(payload);
+        showThanks();
+      });
+    } else {
+      mailtoFallback(payload);
+      showThanks();
+    }
+  }
+
+  function mailtoFallback(p){
+    const subject = 'Iceberg Profile Review — ' + p.rating + '★ from ' + (p.name || 'a reader');
+    const body = [
+      'Rating: ' + p.rating + ' / 5',
+      'Tier: ' + p.tier,
+      '',
+      'Review:',
+      p.text || '(no comment)',
+      '',
+      'Name: ' + (p.name || '(none)'),
+      'Email: ' + (p.email || '(none)'),
+      'Submitted: ' + p.timestamp,
+      'Page: ' + p.page
+    ].join('\n');
+    const url = 'mailto:' + REVIEW_FALLBACK_EMAIL +
+                '?subject=' + encodeURIComponent(subject) +
+                '&body='    + encodeURIComponent(body);
+    // Open in a new tab so the report page stays put
+    window.open(url, '_blank');
+  }
+  </script>
 
   <footer>
     <div class="footer-inner">
