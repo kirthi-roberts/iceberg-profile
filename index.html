@@ -926,8 +926,9 @@ window.addEventListener('resize',function(){
 <div id="report">
   <div class="rpt-hdr">
     <div class="rpt-ey">Your Iceberg Profile · Fiduci · Kirthi Roberts, PhD, P.Eng.</div>
-    <div class="no-print" style="text-align:right;margin-top:0.5rem;">
+    <div class="no-print" style="text-align:right;margin-top:0.5rem;display:flex;justify-content:flex-end;gap:0.5rem;flex-wrap:wrap;">
       <span onclick="document.getElementById('review-section').scrollIntoView({behavior:'smooth'})" style="display:inline-block;font-family:var(--fm);font-size:0.72rem;letter-spacing:0.10em;text-transform:uppercase;color:var(--deep);background:var(--gold);cursor:pointer;padding:0.45rem 0.9rem;border-radius:20px;font-weight:700;box-shadow:0 2px 6px rgba(201,168,76,0.25);">★ Rate this report</span>
+      <span onclick="document.getElementById('review-section').scrollIntoView({behavior:'smooth'})" style="display:inline-block;font-family:var(--fm);font-size:0.72rem;letter-spacing:0.10em;text-transform:uppercase;color:var(--gold);background:transparent;cursor:pointer;padding:0.45rem 0.9rem;border-radius:20px;font-weight:700;border:1px solid rgba(201,168,76,0.5);">✎ Leave a review</span>
     </div>
     <h1 class="rpt-h1">Your Iceberg Profile</h1>
     <p class="rpt-sub">Starts Where Your Resume Stops.</p>
@@ -999,7 +1000,7 @@ window.addEventListener('resize',function(){
   <!-- ── REVIEW WIDGET ── -->
   <div id="review-section" class="no-print" style="max-width:640px;margin:2.5rem auto 0;background:linear-gradient(135deg,rgba(12,30,62,0.7),rgba(6,14,28,0.9));border:1px solid rgba(201,168,76,0.2);border-radius:16px;padding:2rem;text-align:center;">
     <div style="font-family:var(--fm);font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem">Share Your Experience</div>
-    <div style="font-family:var(--fd);font-size:1.05rem;font-weight:700;color:var(--crystal);margin-bottom:0.4rem">Your Iceberg Profile just uncovered your hidden gems. How does it feel?</div>
+    <div style="font-family:var(--fd);font-size:1.05rem;font-weight:700;color:var(--crystal);margin-bottom:0.4rem">Rate your Iceberg Profile — and, if you're moved, leave a written review.</div>
     <div style="font-size:0.78rem;color:rgba(184,216,240,0.5);margin-bottom:1.2rem;line-height:1.6">Rate us (5 stars = instant karma) and you're in for a <strong style="color:var(--gold)">$100 credit toward a coaching session</strong> with Kirthi Roberts. One winner every Monday.</div>
 
     <!-- Star rating -->
@@ -1012,10 +1013,10 @@ window.addEventListener('resize',function(){
     </div>
 
     <div id="review-form" style="display:none;">
-      <textarea id="review-text" placeholder="Tell us what you discovered about yourself that you didn't know before..." style="width:100%;background:rgba(6,14,28,0.6);border:1px solid rgba(74,144,217,0.2);border-radius:8px;color:var(--crystal);font-family:var(--fs);font-size:0.8rem;line-height:1.6;padding:0.8rem 1rem;resize:vertical;min-height:90px;outline:none;margin-bottom:0.7rem;"></textarea>
+      <textarea id="review-text" placeholder="Was there a line that stopped you, or something the self-discovery process and report revealed that you'd never quite said out loud?" style="width:100%;background:rgba(6,14,28,0.6);border:1px solid rgba(74,144,217,0.2);border-radius:8px;color:var(--crystal);font-family:var(--fs);font-size:0.8rem;line-height:1.6;padding:0.8rem 1rem;resize:vertical;min-height:90px;outline:none;margin-bottom:0.7rem;"></textarea>
       <input id="review-name" type="text" placeholder="Your name (or initials)" style="width:100%;background:rgba(6,14,28,0.6);border:1px solid rgba(74,144,217,0.2);border-radius:8px;color:var(--crystal);font-family:var(--fs);font-size:0.8rem;padding:0.6rem 1rem;outline:none;margin-bottom:0.7rem;">
       <input id="review-email" type="email" placeholder="Email (for weekly draw — never shared)" style="width:100%;background:rgba(6,14,28,0.6);border:1px solid rgba(74,144,217,0.2);border-radius:8px;color:var(--crystal);font-family:var(--fs);font-size:0.8rem;padding:0.6rem 1rem;outline:none;margin-bottom:1rem;">
-      <button onclick="submitReview()" style="background:var(--gold);color:var(--deep);font-family:var(--fs);font-weight:700;font-size:0.8rem;padding:0.65rem 2rem;border:none;border-radius:25px;cursor:pointer;letter-spacing:0.04em;">Submit Review →</button>
+      <button onclick="submitReview()" style="background:var(--gold);color:var(--deep);font-family:var(--fs);font-weight:700;font-size:0.8rem;padding:0.65rem 2rem;border:none;border-radius:25px;cursor:pointer;letter-spacing:0.04em;">Submit →</button>
     </div>
 
     <div id="review-thanks" style="display:none;">
