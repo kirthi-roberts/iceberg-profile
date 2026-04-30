@@ -997,6 +997,12 @@ window.addEventListener('resize',function(){
     </div>
   </div>
 
+  <!-- ── TESTIMONIALS (social proof, populated from /testimonials.json) ── -->
+  <div id="testimonials-section" class="no-print" style="max-width:740px;margin:2.5rem auto 0;display:none;">
+    <div style="font-family:var(--fm);font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.7rem;text-align:center;">What clients say</div>
+    <div id="testimonials-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;"></div>
+  </div>
+
   <!-- ── REVIEW WIDGET ── -->
   <div id="review-section" class="no-print" style="max-width:640px;margin:2.5rem auto 0;background:linear-gradient(135deg,rgba(12,30,62,0.7),rgba(6,14,28,0.9));border:1px solid rgba(201,168,76,0.2);border-radius:16px;padding:2rem;text-align:center;">
     <div style="font-family:var(--fm);font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem">Share Your Experience</div>
@@ -1036,7 +1042,7 @@ window.addEventListener('resize',function(){
   // (so nothing is lost) and a mailto fallback offers to email
   // them to Kirthi directly.
   // ============================================================
-  const REVIEW_ENDPOINT = ''; // TODO: paste Formspree URL here, e.g. 'https://formspree.io/f/xxxxxx'
+  const REVIEW_ENDPOINT = 'https://formspree.io/f/mrejgadg';
   const REVIEW_FALLBACK_EMAIL = 'kirthi.roberts@gmail.com';
 
   let selRating = 0;
@@ -1131,6 +1137,123 @@ window.addEventListener('resize',function(){
                 '&body='    + encodeURIComponent(body);
     // Open in a new tab so the report page stays put
     window.open(url, '_blank');
+  }
+
+  // ============================================================
+  // TESTIMONIALS — fetch /testimonials.json and render approved cards
+  // ------------------------------------------------------------
+  // Add new testimonials by editing testimonials.json in the GitHub
+  // repo and pushing. Schema: { "testimonials": [{ "name": "...",
+  // "tier": "Iceberg Pro", "rating": 5, "quote": "...", "date":
+  // "2026-04-26" }] }. Only items in the JSON are publicly displayed —
+  // every review is moderated before showing. This is the static-
+  // approval pipeline; can be migrated to dynamic moderation later.
+  // ============================================================
+  function renderTestimonials(){
+    fetch('/testimonials.json', {cache: 'no-cache'})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(data){
+        if(!data || !data.testimonials || !data.testimonials.length) return;
+        var grid = document.getElementById('testimonials-grid');
+        var section = document.getElementById('testimonials-section');
+        if(!grid || !section) return;
+        grid.innerHTML = data.testimonials.map(function(t){
+          var stars = '';
+          var r = parseInt(t.rating)||5;
+          for(var i=0;i<5;i++) stars += '<span style="color:'+(i<r?'rgba(201,168,76,1)':'rgba(201,168,76,0.2)')+';">★</span>';
+          return '<div style="background:rgba(12,30,62,0.5);border:1px solid rgba(74,144,217,0.18);border-radius:12px;padding:1.4rem;">' +
+            '<div style="font-size:1rem;letter-spacing:0.1em;margin-bottom:0.6rem;">' + stars + '</div>' +
+            '<div style="font-family:var(--fd);font-size:0.86rem;line-height:1.65;color:var(--crystal);font-style:italic;margin-bottom:0.9rem;">"' + (t.quote||'') + '"</div>' +
+            '<div style="font-family:var(--fm);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(201,168,76,0.75);">' + (t.name||'Anonymous') + (t.tier ? ' · ' + t.tier : '') + '</div>' +
+          '</div>';
+        }).join('');
+        section.style.display = 'block';
+      })
+      .catch(function(){/* file missing — silently hide section */});
+  }
+
+  // ============================================================
+  // RESTORE-FROM-CACHE — on page load, if a report has already been
+  // generated for this user in this browser, render it directly from
+  // localStorage instead of routing them back through the assessment
+  // and forcing a regeneration (which costs API tokens and is the
+  // exact friction beta-tester Maxime reported). A "Generate Fresh
+  // Report" button is added so users can opt back into regeneration.
+  // ============================================================
+  (function restoreReportFromCache(){
+    try{
+      var cached = localStorage.getItem('ib_report_data');
+      var cachedTier = localStorage.getItem('ib_report_tier');
+      if(!cached || !cachedTier) return;
+      var data = JSON.parse(cached);
+      if(!data || data._error) return;
+
+      // Wait for the rest of the script to define renderReport, sel, etc.
+      var attempts = 0;
+      var tryRestore = function(){
+        attempts++;
+        if(typeof renderReport !== 'function' || typeof window.AREAS === 'undefined' && typeof AREAS === 'undefined'){
+          if(attempts < 50) return setTimeout(tryRestore, 100);
+          return;
+        }
+        // Set the global tier so renderReport's conditionals work
+        try{ sel = cachedTier; }catch(e){ window.sel = cachedTier; }
+        try{ curQs = (typeof buildQs === 'function') ? buildQs(sel) : []; }catch(e){}
+        // Hide everything else, show the report
+        var landing = document.getElementById('landing');
+        var app = document.getElementById('app');
+        var generating = document.getElementById('generating');
+        if(landing) landing.style.display = 'none';
+        if(app) app.style.display = 'none';
+        if(generating) generating.style.display = 'none';
+        // Set the tier pill so the header reflects the cached tier
+        var pill = document.getElementById('tier-pill');
+        if(pill) pill.textContent = ({starter:'Starter · 30Q',core:'Core · 60Q',full:'Pro · 100Q'})[cachedTier] || cachedTier;
+        // Render the cached report
+        renderReport(data);
+        // Insert the "Generate Fresh" controls at the top of the report
+        injectFreshGenerationControls();
+      };
+      tryRestore();
+    }catch(e){/* corrupt cache — fall through to normal flow */}
+  })();
+
+  function injectFreshGenerationControls(){
+    var report = document.getElementById('report');
+    if(!report) return;
+    if(document.getElementById('cached-report-banner')) return; // already injected
+    var generatedAt = localStorage.getItem('ib_report_at') || '';
+    var dateStr = '';
+    try{
+      if(generatedAt){
+        var d = new Date(generatedAt);
+        dateStr = d.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+      }
+    }catch(e){}
+    var banner = document.createElement('div');
+    banner.id = 'cached-report-banner';
+    banner.className = 'no-print';
+    banner.style.cssText = 'max-width:740px;margin:1rem auto;background:rgba(74,144,217,0.07);border:1px solid rgba(74,144,217,0.18);border-radius:10px;padding:0.85rem 1.2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:0.78rem;color:rgba(184,216,240,0.7);';
+    banner.innerHTML =
+      '<div>Showing your previously generated report' + (dateStr ? ' from <strong style="color:rgba(201,168,76,0.85);">' + dateStr + '</strong>' : '') + '. Your answers are still saved.</div>' +
+      '<button id="regen-fresh-btn" style="font-family:var(--fm);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.55rem 1.1rem;border-radius:6px;border:1px solid rgba(201,168,76,0.4);background:rgba(201,168,76,0.08);color:var(--gold);cursor:pointer;white-space:nowrap;">Generate Fresh Report</button>';
+    var firstChild = report.firstChild;
+    if(firstChild){ report.insertBefore(banner, firstChild); } else { report.appendChild(banner); }
+    document.getElementById('regen-fresh-btn').onclick = function(){
+      if(!confirm('Generate a fresh report? This uses your latest answers and replaces the cached version.')) return;
+      try{
+        localStorage.removeItem('ib_report_data');
+        localStorage.removeItem('ib_report_at');
+      }catch(e){}
+      // Hide the report and trigger the existing re-entry flow so user can
+      // edit answers (or skip straight to generate)
+      document.getElementById('report').style.display = 'none';
+      if(typeof enterReentryMode === 'function'){
+        enterReentryMode();
+      } else {
+        location.reload();
+      }
+    };
   }
   </script>
 
@@ -2081,6 +2204,16 @@ function renderReport(d){
     document.getElementById('locked-features').innerHTML=lf.map(f=>'<div class="locked-ft"><span style="opacity:.35;font-size:1rem;flex-shrink:0;margin-top:2px">🔒</span><div class="lf-body"><div class="lf-t">'+f.t+'</div><div class="lf-d">'+f.d+'</div></div></div>').join('');
     document.getElementById('upg-box').style.display='block';
   }
+  // Persist the rendered report so returning users see it instantly, without
+  // re-running the generation API call (and burning tokens). The cached report
+  // is keyed by tier so users who upgrade get a fresh generation at the new tier.
+  try{
+    localStorage.setItem('ib_report_data',JSON.stringify(d));
+    localStorage.setItem('ib_report_tier',sel||'');
+    localStorage.setItem('ib_report_at',new Date().toISOString());
+  }catch(e){/* quota or serialization error — silent */}
+  // Render the testimonials section once the report is up
+  if(typeof renderTestimonials==='function')renderTestimonials();
 }
 
 function fallback(){
@@ -2222,10 +2355,16 @@ function submitEmailCapture(){
     localStorage.setItem('ib_email',email);
     if(pin)localStorage.setItem('ib_pin',pin);
   }
-  fetch('https://api.convertkit.com/v3/forms/9252902/subscribe',{
-    method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({api_key:'40YM5udhv664QVYe4ADbbA',email:email,tags:['iceberg-profile-user']})
-  }).catch(function(){});
+  // Subscribe to Kit ONCE per browser. Previously this fired on every email-capture
+  // submission, which (with double opt-in enabled on form 9252902) re-triggered the
+  // "Confirm your subscription" email for returning users — a known friction
+  // reported by beta testers. The localStorage flag prevents re-firing.
+  if(!localStorage.getItem('ib_kit_subscribed')){
+    fetch('https://api.convertkit.com/v3/forms/9252902/subscribe',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({api_key:'40YM5udhv664QVYe4ADbbA',email:email,tags:['iceberg-profile-user']})
+    }).then(function(r){if(r&&r.ok)localStorage.setItem('ib_kit_subscribed','1');}).catch(function(){});
+  }
   dismissEmailCapture();
   showIntroScreen(window._emailCaptureCallback);
 }
@@ -2271,15 +2410,20 @@ function skipEmailCapture(){
 }
 
 function trackIcebergEvent(eventType,extraData){
+  // Local-only event tracking. Previously this re-submitted the email to the
+  // Kit form /subscribe endpoint on every event, which re-triggered Kit's
+  // double opt-in confirmation email for returning users on every report
+  // generation. Events now log to localStorage only. Wire to a proper analytics
+  // endpoint (Plausible custom event, GA4, or a dedicated Cloudflare Worker)
+  // when ready. The localStorage event log is readable via:
+  //   JSON.parse(localStorage.getItem('ib_event_log'))
   try{
     var email=localStorage.getItem('ib_email');
     if(!email)return;
-    var payload={api_key:'40YM5udhv664QVYe4ADbbA',email:email,
-      fields:Object.assign({last_event:eventType,last_tier:sel||'unknown',
-        last_event_date:new Date().toISOString().split('T')[0]},extraData||{})};
-    fetch('https://api.convertkit.com/v3/forms/9252902/subscribe',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(payload)}).catch(function(){});
+    var log=JSON.parse(localStorage.getItem('ib_event_log')||'[]');
+    log.push({event:eventType,tier:sel||'unknown',timestamp:new Date().toISOString(),data:extraData||{}});
+    if(log.length>50)log=log.slice(-50);
+    localStorage.setItem('ib_event_log',JSON.stringify(log));
   }catch(e){}
 }
 

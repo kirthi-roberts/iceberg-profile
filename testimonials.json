@@ -1,0 +1,12 @@
+{
+  "_comment": "Curated testimonials displayed on icebergprofile.com. Add new entries by appending to the testimonials array and pushing to GitHub. Each entry: { name, tier, rating (1-5), quote (the strongest sentence or two from the full review — keep tight), date (ISO yyyy-mm-dd) }. Reviews submitted via the on-page form land in Formspree first; nothing is published until you copy the chosen quote here.",
+  "testimonials": [
+    {
+      "name": "Maxime B.",
+      "tier": "Iceberg Pro",
+      "rating": 5,
+      "quote": "It named something I had been living for years without a clean way to say it. People recognize the systems I build, the libraries, the infrastructure, the processes — but rarely see me as the architect who designed them. That one line reframed how I present myself entirely.",
+      "date": "2026-04-26"
+    }
+  ]
+}
