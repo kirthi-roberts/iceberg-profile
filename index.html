@@ -1941,7 +1941,7 @@ async function generateReport(){
   try{
     const res=await fetch('https://iceberg-api.kirthi-bd1.workers.dev',{
       method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:4000,system:sys,bypass_code:(document.getElementById('bypass-input')||{value:''}).value,tier:sel,
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:8000,system:sys,bypass_code:(document.getElementById('bypass-input')||{value:''}).value,tier:sel,
         messages:[{role:'user',content:sel+' tier ('+curQs.length+'Q):\n\n'+summary+(resumeTxt?'\n\nRESUME:\n'+resumeTxt:'')}]})
     });
     // Log HTTP status for debugging
