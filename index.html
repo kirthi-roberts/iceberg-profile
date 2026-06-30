@@ -2611,8 +2611,28 @@ async function generatePreviewInsight(){
       body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:400,system:sys,bypass_code:'PREVIEW-FREE',tier:'preview',
         messages:[{role:'user',content:prompt}]})
     });
-    var json=await res.json();
-    var text=(json.content&&json.content[0]&&json.content[0].text)||'';
+    if(!res.ok)throw new Error('API '+res.status);
+    var text='';
+    var reader=res.body.getReader();
+    var decoder=new TextDecoder();
+    var buffer='';
+    while(true){
+      var chunk=await reader.read();
+      if(chunk.done) break;
+      buffer+=decoder.decode(chunk.value,{stream:true});
+      var nl;
+      while((nl=buffer.indexOf('\n'))>=0){
+        var line=buffer.slice(0,nl).trim();
+        buffer=buffer.slice(nl+1);
+        if(!line.startsWith('data:')) continue;
+        var ps=line.slice(5).trim();
+        if(!ps||ps==='[DONE]') continue;
+        try{
+          var evt=JSON.parse(ps);
+          if(evt.type==='content_block_delta'&&evt.delta&&typeof evt.delta.text==='string'){ text+=evt.delta.text; }
+        }catch(_){ }
+      }
+    }
     if(!text)throw new Error('Empty response');
     showPreviewResult(text);
   }catch(e){
