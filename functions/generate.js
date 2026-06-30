@@ -1,24 +1,12 @@
-// functions/generate.js — Cloudflare Pages Function — v2
-// Uses onRequest (handles all methods) instead of onRequestPost
+// functions/generate.js — Cloudflare Pages Function — v3 (streaming)
+// Streams the Anthropic response straight through to the browser.
+// This keeps the connection continuously active and eliminates the
+// Cloudflare 524 timeout on long (rich) report generations.
 // ─────────────────────────────────────────────────────────────
-// FOLDER STRUCTURE for Cloudflare Pages:
-//
-//   your-site-folder/
-//   ├── index.html
-//   └── functions/
-//       └── generate.js   ← this file (no "netlify" folder needed)
-//
-// SETUP IN CLOUDFLARE DASHBOARD:
-// Pages → your project → Settings → Environment variables → Add:
-//
-//   ANTHROPIC_API_KEY  =  sk-ant-api03-...your key...
-//   BYPASS_CODES       =  ICEBERG-VIP,COACH-ROBERTS,FUTURE-SCAPE
-//
-// The URL to call from the browser is the same: /functions/generate
-// Update index.html fetch URL from:
-//   '/.netlify/functions/generate'
-// To:
-//   '/functions/generate'
+// SETUP IN CLOUDFLARE DASHBOARD (unchanged):
+//   Pages → project → Settings → Environment variables:
+//     ANTHROPIC_API_KEY  =  sk-ant-api03-...your key...
+//     BYPASS_CODES       =  ICEBERG-VIP,COACH-ROBERTS,FUTURE-SCAPE
 // ─────────────────────────────────────────────────────────────
 
 export async function onRequest(context) {
@@ -27,51 +15,45 @@ export async function onRequest(context) {
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Content-Type': 'application/json'
+    'Access-Control-Allow-Methods': 'POST, OPTIONS'
   };
 
-  // Handle preflight
   if (request.method === 'OPTIONS') {
     return new Response(null, { status: 204, headers: corsHeaders });
   }
 
-  // Only allow POST
   if (request.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
-      status: 405, headers: corsHeaders
+      status: 405, headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
   }
 
-  // Parse request body
   let payload;
   try {
     payload = await request.json();
-  } catch(e) {
+  } catch (e) {
     return new Response(JSON.stringify({ error: 'Invalid JSON' }), {
-      status: 400, headers: corsHeaders
+      status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
   }
 
-  const { messages, model, max_tokens, system, bypass_code } = payload;
+  const { messages, model, max_tokens, system } = payload;
 
-  // API key
   const apiKey = env.ANTHROPIC_API_KEY;
   if (!apiKey) {
     return new Response(JSON.stringify({ error: 'API not configured' }), {
-      status: 500, headers: corsHeaders
+      status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
   }
 
-  // Build Anthropic request
   const requestBody = {
-    model: model || 'claude-sonnet-4-20250514',
-    max_tokens: max_tokens || 4000,
-    messages: messages
+    model: model || 'claude-sonnet-4-6',
+    max_tokens: max_tokens || 8000,
+    messages: messages,
+    stream: true
   };
   if (system) requestBody.system = system;
 
-  // Call Anthropic
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -83,21 +65,26 @@ export async function onRequest(context) {
       body: JSON.stringify(requestBody)
     });
 
-    const data = await response.json();
-
     if (!response.ok) {
-      return new Response(JSON.stringify({ error: data.error?.message || 'API error' }), {
-        status: response.status, headers: corsHeaders
+      let msg = 'API error';
+      try { const errData = await response.json(); msg = errData.error?.message || msg; } catch (e) {}
+      return new Response(JSON.stringify({ error: msg }), {
+        status: response.status, headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
     }
 
-    return new Response(JSON.stringify(data), {
-      status: 200, headers: corsHeaders
+    return new Response(response.body, {
+      status: 200,
+      headers: {
+        ...corsHeaders,
+        'Content-Type': 'text/event-stream; charset=utf-8',
+        'Cache-Control': 'no-cache'
+      }
     });
 
-  } catch(err) {
+  } catch (err) {
     return new Response(JSON.stringify({ error: err.message || 'Internal error' }), {
-      status: 500, headers: corsHeaders
+      status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
   }
 }
